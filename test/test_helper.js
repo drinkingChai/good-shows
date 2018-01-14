@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 mongoose.Promise = Promise
 
 before(done => {
-  // runs only once for all tests
   mongoose.connect('mongodb://localhost/good_shows_test', { useMongoClient: true })
   mongoose.connection
     .once('open', () => done())
@@ -12,11 +11,16 @@ before(done => {
 })
 
 beforeEach(done => {
-  // mongoose.connection.collections.users.drop(() => {
-  //   done()
-  // })
-  // mongoose.connection.collections.drop(() => {
-  //   done()
-  // })
-  done()
+  const { users, lists, shows, showdatas, comments } = mongoose.connection.collections // lowercase, mongo normalizes
+  users.drop(() => {
+    lists.drop(() => {
+      shows.drop(() => {
+        showdatas.drop(() => {
+          comments.drop(() => {
+            done()
+          })
+        })
+      })
+    })
+  })
 })
