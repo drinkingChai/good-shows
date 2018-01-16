@@ -18,7 +18,14 @@ const ListSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'show'
   }]
-})
+}, { usePushEach: true })
+
+ListSchema.methods.addToList = function(show, listName = 'wantToWatch') {
+  // adds a show<Show> to a list with name listName<String>
+  // on search => <showData> objects will be added to the database...
+  // first check showData to see if it exists, search by imdbID
+  // create a show<Show> with showData
+}
 
 const List = mongoose.model('list', ListSchema)
 

@@ -1,5 +1,8 @@
 const mongoose = require('mongoose')
+const path = require('path')
 mongoose.Promise = Promise
+
+require('dotenv').config()
 
 before(done => {
   mongoose.connect('mongodb://localhost/good_shows_test', { useMongoClient: true })
@@ -13,14 +16,15 @@ before(done => {
 beforeEach(done => {
   const { users, lists, shows, showdatas, comments } = mongoose.connection.collections // lowercase, mongo normalizes
   users.drop(() => {
-    lists.drop(() => {
-      shows.drop(() => {
-        showdatas.drop(() => {
-          comments.drop(() => {
-            done()
-          })
-        })
-      })
-    })
+    // lists.drop(() => {
+    //   shows.drop(() => {
+    //     showdatas.drop(() => {
+    //       comments.drop(() => {
+    //         done()
+    //       })
+    //     })
+    //   })
+    // })
+    done()
   })
 })

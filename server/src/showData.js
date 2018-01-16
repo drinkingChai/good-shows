@@ -8,7 +8,7 @@ const ShowDataSchema = new Schema({
   genres: [Genre],
   imdbID: String,
   posterPath: String
-})
+}, { usePushEach: true })
 
 const ShowData = mongoose.model('showData', ShowDataSchema)
 

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const bcrypt = require('bcrypt')
 
 const UserSchema = new Schema({
   name: {
@@ -7,7 +8,7 @@ const UserSchema = new Schema({
     validate: {
       validator: name => name.length > 2,
       message: 'Name must be longer than 2 characters.'
-    }
+    },
     required: [true, 'Name is required.']
   },
   email: {
@@ -21,7 +22,7 @@ const UserSchema = new Schema({
   password: {
     type: String,
     validate: {
-      validator: password => password,
+      validator: password => password, // replace with password validator
       message: 'Password cannot be empty.'
     },
     required: [true, 'Password is required.']    
@@ -36,13 +37,22 @@ const UserSchema = new Schema({
   }]
 }, { usePushEach: true })
 
+UserSchema.pre('save', function(next) {
+  bcrypt.hash(this.password, +process.env.SALT)
+    .then(hash => {
+      this.password = hash
+      next()
+    })
+    .catch(next)
+})
+
 // UserSchema.virtual('postCount').get(function() {
 //   // not =>, needs scope
 //   return this.posts.length
 // })
 
 // // before remove event
-// // also: save event
+// // also: save event, update?
 // UserSchema.pre('remove', function(next) {
 //   // don't require model inside another model function
 //   // cyclic load
