@@ -83,4 +83,44 @@ describe('Show tests', () => {
       })
       .catch(done)
   })
+
+  it('adds to an existing user list', done => {
+    let newShowData = new ShowData({
+      title: 'The Night Of',
+      plot: 'New York',
+      imdbID: 't1231423',
+      posterPath: 'http://got.com' 
+    })
+
+    let newShow = new Show({
+      showData: newShowData
+    })
+
+    Promise.all([
+      newShowData.save(),
+      newShow.save()
+    ])
+    .then(() => User.findOne({ name: 'Peter Dinklage' }))
+    .then(user => {
+      user.shows.push(newShow)
+      return user.save()
+    })
+    .then(() => {
+      return User.findOne({ name: 'Peter Dinklage' })
+        .populate({
+        path: 'shows',
+        populate: {
+          path: 'showData',
+          model: 'showData'
+        }
+      })
+    })
+    .then(user => {
+      // console.log(user)
+      assert(user.shows.length === 2)
+      assert(user.shows[1].showData.title === 'The Night Of')
+      done()
+    })
+    .catch(done)
+  })
 })

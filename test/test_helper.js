@@ -18,17 +18,10 @@ beforeEach(done => {
   users.drop(() => {
     showdatas.drop(() => {
       shows.drop(() => {
-        // comments.drop(() => {
+        comments.drop(() => {
           done()
-        // })
+        })
       })
     })
   })
 })
-
-// TODO:
-/*
-1. get all shows with pagination
-2. add/remove a friend
-
-*/
