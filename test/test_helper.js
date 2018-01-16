@@ -16,15 +16,19 @@ before(done => {
 beforeEach(done => {
   const { users, lists, shows, showdatas, comments } = mongoose.connection.collections // lowercase, mongo normalizes
   users.drop(() => {
-    // lists.drop(() => {
-    //   shows.drop(() => {
-    //     showdatas.drop(() => {
-    //       comments.drop(() => {
-    //         done()
-    //       })
-    //     })
-    //   })
-    // })
-    done()
+    showdatas.drop(() => {
+      shows.drop(() => {
+        // comments.drop(() => {
+          done()
+        // })
+      })
+    })
   })
 })
+
+// TODO:
+/*
+1. get all shows with pagination
+2. add/remove a friend
+
+*/

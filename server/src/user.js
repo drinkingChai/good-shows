@@ -27,10 +27,10 @@ const UserSchema = new Schema({
     },
     required: [true, 'Password is required.']    
   },
-  list: {
+  shows: [{
     type: Schema.Types.ObjectId,
-    ref: 'list'
-  },
+    ref: 'show'
+  }],
   friends: [{
     type: Schema.Types.ObjectId,
     ref: 'user'
