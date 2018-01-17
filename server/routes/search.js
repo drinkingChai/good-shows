@@ -14,7 +14,8 @@ let options = {
 
 router.get('/', (req, res, next) => {
   options.qs.api_key = process.env.TMDB_API_KEY
-  options.qs.query = req.query.title
+  options.qs.query = req.query.name
+  options.qs.page = req.query.page
 
   request(options)
     .then(searchResults => {

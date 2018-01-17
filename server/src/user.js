@@ -46,6 +46,29 @@ UserSchema.pre('save', function(next) {
     .catch(next)
 })
 
+UserSchema.virtual('tokenData').get(function() {
+  return {
+    name: this.name,
+    email: this.email,
+    shows: this.shows,
+    friends: this.friends
+  }
+})
+
+UserSchema.statics.verifyLogin = function(email, password) {
+  return this.findOne({ email })
+    .then(user => {
+      if (!user) return null
+
+      return bcrypt.compare(password, user.password)
+        .then(result => {
+          if (!result) throw new Error('Incorrect username or password.')
+
+          return user.tokenData
+        })
+    })
+}
+
 // UserSchema.virtual('postCount').get(function() {
 //   // not =>, needs scope
 //   return this.posts.length

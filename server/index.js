@@ -13,6 +13,10 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500).send(err.message)
 })
 
+app.get('/*', (req, res, next) => {
+  res.sendStatus(200)
+})
+
 app.listen(port, () => console.log(`listening on port ${port}`))
 
 module.exports = app

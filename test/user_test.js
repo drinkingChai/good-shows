@@ -54,5 +54,24 @@ describe('User validation', () => {
       })
       .catch(done)
   })
+
+  it('can return only token data', (done) => {
+    let password = 'dornishred'
+    const peter = new User({
+      name: 'Peter Dinklage',
+      email: 'peter@hand.com',
+      password
+    })
+
+    peter.save()
+      .then(() => User.findOne({ email: 'peter@hand.com' }))
+      .then(user => {
+        let tokenData = user.tokenData 
+        assert(tokenData.name === 'Peter Dinklage')
+        assert(!tokenData.password)
+        done()
+      })
+      .catch(done)
+  })
 })
 

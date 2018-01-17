@@ -7,11 +7,11 @@ describe('Genre test', () => {
 
   beforeEach(done => {
     got = new ShowData({
-      title: 'Game of Thrones'
+      name: 'Game of Thrones'
     })
 
     nof = new ShowData({
-      title: 'The Night Of'
+      name: 'The Night Of'
     })
 
     drama = new Genre({
@@ -32,7 +32,7 @@ describe('Genre test', () => {
 
     got.save()
       .then(() => {
-        return ShowData.findOne({ title: 'Game of Thrones' })
+        return ShowData.findOne({ name: 'Game of Thrones' })
           .populate('genres')
       })
       .then(showData => {
@@ -57,8 +57,8 @@ describe('Genre test', () => {
       })
       .then(genre => {
         assert(genre.showDatas.length === 2)
-        assert(genre.showDatas[0].title === 'Game of Thrones' || genre.showDatas[0].title === 'The Night Of')
-        assert(genre.showDatas[0].title !== genre.showDatas[1].title)
+        assert(genre.showDatas[0].name === 'Game of Thrones' || genre.showDatas[0].name === 'The Night Of')
+        assert(genre.showDatas[0].name !== genre.showDatas[1].name)
         done()
       })
       .catch(done)

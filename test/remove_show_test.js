@@ -14,9 +14,9 @@ describe('Change list tests', () => {
     })
 
     got = new ShowData({
-      title: 'Game of Thrones',
-      plot: 'Westeros',
-      imdbID: 't1231423',
+      name: 'Game of Thrones',
+      overview: 'Westeros',
+      tmdbID: 't1231423',
       posterPath: 'http://got.com'
     })
 
@@ -46,7 +46,7 @@ describe('Change list tests', () => {
         }
       })
       .then(user => {
-        user.shows = user.shows.filter(s => s.showData.title !== 'Game of Thrones')
+        user.shows = user.shows.filter(s => s.showData.name !== 'Game of Thrones')
 
         return Promise.all([
           show.remove(),

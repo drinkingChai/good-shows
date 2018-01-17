@@ -21,9 +21,9 @@ describe('Add Comment test', () => {
     })
 
     got = new ShowData({
-      title: 'Game of Thrones',
-      plot: 'Westeros',
-      imdbID: 't1231423',
+      name: 'Game of Thrones',
+      overview: 'Westeros',
+      tmdbID: 't1231423',
       posterPath: 'http://got.com'
     })
 

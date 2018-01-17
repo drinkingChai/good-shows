@@ -20,9 +20,9 @@ describe('Show tests', () => {
     })
 
     got = new ShowData({
-      title: 'Game of Thrones',
-      plot: 'Westeros',
-      imdbID: 't1231423',
+      name: 'Game of Thrones',
+      overview: 'Westeros',
+      tmdbID: 't1231423',
       posterPath: 'http://got.com'
     })
 
@@ -60,14 +60,14 @@ describe('Show tests', () => {
       .then(user => {
         assert(user.name === 'Peter Dinklage')
         assert(user.shows.length === 1)
-        assert(user.shows[0].showData.title === 'Game of Thrones')
+        assert(user.shows[0].showData.name === 'Game of Thrones')
         done()
       })
       .catch(done)
   })
 
   it('only creates one showData', done => {
-    ShowData.find({ title: 'Game of Thrones' })
+    ShowData.find({ name: 'Game of Thrones' })
       .then(shows => {
         assert(shows.length === 1)
         done()
@@ -86,9 +86,9 @@ describe('Show tests', () => {
 
   it('adds to an existing user list', done => {
     let newShowData = new ShowData({
-      title: 'The Night Of',
-      plot: 'New York',
-      imdbID: 't1231423',
+      name: 'The Night Of',
+      overview: 'New York',
+      tmdbID: 't1231423',
       posterPath: 'http://got.com' 
     })
 
@@ -118,7 +118,7 @@ describe('Show tests', () => {
     .then(user => {
       // console.log(user)
       assert(user.shows.length === 2)
-      assert(user.shows[1].showData.title === 'The Night Of')
+      assert(user.shows[1].showData.name === 'The Night Of')
       done()
     })
     .catch(done)
