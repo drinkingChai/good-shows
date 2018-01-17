@@ -1,11 +1,13 @@
 const mongoose = require('mongoose')
-const Genre = require('./genre')
 const Schema = mongoose.Schema
 
 const ShowDataSchema = new Schema({
   title: String,
   plot: String,
-  genres: [Genre],
+  genres: [{
+    type: Schema.Types.ObjectId,
+    ref: 'genre'
+  }],
   imdbID: String,
   posterPath: String
 }, { usePushEach: true })

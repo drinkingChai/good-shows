@@ -14,12 +14,14 @@ before(done => {
 })
 
 beforeEach(done => {
-  const { users, lists, shows, showdatas, comments } = mongoose.connection.collections // lowercase, mongo normalizes
+  const { users, lists, shows, showdatas, comments, genres } = mongoose.connection.collections // lowercase, mongo normalizes
   users.drop(() => {
     showdatas.drop(() => {
       shows.drop(() => {
         comments.drop(() => {
-          done()
+          genres.drop(() => {
+            done()
+          })
         })
       })
     })
