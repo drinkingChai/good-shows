@@ -22,6 +22,8 @@ async function verifyToken(token) {
 }
 
 function verifyMiddleware(req, res, next) {
+  if (!req.headers.authorization) return res.sendStatus(401)
+
   verifyToken(req.headers.authorization)
     .then(result => {
       req.user = result
