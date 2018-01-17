@@ -25,7 +25,7 @@ router.post('/local', (req, res, next) => {
   passport.authenticate('local', function(err, token, info) {
     if (err) return next(err)
 
-    if (!token) return res.redirect('/login?error=1')
+    if (!token) return res.redirect('/login?error=100')
 
     res.redirect(`/token?=${token}`)
   })(req, res, next)
@@ -35,6 +35,21 @@ router.post('/verify', (req, res, next) => {
   verifyToken(req.headers.authorization)
     .then(result => {
       res.send(result)
+    })
+    .catch(next)
+})
+
+router.post('/new', (req, res, next) => {
+  const { name, email, password } = req.body
+  User.findOne({ email })
+    .then(user => {
+      if (user) return res.redirect('/login?error=200')
+
+      let newUser = new User({ name, email, password })
+      return newUser.save()
+    })
+    .then(user => {
+      res.redirect(`/token?=${createToken(user.tokenData)}`)
     })
     .catch(next)
 })

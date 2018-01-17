@@ -34,6 +34,10 @@ const UserSchema = new Schema({
   friends: [{
     type: Schema.Types.ObjectId,
     ref: 'user'
+  }],
+  pendingFriends: [{
+    type: Schema.Types.ObjectId,
+    ref: 'user'
   }]
 }, { usePushEach: true })
 

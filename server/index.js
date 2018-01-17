@@ -9,12 +9,12 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/api', require('./routes'))
 
-app.use((err, req, res, next) => {
-  res.status(err.status || 500).send(err.message)
-})
-
 app.get('/*', (req, res, next) => {
   res.sendStatus(200)
+})
+
+app.use((err, req, res, next) => {
+  res.status(err.status || 500).send(err.message)
 })
 
 app.listen(port, () => console.log(`listening on port ${port}`))

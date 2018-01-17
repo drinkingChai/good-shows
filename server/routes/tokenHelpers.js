@@ -21,7 +21,17 @@ async function verifyToken(token) {
   return result
 }
 
+function verifyMiddleware(req, res, next) {
+  verifyToken(req.headers.authorization)
+    .then(result => {
+      req.user = result
+      next()
+    })
+    .catch(next)
+}
+
 module.exports = {
   createToken,
-  verifyToken
+  verifyToken,
+  verifyMiddleware
 }

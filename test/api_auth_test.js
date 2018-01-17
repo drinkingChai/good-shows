@@ -49,8 +49,23 @@ xdescribe('API local auth test', () => {
   })
 })
 
-describe.only('API create user test', () => {
-  it('can create a new user and log them in', () => {
+xdescribe('API create user test', () => {
+  it('can create a new user and log them in', (done) => {
+    chai.request(server)
+      .post('/api/auth/new')
+      .send({ name: 'Podrick', email: 'pod@payne.co', password: 'podlikespies' })
+      .end((err, res) => {
+        if (err) return done(err)
 
+        assert(res.redirects.length === 1)
+      
+        User.findOne({ name: 'Podrick' })
+          .then(user => {
+            assert(!user.isNew)
+            assert(user.password !== 'podlikespies')
+            done() 
+          })
+          .catch(done)
+      })
   })
 })
