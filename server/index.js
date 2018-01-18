@@ -3,6 +3,8 @@ const express = require('express'),
       bodyParser = require('body-parser'),
       app = express(),
       port = process.env.PORT || 3001
+      
+require('dotenv').config()
 
 app.use(morgan('dev'))
 app.use(bodyParser.json())
