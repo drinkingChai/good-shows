@@ -55,7 +55,8 @@ UserSchema.virtual('tokenData').get(function() {
     name: this.name,
     email: this.email,
     shows: this.shows,
-    friends: this.friends
+    friends: this.friends,
+    _id: this._id
   }
 })
 

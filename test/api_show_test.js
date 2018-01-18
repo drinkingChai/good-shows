@@ -24,7 +24,7 @@ xdescribe('ADD show test', () => {
       .catch(done)
   })
 
-  it.only('/POST add a show to user list', (done) => {
+  xit('/POST add a show to user list', (done) => {
     chai.request(server)
       .post('/api/auth/local')
       .send({ email: peter.email, password: 'peter' })
@@ -57,7 +57,7 @@ xdescribe('ADD show test', () => {
       })
   })
 
-  it('/DELETE remove a show from user list', (done) => {
+  xit('/DELETE remove a show from user list', (done) => {
     chai.request(server)
       .post('/api/auth/local')
       .send({ email: peter.email, password: 'peter' })
@@ -91,7 +91,7 @@ xdescribe('ADD show test', () => {
       })
   })
 
-  it('/PUT change list', (done) => {
+  xit('/PUT change list', (done) => {
     chai.request(server)
       .post('/api/auth/local')
       .send({ email: peter.email, password: 'peter' })
@@ -126,7 +126,7 @@ xdescribe('ADD show test', () => {
       })
   })
 
-  it('/PUT add/remove from favorites', (done) => {
+  xit('/PUT add/remove from favorites', (done) => {
     chai.request(server)
       .post('/api/auth/local')
       .send({ email: peter.email, password: 'peter' })
