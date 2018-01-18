@@ -1,0 +1,15 @@
+.LoginForm {
+  padding: 40px 60px;
+  background: #393939;
+  form input {
+    display: block;
+    width: calc(100% - 12px);
+    margin: 12px 0;
+  }
+  form button {
+    width: 100%;
+  }
+  .login .Button {
+    margin: 10px 0;
+  }
+}

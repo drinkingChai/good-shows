@@ -1,0 +1,17 @@
+.Banner {
+  height: 232px;
+  background: #FFE6FE;
+  position: relative; }
+  .Banner div {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); }
+  .Banner h1 {
+    margin-bottom: 0;
+    font-weight: 400; }
+    .Banner h1 span {
+      font-weight: 700; }
+  .Banner p {
+    margin-top: 0;
+    text-align: right; }

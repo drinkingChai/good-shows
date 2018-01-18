@@ -1,29 +1,20 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './Landing.css'
-import { connect } from 'react-redux'
-import { fetchPopularShows } from '../../reducers/popularShows'
+import Trending from './Trending/Trending'
+import Banner from './Banner/Banner'
+import Blurb from './Blurb/Blurb'
+import LoginForm from '../LoginForm/LoginForm'
 
-class Landing extends Component {
-  componentDidMount = () => {
-    this.props.loadPopularShows()
-  }
+export default function() {
+  return (
+    <div className='Landing'>
+      <Banner />
 
-  render = () => {
-    const { shows } = this.props
-
-    return (
-      <div>
+      <div className="landing-content">
+        <Trending />
+        <Blurb />
+        <LoginForm />
       </div>
-    )
-  }
+    </div>
+  )
 }
- 
-const mapState = ({ popularShows }) => ({
-  shows: popularShows
-})
-const mapDispatch = dispatch => ({
-  loadPopularShows() {
-    dispatch(fetchPopularShows())
-  }
-})
-export default connect(mapState, mapDispatch)(Landing)
