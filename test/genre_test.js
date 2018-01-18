@@ -2,7 +2,7 @@ const assert = require('assert')
 const Genre = require('../server/src/genre')
 const ShowData = require('../server/src/showData')
 
-describe('Genre test', () => {
+xdescribe('Genre test', () => {
   let drama, got, nof
 
   beforeEach(done => {

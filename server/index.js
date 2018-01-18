@@ -14,6 +14,9 @@ app.get('/*', (req, res, next) => {
 })
 
 app.use((err, req, res, next) => {
+  console.log('***************** server error *****************\n')
+  console.log(err.message)
+  console.log('\n*************** end server error ***************')
   res.status(err.status || 500).send(err.message)
 })
 

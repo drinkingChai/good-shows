@@ -19,9 +19,9 @@ beforeEach(done => {
     showdatas.drop(() => {
       shows.drop(() => {
         comments.drop(() => {
-          genres.drop(() => {
+          // genres.drop(() => {
             done()
-          })
+          // })
         })
       })
     })
