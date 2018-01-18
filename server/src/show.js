@@ -27,7 +27,7 @@ const ShowSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'comment'
   }]
-}, { usePushEach: true })
+}, { usePushEach: true, timestamps: true })
 
 ShowSchema.virtual('likesCount').get(function() {
   return this.likes.length

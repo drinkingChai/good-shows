@@ -97,7 +97,7 @@ xdescribe('API new like/comment test', () => {
   })
 })
 
-describe.only('API remove like/comment test', () => {
+xdescribe('API remove like/comment test', () => {
   let peter, emilia, show, comment
 
   beforeEach((done) => {
