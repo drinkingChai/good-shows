@@ -7,7 +7,7 @@ const Show = require('../server/src/show')
 const User = require('../server/src/user')
 chai.use(require('chai-http'))
 
-describe.only('API feed test', () => {
+xdescribe('API feed test', () => {
   let peter, emilia, kit, show, show2
 
   beforeEach((done) => {

@@ -7,5 +7,6 @@ router.use('/show', require('./show'))
 router.use('/like', require('./like'))
 router.use('/comment', require('./comment'))
 router.use('/feed', require('./feed'))
+router.use('/popular', require('./popular'))
 
 module.exports = router
