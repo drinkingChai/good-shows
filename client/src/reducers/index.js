@@ -3,10 +3,12 @@ import loggerMiddleware from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 
 import popularShows from './popularShows'
+import currentUser from './currentUser'
 
 export default createStore(
   combineReducers({
-    popularShows
+    popularShows,
+    currentUser
   }),
   applyMiddleware(thunkMiddleware, loggerMiddleware)
 )

@@ -13,7 +13,7 @@ passport.use(new LocalStrategy({
       .then(userTokenData => {
         if (!userTokenData) return done(null, false, 'Incorrect username or password.')
 
-        return done(null, createToken(userTokenData))
+        return done(null, { userInfo: userTokenData, token: createToken(userTokenData) })
       })
       .catch(err => {
         return done(null, false, err)
@@ -25,9 +25,9 @@ router.post('/local', (req, res, next) => {
   passport.authenticate('local', function(err, token, info) {
     if (err) return next(err)
 
-    if (!token) return res.redirect('/login?error=100')
+    if (!token) return next(info)
 
-    res.redirect(`/token?=${token}`)
+    res.send(token)
   })(req, res, next)
 })
 
@@ -43,13 +43,13 @@ router.post('/new', (req, res, next) => {
   const { name, email, password } = req.body
   User.findOne({ email })
     .then(user => {
-      if (user) return res.redirect('/login?error=200')
+      if (user) throw new Error('An account is already registered with that email.')
 
       let newUser = new User({ name, email, password })
       return newUser.save()
     })
     .then(user => {
-      res.redirect(`/token?=${createToken(user.tokenData)}`)
+      res.send({ userInfo: tokenData, token: createToken(user.tokenData) })
     })
     .catch(next)
 })

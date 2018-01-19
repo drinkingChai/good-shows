@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const GET_POPULAR_SHOWS = 'GET_POPULAR_SHOWS'
 
-const getPopularShows = (popularShows) => ({ type: GET_POPULAR_SHOWS, popularShows})
+const getPopularShows = (popularShows) => ({ type: GET_POPULAR_SHOWS, popularShows })
 
 const initialState = []
 
