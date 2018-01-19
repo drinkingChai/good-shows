@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { setClientAuth, removeClientAuth } from '../../utils'
 
 const SET_USER = 'SET_USER'
 
@@ -20,8 +21,14 @@ export default function (state = initialState, action) {
 
 export const signIn = (email, password) => dispatch =>
   axios.post('/api/auth/local', { email, password })
-    .then(res => dispatch(setUser(res.data)))
+    .then(res => {
+      setClientAuth(res.data.token)
+      dispatch(setUser(res.data))
+    })
 
 export const regAndSignIn = (name, email, password) => dispatch =>
   axios.post('/api/auth/new', { name, email, password })
-    .then(res => dispatch(setUser(res.data)))
+    .then(res => {
+      setClientAuth(res.data.token)
+      dispatch(setUser(res.data))
+    })

@@ -9,3 +9,9 @@
     width: 100%; }
   .LoginForm .login .Button {
     margin: 10px 0; }
+  .LoginForm .ErrorPane {
+    margin-top: 22px;
+    margin-left: -60px;
+    margin-right: -60px; }
+    .LoginForm .ErrorPane p {
+      text-align: center; }

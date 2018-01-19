@@ -2,14 +2,17 @@ import React, { Component } from 'react'
 import './LoginForm.css'
 import Button from '../Button/Button'
 import Input from '../Input/Input'
+import ErrorPane from '../ErrorPane/ErrorPane'
 import { connect } from 'react-redux'
 import { signIn, regAndSignIn } from '../../reducers/currentUser'
+import { axiosErrorParser } from '../../utils'
 
 class LoginForm extends Component {
   state = {
     email: '',
     password: '',
-    name: ''
+    name: '',
+    errorStr: ''
   }
 
   handleChange = (name) => (ev) => {
@@ -19,12 +22,14 @@ class LoginForm extends Component {
   handleLogIn = (ev) => {
     ev.preventDefault()
     this.props.attemptLogIn(this.state.email, this.state.password)
+      .catch(err => this.setState({ errorStr: axiosErrorParser(err) }))
   }
 
   handleRegister = (ev) => {
     ev.preventDefault()
     const { name, email, password } = this.state
     this.props.attemptRegister(name, email, password)
+      .catch(err => this.setState({ errorStr: axiosErrorParser(err) }))
   }
 
   render = () => {
@@ -40,6 +45,10 @@ class LoginForm extends Component {
           <Input placeholder='Name' value={ this.state.name } onChange={ this.handleChange('name') } />
           <Button label='Create Account' />
         </form>
+
+        <ErrorPane visibility={ this.state.errorStr }>
+          <p>{ this.state.errorStr }</p>
+        </ErrorPane>
       </div>
     )
   }
@@ -47,10 +56,10 @@ class LoginForm extends Component {
 
 const mapDispatch = dispatch => ({
   attemptLogIn(email, password) {
-    dispatch(signIn(email, password))
+    return dispatch(signIn(email, password))
   },
   attemptRegister(name, email, password) {
-    dispatch(regAndSignIn(name, email, password))
+    return dispatch(regAndSignIn(name, email, password))
   }
 })
 export default connect(null, mapDispatch)(LoginForm)
