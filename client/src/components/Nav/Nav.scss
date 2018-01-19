@@ -1,0 +1,32 @@
+.Nav {
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid #E0E0E0;
+  a { text-decoration: none; }
+  h3.logo {
+    font-size: 24px;
+    line-height: 22px;
+  }
+  h3 {
+    font-size: 20px;
+    font-weight: 300;
+    cursor: pointer;
+    margin: 0;
+    span {
+      font-weight: 700;
+    }
+  }
+  & > div {
+    display: inline-block;
+    padding: 17px 20px;
+  }
+  .links {
+    a {
+      display: inline-block;
+      margin-right: 45px;
+      &:last-child { margin-right: 0; }
+    }
+    position: absolute;
+    right: 0;
+  }
+}

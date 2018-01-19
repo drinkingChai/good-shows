@@ -13,7 +13,7 @@ const initialState = {
 export default function (state = initialState, action) {
   switch(action.type) {
     case SET_USER:
-      return action.user
+      return !action.user ? initialState : action.user
     default:
       return state
   }
@@ -32,3 +32,15 @@ export const regAndSignIn = (name, email, password) => dispatch =>
       setClientAuth(res.data.token)
       dispatch(setUser(res.data))
     })
+
+export const verifyClientToken = (token) => dispatch =>
+  axios.post('/api/auth/verify', { token })
+    .then(res => {
+      setClientAuth(res.data.token)
+      dispatch(setUser(res.data))
+    })
+
+export const signOut = () => dispatch => {
+  removeClientAuth()
+  dispatch(setUser())
+}

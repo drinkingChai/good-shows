@@ -11,6 +11,8 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none; }
+  .Input:focus {
+    border: 1px solid #12BDFF; }
   .Input::-webkit-input-placeholder {
     /* Chrome/Opera/Safari */
     color: #818080; }

@@ -32,9 +32,9 @@ router.post('/local', (req, res, next) => {
 })
 
 router.post('/verify', (req, res, next) => {
-  verifyToken(req.headers.authorization)
+  verifyToken(req.body.token)
     .then(result => {
-      res.send(result)
+      res.send({ userInfo: result, token: req.body.token })
     })
     .catch(next)
 })

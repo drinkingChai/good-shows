@@ -9,8 +9,11 @@
   padding-left:12px;
   outline: none;
   -webkit-appearance: none;
-   -moz-appearance: none;
-   appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  &:focus {
+    border: 1px solid #12BDFF;
+  }
   &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     color: #818080;
   }
