@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink, Link, withRouter } from 'react-router-dom'
 import './Nav.css'
 import { signOut } from '../../reducers/currentUser'
 import { connect } from 'react-redux'
@@ -12,9 +12,9 @@ const Nav = (props) => {
       </div>
 
       <div className='links'>
-        <Link to='/search'><h3>Search</h3></Link>
-        <Link to='/friends'><h3>Friends</h3></Link>
-        <Link to='/account'><h3>Account</h3></Link>
+        <NavLink to='/search' activeClassName='active'><h3>Search</h3></NavLink>
+        <NavLink to='/friends' activeClassName='active'><h3>Friends</h3></NavLink>
+        <NavLink to='/account' activeClassName='active'><h3>Account</h3></NavLink>
         <a onClick={ props.signUserOut }><h3>Log Out</h3></a>
       </div>
     </nav>
@@ -26,4 +26,4 @@ const mapDispatch = dispatch => ({
     dispatch(signOut())
   }
 })
-export default connect(null, mapDispatch)(Nav);
+export default withRouter(connect(null, mapDispatch)(Nav));

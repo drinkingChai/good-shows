@@ -1,0 +1,6 @@
+.SearchShow .SearchBar {
+  padding-top: 32px; }
+  .SearchShow .SearchBar input {
+    width: 50%;
+    position: relative;
+    transform: translateX(50%); }

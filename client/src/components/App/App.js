@@ -4,6 +4,7 @@ import Landing from '../Landing/Landing'
 import { connect } from 'react-redux'
 import { verifyClientToken, signOut } from '../../reducers/currentUser'
 import Main from '../Main/Main'
+import { withRouter } from 'react-router-dom'
 
 class App extends Component {
   componentDidMount = () => {
@@ -35,4 +36,4 @@ const mapDispatch = dispatch => ({
     dispatch(signOut())
   }
 })
-export default connect(mapState, mapDispatch)(App);
+export default withRouter(connect(mapState, mapDispatch)(App));

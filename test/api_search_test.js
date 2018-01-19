@@ -7,7 +7,7 @@ chai.use(chaiHttp)
 xdescribe('API Search test', () => {
   // search function with debounce
   // NOTES: debouce time of 500ms limites to 20 requests per IP address
-  //        which is under the 40 second rate limit of TMDB
+  //        every 10 seconds, which is under the 40 second rate limit of TMDB
 
   it('/GET search with query', (done) => {
     chai.request(server)
