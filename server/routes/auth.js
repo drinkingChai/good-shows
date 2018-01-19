@@ -49,7 +49,7 @@ router.post('/new', (req, res, next) => {
       return newUser.save()
     })
     .then(user => {
-      res.send({ userInfo: tokenData, token: createToken(user.tokenData) })
+      res.send({ userInfo: user.tokenData, token: createToken(user.tokenData) })
     })
     .catch(next)
 })

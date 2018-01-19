@@ -1,5 +1,7 @@
 .Nav {
-  position: relative;
+  position: fixed;
+  z-index: 9999;
+  background-color: #FFFFFF;
   width: 100%;
   border-bottom: 1px solid #E0E0E0; }
   .Nav a {
