@@ -2,7 +2,8 @@
   font-size: 14px;
   padding: 17px;
   background-color: #FF0808;
-  color: #FFFFFF; }
+  color: #FFFFFF;
+  transition: opacity 300ms; }
   .ErrorPane.hidden {
     opacity: 0; }
   .ErrorPane.visible {

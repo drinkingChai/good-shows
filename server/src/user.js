@@ -67,7 +67,7 @@ UserSchema.statics.verifyLogin = function(email, password) {
 
       return bcrypt.compare(password, user.password)
         .then(result => {
-          if (!result) throw new Error('Incorrect username or password.')
+          if (!result) throw new Error('Incorrect email or password.')
 
           return user.tokenData
         })

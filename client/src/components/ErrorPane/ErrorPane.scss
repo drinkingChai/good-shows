@@ -3,6 +3,7 @@
   padding: 17px;
   background-color: #FF0808;
   color: #FFFFFF;
+  transition: opacity 300ms;
   &.hidden {
     opacity: 0;
   }

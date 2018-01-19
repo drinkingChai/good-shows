@@ -11,7 +11,7 @@ passport.use(new LocalStrategy({
   function(email, password, done) {
     User.verifyLogin(email, password)
       .then(userTokenData => {
-        if (!userTokenData) return done(null, false, 'Incorrect username or password.')
+        if (!userTokenData) return done(null, false, 'Incorrect email or password.')
 
         return done(null, { userInfo: userTokenData, token: createToken(userTokenData) })
       })

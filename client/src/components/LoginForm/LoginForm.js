@@ -12,24 +12,25 @@ class LoginForm extends Component {
     email: '',
     password: '',
     name: '',
-    errorStr: ''
+    errorStr: '',
+    errorState: false
   }
 
   handleChange = (name) => (ev) => {
-    this.setState({ [name]: ev.target.value })
+    this.setState({ [name]: ev.target.value, errorState: false })
   }
 
   handleLogIn = (ev) => {
     ev.preventDefault()
     this.props.attemptLogIn(this.state.email, this.state.password)
-      .catch(err => this.setState({ errorStr: axiosErrorParser(err) }))
+      .catch(err => this.setState({ errorStr: axiosErrorParser(err), errorState: true }))
   }
 
   handleRegister = (ev) => {
     ev.preventDefault()
     const { name, email, password } = this.state
     this.props.attemptRegister(name, email, password)
-      .catch(err => this.setState({ errorStr: axiosErrorParser(err) }))
+      .catch(err => this.setState({ errorStr: axiosErrorParser(err), errorState: true }))
   }
 
   render = () => {
@@ -46,7 +47,7 @@ class LoginForm extends Component {
           <Button label='Create Account' />
         </form>
 
-        <ErrorPane visibility={ this.state.errorStr }>
+        <ErrorPane visibility={ this.state.errorState }>
           <p>{ this.state.errorStr }</p>
         </ErrorPane>
       </div>
