@@ -1,6 +1,12 @@
 .LoginForm {
   padding: 40px 60px;
-  background: #393939;
+  background: #ffffff;
+  h3 {
+    font-family: 'Josefin Slab', serif;
+    text-align: center;
+    margin-bottom: 32px;
+    margin-top: 16px;
+  }
   form input {
     display: block;
     width: calc(100% - 12px);

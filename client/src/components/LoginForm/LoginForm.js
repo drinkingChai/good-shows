@@ -36,6 +36,7 @@ class LoginForm extends Component {
   render = () => {
     return (
       <div className='LoginForm'>
+        <h3>Log In or Sign Up</h3>
         <form className='login' onSubmit={ this.handleLogIn }>
           <Input placeholder='Email' type='email' value={ this.state.email } onChange={ this.handleChange('email') } />
           <Input placeholder='Password' type='password' value={ this.state.password } onChange={ this.handleChange('password') } />

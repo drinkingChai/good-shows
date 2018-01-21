@@ -6,7 +6,7 @@ import section1 from '../../images/section1.png'
 import section2 from '../../images/section2.png'
 import Blurb from './Blurb/Blurb'
 
-export default function() {
+export default function () {
   return (
     <div className='Landing'>
       <Banner />
@@ -36,5 +36,5 @@ export default function() {
 
       <Blurb />
     </div>
-  )
+    )
 }

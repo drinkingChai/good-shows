@@ -1,11 +1,19 @@
 .Banner {
   height: 382px;
   position: relative;
-  div {
+  div.content {
     position: absolute;
     left: 50%;
     top: 25%;
     transform: translate(-50%, -25%);
+    .Button {
+      transform: translateY(68px);
+      width: 212px;
+    }
+    p {
+      margin-top: 0;
+      text-align: right;
+    }
   }
   h1 {
     margin-bottom: 0;
@@ -14,12 +22,11 @@
       font-weight: 700;
     }
   }
-  p {
-    margin-top: 0;
-    text-align: right;
-  }
-  .Button {
-    transform: translateY(140px);
-    width: 212px;
+  
+  .Modal > .inner {
+    width: 500px;
+    .LoginForm {
+      border-radius: 5px;
+    }
   }
 }

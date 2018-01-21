@@ -1,0 +1,22 @@
+.Modal {
+  &.open {
+    position: fixed;
+    display: block;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background: hsla(0, 0, 0, .8);
+    z-index: 9999;
+  }
+  &.closed {
+    display: none;
+  }
+  & > .inner {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+  }
+}
+
+body.modal-open {
+  overflow: hidden;
+}
