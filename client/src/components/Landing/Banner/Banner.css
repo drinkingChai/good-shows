@@ -1,12 +1,11 @@
 .Banner {
-  height: 232px;
-  background: #FFE6FE;
+  height: 382px;
   position: relative; }
   .Banner div {
     position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%); }
+    top: 25%;
+    transform: translate(-50%, -25%); }
   .Banner h1 {
     margin-bottom: 0;
     font-weight: 400; }
@@ -15,3 +14,6 @@
   .Banner p {
     margin-top: 0;
     text-align: right; }
+  .Banner .Button {
+    transform: translateY(140px);
+    width: 212px; }

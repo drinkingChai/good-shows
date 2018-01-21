@@ -8,16 +8,16 @@ class SearchBar extends Component {
   }
 
   debounce = (ev) => {
-    this.setState({ input: ev.target.value })
-
     if (this.state.interval) {
       clearInterval(this.state.interval)
     }
 
-    this.state.interval = setInterval(() => {
+    let interval = setInterval(() => {
       this.props.debounceFn(this.state.input)
       clearInterval(this.state.interval)
     }, this.props.debounceTime || 500)
+
+    this.setState({ interval, input: ev.target.value })
   }
 
   render = () => {

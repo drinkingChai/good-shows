@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import './SearchShow.css'
 import { connect } from 'react-redux'
 import SearchBar from '../SearchBar/SearchBar'
-import { searchShows } from '../../reducers/SearchShowResults'
+import { searchShows } from '../../reducers/searchShowResults'
+import Results from './Results/Results'
 
 class SearchShow extends Component {
   state = {
@@ -20,6 +21,8 @@ class SearchShow extends Component {
           placeHolder='Search for A Show or a Movie'
           debounceFn={ this.searchFn }
           debounceTime={ 500 } />
+
+        <Results />
       </div>
     )
   }

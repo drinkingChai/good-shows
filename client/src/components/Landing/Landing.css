@@ -1,3 +1,17 @@
 .Landing .landing-content {
   display: grid;
   grid-template-columns: 1.2fr 1.1fr .9fr; }
+
+.Landing .sections .Section {
+  height: 366px;
+  text-align: center;
+  display: inline-block;
+  width: 50%;
+  color: #ffffff;
+  padding-top: 36px; }
+
+.Landing .sections .Section:first-child {
+  background: #D1301A; }
+
+.Landing .sections .Section:last-child {
+  background: #353535; }

@@ -17,6 +17,12 @@ router.get('/', (req, res, next) => {
   options.qs.query = req.query.name
   options.qs.page = req.query.page
 
+  if (!req.query.name) return res.send({
+    page: '1',
+    total_pages: '1',
+    results: []
+  })
+
   request(options)
     .then(searchResults => {
       res.send(JSON.parse(searchResults))

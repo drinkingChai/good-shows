@@ -4,11 +4,13 @@ import thunkMiddleware from 'redux-thunk'
 
 import popularShows from './popularShows'
 import currentUser from './currentUser'
+import searchShowResults from './searchShowResults'
 
 export default createStore(
   combineReducers({
     popularShows,
-    currentUser
+    currentUser,
+    searchShowResults
   }),
   applyMiddleware(thunkMiddleware, loggerMiddleware)
 )

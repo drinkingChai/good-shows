@@ -2,7 +2,7 @@ import React from 'react'
 import './Stats.css'
 import { connect } from 'react-redux'
 import { mapState } from '../UserInfoMapper'
-import defaultIcon from '../../../profileImages/default-icon.png'
+import defaultIcon from '../../../images/default-icon.png'
 import { Link } from 'react-router-dom'
 
 const Stats = ({ user }) => {
