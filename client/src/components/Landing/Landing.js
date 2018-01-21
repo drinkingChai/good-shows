@@ -4,6 +4,7 @@ import Banner from './Banner/Banner'
 import Section from '../Section/Section'
 import section1 from '../../images/section1.png'
 import section2 from '../../images/section2.png'
+import Blurb from './Blurb/Blurb'
 
 export default function() {
   return (
@@ -32,6 +33,8 @@ export default function() {
           image={ section2 }
         />
       </div>
+
+      <Blurb />
     </div>
   )
 }

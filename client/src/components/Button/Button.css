@@ -5,8 +5,7 @@
   font-size: 14px;
   color: #FFFFFF;
   border: 0;
-  background-image: linear-gradient(-224deg, #FF5100 0%, #FF0B00 100%);
-  background-image: linear-gradient(-224deg, #FF5100 0%, #FF0B00 100%);
+  background: #FC5185;
   box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   cursor: pointer;

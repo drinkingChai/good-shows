@@ -1,0 +1,24 @@
+.Footer {
+  padding: 48px;
+  background-color: #3E3E3E;
+  position: relative; }
+  .Footer .left {
+    display: flex;
+    align-items: center; }
+  .Footer p {
+    padding-left: 14px;
+    color: #ffffff;
+    font-weight: 300;
+    font-size: 14px; }
+    .Footer p span {
+      font-weight: 400; }
+  .Footer img {
+    width: 60px;
+    height: 60px; }
+  .Footer a {
+    font-size: 25px;
+    color: #FC5185;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }

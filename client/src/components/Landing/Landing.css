@@ -11,7 +11,13 @@
   padding-top: 36px; }
 
 .Landing .sections .Section:first-child {
-  background: #D1301A; }
+  background: #FC5185; }
 
 .Landing .sections .Section:last-child {
-  background: #353535; }
+  background: #3E3E3E; }
+
+.Landing .Blurb {
+  text-align: center;
+  height: 382px; }
+  .Landing .Blurb .inner {
+    transform: translateY(50%); }

@@ -1,20 +1,12 @@
-.Blurb {
-  padding: 40px;
-  background: #DEFFFD;
-  position: relative; }
-  .Blurb p span {
-    font-weight: 700; }
-  .Blurb h3 {
-    font-weight: 400;
-    font-style: italic;
-    margin-top: 5px; }
-  .Blurb .blurb-footer {
-    position: absolute;
-    left: 20px;
-    right: 20px;
-    bottom: 20px;
-    text-align: right;
-    padding-top: 12px;
-    border-top: solid 1px #979797; }
-    .Blurb .blurb-footer a {
-      text-decoration: none; }
+.Blurb p {
+  margin: 2px;
+  font-size: 16px;
+  font-weight: 300; }
+
+.Blurb p span {
+  font-weight: 700; }
+
+.Blurb h3 {
+  font-family: 'Josefin Slab', serif;
+  margin-top: 0;
+  margin-bottom: 20px; }

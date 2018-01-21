@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { verifyClientToken, signOut } from '../../reducers/currentUser'
 import Main from '../Main/Main'
 import { withRouter } from 'react-router-dom'
+import Footer from '../Footer/Footer'
 
 class App extends Component {
   componentDidMount = () => {
@@ -20,6 +21,7 @@ class App extends Component {
         { this.props.token ?
           <Main /> :
           <Landing /> }
+        <Footer />
       </div>
     );
   }
