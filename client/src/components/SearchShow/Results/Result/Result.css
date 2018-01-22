@@ -3,7 +3,7 @@
   height: 328px;
   position: relative;
   box-shadow: 0 2px 5px -2px rgba(0, 0, 0, 0.5); }
-  .Result img {
+  .Result .image {
     width: 181px;
     height: 266px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -11,21 +11,24 @@
     top: 31px;
     right: 22px;
     z-index: 99; }
+    .Result .image img {
+      width: 100%;
+      height: 100%; }
   .Result h4 {
     font-size: 18px;
     background: #353535;
     font-weight: 400;
     color: #ffffff;
-    padding: 19px 16px;
+    padding: 19px 23px;
     margin: 0; }
   .Result p {
-    padding: 22px 16px;
+    padding: 22px 23px;
     width: 255px; }
   .Result .buttons {
     padding: 20px 16px 23px 0;
     position: absolute;
     bottom: 0;
-    left: 17px;
+    left: 23px;
     right: 25px;
     border-top: solid 1px #D1D1D1;
     z-index: 20; }
@@ -33,7 +36,7 @@
       background: #E6E6E6;
       color: #878787;
       font-size: 13px;
-      padding: 5px 6px 6px 6px;
+      padding: 6px;
       border-radius: 100%;
       display: inline-block;
       width: 16px;
@@ -41,3 +44,5 @@
       text-align: center;
       margin-right: 13px;
       cursor: pointer; }
+      .Result .buttons a svg {
+        transform: translateY(-1px); }

@@ -12,3 +12,7 @@
   background: #FC5185;
   position: relative;
   margin: 50px auto; }
+
+.SearchShow .Paginator {
+  padding-top: 35px;
+  padding-bottom: 72px; }

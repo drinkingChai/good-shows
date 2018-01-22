@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import './Result.css'
+import getPosterUrl from '../../../../utils/getPosterUrl'
 
 class Result extends Component {
   state = {
     name: '',
     posterPath: '',
-    overview: ''
+    overview: '',
+    menuOpen: false
   }
 
   componentDidMount = () => {
@@ -19,13 +21,16 @@ class Result extends Component {
     return (
       <div className='Result'>
         <h4>{ this.state.name }</h4>
-        <img src={ `http://image.tmdb.org/t/p/w342/${this.state.posterPath}` } alt='poster' />
+        <div className='image'>
+          <img src={ getPosterUrl(342, this.state.posterPath) } alt='poster' />
+        </div>
         <p>{ this.state.overview }</p>
 
         <div className='buttons'>
           <a><i className="fas fa-plus"></i></a>
           <a><i className="fas fa-share"></i></a>
           <a><i className="fas fa-star"></i></a>
+          <a><i className="fas fa-ellipsis-h"></i></a>
         </div>
       </div>
     )

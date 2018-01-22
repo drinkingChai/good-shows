@@ -1,0 +1,18 @@
+.Paginator {
+  position: relative;
+  text-align: center;
+  .oval {
+    display: inline-block;
+    margin: 3px;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background: #FF9586;
+    cursor: pointer;
+  }
+  .oval.current {
+    width: 18px;
+    height: 18px;
+    background: #FF4026;
+  }
+}
