@@ -6,6 +6,7 @@ import { verifyClientToken, signOut } from '../../reducers/currentUser'
 import Main from '../Main/Main'
 import { withRouter } from 'react-router-dom'
 import Footer from '../Footer/Footer'
+import '../../fonts/themify-icons/themify-icons.css'
 
 class App extends Component {
   componentDidMount = () => {
