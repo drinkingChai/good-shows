@@ -1,0 +1,7 @@
+.Results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: -18px; }
+  .Results .Result {
+    margin: 18px; }

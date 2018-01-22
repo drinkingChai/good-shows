@@ -18,10 +18,12 @@ class SearchShow extends Component {
     return (
       <div className='SearchShow'>
         <SearchBar
-          placeHolder='Search for A Show or a Movie'
+          placeHolder='search for movies or shows'
           debounceFn={ this.searchFn }
           debounceTime={ 500 } />
 
+        <div className='divider'></div>
+        
         <Results />
       </div>
     )

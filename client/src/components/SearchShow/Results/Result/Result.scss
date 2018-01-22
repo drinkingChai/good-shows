@@ -1,0 +1,49 @@
+.Result {
+  width: 505px;
+  height: 328px;
+  position: relative;
+  box-shadow: 0 2px 5px -2px rgba(0, 0, 0, 0.5);
+  img {
+    width: 181px;
+    height: 266px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 31px;
+    right: 22px;
+    z-index: 99;
+  }
+  h4 {
+    font-size: 18px;
+    background: #353535;
+    font-weight: 400;
+    color: #ffffff;
+    padding: 19px 16px;
+    margin: 0;
+  }
+  p {
+    padding: 22px 16px;
+    width: 255px;
+  }
+  .buttons {
+    padding: 20px 16px 23px 0;
+    position: absolute;
+    bottom: 0;
+    left: 17px;
+    right: 25px;
+    border-top: solid 1px #D1D1D1;
+    z-index: 20;
+    a {
+      background: #E6E6E6;
+      color: #878787;
+      font-size: 13px;
+      padding: 5px 6px 6px 6px;
+      border-radius: 100%;
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      text-align: center;
+      margin-right: 13px;
+      cursor: pointer;
+    }
+  }
+}

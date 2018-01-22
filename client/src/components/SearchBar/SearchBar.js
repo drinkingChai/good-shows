@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './SearchBar.css'
+import Input from '../Input/Input'
 
 class SearchBar extends Component {
   state = {
@@ -23,7 +24,7 @@ class SearchBar extends Component {
   render = () => {
     return (
       <div className='SearchBar'>
-        <input
+        <Input
           placeholder={ this.props.placeHolder || 'Search' }
           value={ this.state.input }
           onChange={ this.debounce } />

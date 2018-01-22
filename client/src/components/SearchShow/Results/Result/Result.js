@@ -5,12 +5,14 @@ class Result extends Component {
   state = {
     name: '',
     posterPath: '',
+    overview: ''
   }
 
   componentDidMount = () => {
-    const { name } = this.props.info
+    let { name, overview } = this.props.info
+    overview = overview.length > 280 ? overview.slice(0, 280).trim() + '...' : overview
     const posterPath = this.props.info.poster_path
-    this.setState({ name, posterPath })
+    this.setState({ name, overview, posterPath })
   }
 
   render = () => {
@@ -18,6 +20,13 @@ class Result extends Component {
       <div className='Result'>
         <h4>{ this.state.name }</h4>
         <img src={ `http://image.tmdb.org/t/p/w342/${this.state.posterPath}` } alt='poster' />
+        <p>{ this.state.overview }</p>
+
+        <div className='buttons'>
+          <a><i className="fas fa-plus"></i></a>
+          <a><i className="fas fa-share"></i></a>
+          <a><i className="fas fa-star"></i></a>
+        </div>
       </div>
     )
   }
