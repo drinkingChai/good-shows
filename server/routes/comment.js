@@ -5,7 +5,6 @@ const Show = require('../src/show')
 const { verifyMiddleware } = require('./tokenHelpers')
 
 router.post('/', verifyMiddleware, (req, res, next) => {
-  // console.log(req.body)
   User.findById(req.user._id)
     .then(user => {
       let isFriends = user.friends.find(friend => friend.toString() === req.body.onUser)

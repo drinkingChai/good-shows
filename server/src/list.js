@@ -6,7 +6,11 @@ const ListSchema = new Schema({
   shows: [{
     type: Schema.Types.ObjectId,
     ref: 'show'
-  }]
+  }],
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'user'
+  }
 }, { usePushEach: true })
 
 const List = mongoose.model('list', ListSchema)

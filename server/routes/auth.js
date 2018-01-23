@@ -4,6 +4,7 @@ const LocalStrategy = require('passport-local').Strategy
 const User = require('../src/user')
 const { createToken, verifyToken } = require('./tokenHelpers')
 const List = require('../src/list')
+const { createUser } = require('../src/helpers/createUser')
 
 passport.use(new LocalStrategy({
     usernameField: 'email',
@@ -26,7 +27,7 @@ router.post('/local', (req, res, next) => {
   passport.authenticate('local', function(err, token, info) {
     if (err) return next(err)
 
-    if (!token) return next(new Error('Incorrect email or password.'))
+    if (!token) return next(new Error(info))
 
     res.send(token)
   })(req, res, next)
@@ -47,7 +48,7 @@ router.post('/new', (req, res, next) => {
       if (user) throw new Error('An account is already registered with that email.')
 
       let newUser = new User({ name, email, password })
-      return newUser.save()
+      return createUser(newUser)
     })
     .then(user => {
       res.send({ userInfo: user.tokenData, token: createToken(user.tokenData) })

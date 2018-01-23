@@ -91,7 +91,7 @@ describe.only('ADD show test', () => {
       })
   })
 
-  xit('/PUT change list', (done) => {
+  it('/PUT change list', (done) => {
     request(server)
       .post('/api/auth/local')
       .send({ email: peter.email, password: 'peter' })
@@ -123,8 +123,13 @@ describe.only('ADD show test', () => {
                       model: 'list'
                     }
                   })
+                  .populate('lists')
                   .then(user => {
+                    let watching = user.lists.find(l => l.name === 'Watching')
+                    let watchlist = user.lists.find(l => l.name === 'Watch List')
                     assert(user.shows[0].list.name === 'Watching')
+                    assert(watching.shows.length === 1)
+                    assert(watchlist.shows.length === 0)
                     done()
                   })
                   .catch(done)

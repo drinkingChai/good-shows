@@ -23,7 +23,9 @@
     margin: 0; }
   .Result p {
     padding: 22px 23px;
-    width: 255px; }
+    width: 255px;
+    line-height: 1.3em;
+    font-weight: 300; }
   .Result .buttons {
     padding: 20px 16px 23px 0;
     position: absolute;
@@ -44,5 +46,3 @@
       text-align: center;
       margin-right: 13px;
       cursor: pointer; }
-      .Result .buttons a svg {
-        transform: translateY(-1px); }
