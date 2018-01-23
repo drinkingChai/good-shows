@@ -15,6 +15,25 @@ let options = {
   body: '{}'
 }
 
+router.get('/', verifyMiddleware, (req, res, next) => {
+  User.findById(req.user._id)
+    .populate({
+      path: 'shows',
+      model: 'show',
+      populate: [{
+        path: 'list',
+        model: 'list'
+      }, {
+        path: 'showData',
+        model: 'showData'
+      }]
+    })
+    .then(user => {
+      res.send(user.shows)
+    })
+    .catch(next)
+})
+
 router.post('/', verifyMiddleware, (req, res, next) => {
   // add to a list
   // find in ShowData, if not

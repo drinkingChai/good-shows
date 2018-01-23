@@ -1,10 +1,14 @@
 const assert = require('assert')
 const request = require('supertest')
 const server = require('../server')
-const qs = require('qs')
 const ShowData = require('../server/src/showData')
 const User = require('../server/src/user')
+const Show = require('../server/src/show')
 const { createUser } = require('../server/src/helpers/createUser')
+
+// describe.only('API /GET show test', () => {
+
+// })
 
 describe.only('ADD show test', () => {
   // add, remove
@@ -22,6 +26,38 @@ describe.only('ADD show test', () => {
     createUser(peter)
       .then(() => done())
       .catch(done)
+  })
+
+  it('GET /api/show all user shows', (done) => {
+    request(server)
+      .post('/api/auth/local')
+      .send({ email: peter.email, password: 'peter' })
+      .end((err, res) => {
+        if (err) return done(err)
+
+        let { token } = res.body
+
+        User.findOne({ name: 'Peter' })
+          .then(user => {
+            let show = new Show({})
+            user.shows.push(show)
+            return Promise.all([
+              show.save(),
+              user.save()
+            ])
+          })
+          .then(() => {
+            request(server)
+              .get('/api/show')
+              .set('Authorization', `Bearer ${token}`)
+              .end((err, res) => {
+                if (err) return done(err)
+
+                assert(res.body.length === 1)
+                done()
+              })
+          })
+      })
   })
 
   xit('/POST add a show to user list', (done) => {
@@ -91,7 +127,7 @@ describe.only('ADD show test', () => {
       })
   })
 
-  it('/PUT change list', (done) => {
+  xit('/PUT change list', (done) => {
     request(server)
       .post('/api/auth/local')
       .send({ email: peter.email, password: 'peter' })

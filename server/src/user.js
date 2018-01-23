@@ -65,14 +65,20 @@ UserSchema.virtual('tokenData').get(function() {
     email: this.email,
     shows: this.shows,
     friends: this.friends,
-    lists: this.lists,
     _id: this._id
   }
 })
 
 UserSchema.statics.verifyLogin = function(email, password) {
   return this.findOne({ email })
-    .populate({ path: 'lists', model: 'list' })
+    .populate({
+      path: 'shows',
+      model: 'show',
+      populate: {
+        path: 'list',
+        model: 'list'
+      }
+    })
     .then(user => {
       if (!user) return null
 

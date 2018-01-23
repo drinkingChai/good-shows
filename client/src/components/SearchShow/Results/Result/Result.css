@@ -24,7 +24,8 @@
   .Result p {
     padding: 22px 23px;
     width: 255px;
-    line-height: 1.3em;
+    font-size: 14px;
+    line-height: 21px;
     font-weight: 300; }
   .Result .buttons {
     padding: 20px 16px 23px 0;

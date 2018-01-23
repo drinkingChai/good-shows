@@ -4,8 +4,8 @@ import Button from '../Button/Button'
 import Input from '../Input/Input'
 import ErrorPane from '../ErrorPane/ErrorPane'
 import { connect } from 'react-redux'
-import { signIn, regAndSignIn } from '../../reducers/currentUser'
 import { axiosErrorParser } from '../../utils'
+import { mapDispatch } from '../../mappers/user'
 
 class LoginForm extends Component {
   state = {
@@ -56,12 +56,4 @@ class LoginForm extends Component {
   }
 }
 
-const mapDispatch = dispatch => ({
-  attemptLogIn(email, password) {
-    return dispatch(signIn(email, password))
-  },
-  attemptRegister(name, email, password) {
-    return dispatch(regAndSignIn(name, email, password))
-  }
-})
 export default connect(null, mapDispatch)(LoginForm)

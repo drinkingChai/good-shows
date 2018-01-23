@@ -20,6 +20,10 @@ class SearchShow extends Component {
   }
 
   changePage = (pageNum) => {
+    window.scrollTo({
+      left: 0,
+      top: 0
+    })
     this.props.search(this.state.searchStr, pageNum)
       .then((result) => this.setResults(result, this.state.searchStr))
   }
