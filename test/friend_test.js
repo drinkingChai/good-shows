@@ -1,7 +1,7 @@
 const assert = require('assert')
 const User = require('../server/src/user')
 
-describe('Friend test', () => {
+xdescribe('Friend test', () => {
   let peter, emilia, kit
 
   beforeEach(done => {

@@ -1,12 +1,12 @@
 const assert = require('assert')
+const request = require('supertest')
 const server = require('../server')
-const chai = require('chai')
 const qs = require('qs')
 const ShowData = require('../server/src/showData')
 const User = require('../server/src/user')
-chai.use(require('chai-http'))
+const { createUser } = require('../server/src/helpers/createUser')
 
-xdescribe('ADD show test', () => {
+describe.only('ADD show test', () => {
   // add, remove
   // add/remove favorite
   // change list
@@ -19,20 +19,20 @@ xdescribe('ADD show test', () => {
       password: 'peter'
     })
 
-    peter.save()
+    createUser(peter)
       .then(() => done())
       .catch(done)
   })
 
   xit('/POST add a show to user list', (done) => {
-    chai.request(server)
+    request(server)
       .post('/api/auth/local')
       .send({ email: peter.email, password: 'peter' })
       .end((err, res) => {
         if (err) return done(err)
 
-        let token = Object.entries(qs.parse(res.redirects[0]))[0][1]
-        chai.request(server)
+        let { token } = res.body
+        request(server)
           .post('/api/show')
           .set('Authorization', `Bearer ${token}`)
           .send({ tmdbId: 1399 })
@@ -58,22 +58,22 @@ xdescribe('ADD show test', () => {
   })
 
   xit('/DELETE remove a show from user list', (done) => {
-    chai.request(server)
+    request(server)
       .post('/api/auth/local')
       .send({ email: peter.email, password: 'peter' })
       .end((err, res) => {
         if (err) return done(err)
 
-        let token = Object.entries(qs.parse(res.redirects[0]))[0][1]
+        let { token } = res.body
 
-        chai.request(server)
+        request(server)
           .post('/api/show')
           .set('Authorization', `Bearer ${token}`)
           .send({ tmdbId: 1399 })
           .end((err, res) => {
             if (err) return done(err)
 
-            chai.request(server)
+            request(server)
               .delete('/api/show')
               .set('Authorization', `Bearer ${token}`)
               .send({ tmdbId: 1399 })
@@ -92,32 +92,39 @@ xdescribe('ADD show test', () => {
   })
 
   xit('/PUT change list', (done) => {
-    chai.request(server)
+    request(server)
       .post('/api/auth/local')
       .send({ email: peter.email, password: 'peter' })
       .end((err, res) => {
         if (err) return done(err)
 
-        let token = Object.entries(qs.parse(res.redirects[0]))[0][1]
+        let { token } = res.body
 
-        chai.request(server)
+        request(server)
           .post('/api/show')
           .set('Authorization', `Bearer ${token}`)
           .send({ tmdbId: 1399 })
           .end((err, res) => {
             if (err) return done(err)
 
-            chai.request(server)
-              .put('/api/show')
+            request(server)
+              .put('/api/show/list')
               .set('Authorization', `Bearer ${token}`)
-              .send({ list: 'watching' })
+              .send({ list: 'Watching', tmdbId: 1399 })
               .end((err, res) => {
                 if (err) return done(err)
 
                 User.findOne({ email: peter.email })
-                  .populate('shows')
+                  .populate({
+                    path: 'shows',
+                    model: 'show',
+                    populate: {
+                      path: 'list',
+                      model: 'list'
+                    }
+                  })
                   .then(user => {
-                    assert(user.shows[0].list === 'watching')
+                    assert(user.shows[0].list.name === 'Watching')
                     done()
                   })
                   .catch(done)
@@ -127,25 +134,25 @@ xdescribe('ADD show test', () => {
   })
 
   xit('/PUT add/remove from favorites', (done) => {
-    chai.request(server)
+    request(server)
       .post('/api/auth/local')
       .send({ email: peter.email, password: 'peter' })
       .end((err, res) => {
         if (err) return done(err)
 
-        let token = Object.entries(qs.parse(res.redirects[0]))[0][1]
+        let { token } = res.body
 
-        chai.request(server)
+        request(server)
           .post('/api/show')
           .set('Authorization', `Bearer ${token}`)
           .send({ tmdbId: 1399 })
           .end((err, res) => {
             if (err) return done(err)
 
-            chai.request(server)
+            request(server)
               .put('/api/show')
               .set('Authorization', `Bearer ${token}`)
-              .send({ favorite: true })
+              .send({ tmdbId: 1399, favorite: true })
               .end((err, res) => {
                 if (err) return done(err)
 

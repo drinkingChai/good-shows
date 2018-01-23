@@ -41,24 +41,34 @@ router.post('/', verifyMiddleware, (req, res, next) => {
 
           return newShowData.save()
         })
-        .then(showData => {
-          let newShow = new Show({
-            showData
-          })
+    })
+    .then(showData => {
+      let newShow = new Show({
+        showData
+      })
 
-          return newShow.save()
+      return newShow.save()
+    })
+    .then(show => {
+      return User.findOne({ email: req.user.email })
+        .populate({ path: 'lists', model: 'list' })
+        .populate({ path: 'defaultList', model: 'list' })
+        .then(user => {
+          user.shows.push(show)
+          let listName = req.body.listName || user.defaultList.name
+          let list = user.lists.find(l => l.name === listName)
+          show.list = list
+          list.shows.push(show)
+          
+          return Promise.all([
+            show.save(),
+            list.save(),
+            user.save()
+          ])
         })
-        .then(show => {
-          return User.findOne({ email: req.user.email })
-            .then(user => {
-              user.shows.push(show)
-              return user.save()
-            })
-        })
-        .then(() => {
-          res.sendStatus(200)
-        })
-        .catch(next)
+    })
+    .then(() => {
+      res.sendStatus(200)
     })
     .catch(next)
 })
@@ -86,20 +96,54 @@ router.delete('/', verifyMiddleware, (req, res, next) => {
     .catch(next)
 })
 
-router.put('/', verifyMiddleware, (req, res, next) => {
-  // change list, add/remove from favorites
+router.put('/list', verifyMiddleware, (req, res, next) => {
+  // change list
   User.findOne({ email: req.user.email })
     .populate({
       path: 'shows',
+      model: 'show',
       populate: {
         path: 'showData',
         model: 'showData'
       }
     })
+    .populate({
+      path: 'lists',
+      model: 'list',
+      populate: {
+        path: 'shows',
+        model: 'show'
+      }
+    })
     .then(user => {
-      let show = user.shows.find(show => show.showData.tmdbId !== +req.body.tmdbId)
-      show = Object.assign(show, req.body)
+      let show = user.shows.find(s => s.showData.tmdbId === +req.body.tmdbId)
+      let prevList = user.lists.find(list => show.list.toString() === list._id.toString())
+      prevList.shows = prevList.shows.filter(s => s._id.toString() !== show._id.toString())
+      let nextLilst = user.lists.find(list => list.name === req.body.list)
+      nextLilst.shows.push(show)
+      show.list = nextLilst
 
+      return Promise.all([
+        show.save(),
+        prevList.save(),
+        nextLilst.save()
+      ])
+    })
+    .then(() => res.sendStatus(200))
+    .catch(next)
+})
+
+router.put('/', verifyMiddleware, (req, res, next) => {
+  // add/remove from favorites
+  User.findOne({ email: req.user.email })
+    .populate({
+      path: 'shows',
+      model: 'show',
+      populate: { path: 'showData', model: 'showData' }
+    })
+    .then(user => {
+      let show = user.shows.find(s => s.showData.tmdbId === +req.body.tmdbId) 
+      Object.assign(show, req.body)
       return show.save()
     })
     .then(() => res.sendStatus(200))

@@ -1,7 +1,8 @@
 const assert = require('assert')
 const User = require('../server/src/user')
+const { createUser } = require('../server/src/helpers/createUser')
 
-describe('User validation', () => {
+xdescribe('User validation', () => {
   it('requires name', () => {
     const peter = new User({
       email: 'peter@hand.com',
@@ -69,6 +70,22 @@ describe('User validation', () => {
         let tokenData = user.tokenData 
         assert(tokenData.name === 'Peter Dinklage')
         assert(!tokenData.password)
+        done()
+      })
+      .catch(done)
+  })
+
+  it('can create a user using createUser', (done) => {
+    const peter = new User({
+      name: 'Peter Dinklage',
+      email: 'peter@hand.com',
+      password: 'dornishred'
+    })
+
+    createUser(peter)
+      .then(() => User.findOne({ name: 'Peter Dinklage' }))
+      .then(user => {
+        assert(user.lists.length === 3)
         done()
       })
       .catch(done)

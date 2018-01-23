@@ -3,6 +3,7 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const User = require('../src/user')
 const { createToken, verifyToken } = require('./tokenHelpers')
+const List = require('../src/list')
 
 passport.use(new LocalStrategy({
     usernameField: 'email',

@@ -3,7 +3,7 @@ const Show = require('../server/src/show')
 const ShowData = require('../server/src/showData')
 const User = require('../server/src/user')
 
-describe('Change list tests', () => {
+xdescribe('Change list tests', () => {
   let got, peter
 
   beforeEach(done => {

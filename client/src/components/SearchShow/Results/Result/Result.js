@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import './Result.css'
 import getPosterUrl from '../../../../utils/getPosterUrl'
+import { connect } from 'react-redux'
+import { mapState } from '../../../../mappers/user'
 
 class Result extends Component {
   state = {
@@ -37,4 +39,4 @@ class Result extends Component {
   }
 }
 
-export default Result;
+export default connect(mapState)(Result);

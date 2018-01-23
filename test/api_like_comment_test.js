@@ -1,7 +1,7 @@
 // add, remove comment
 // like, unlike
 const assert = require('assert')
-const server = require('../server')
+// const server = require('../server')
 const chai = require('chai')
 const qs = require('qs')
 const Show = require('../server/src/show')

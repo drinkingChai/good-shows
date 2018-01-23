@@ -1,9 +1,9 @@
 const assert = require('assert')
-const server = require('../server')
+// const server = require('../server')
 const chai = require('chai')
 chai.use(require('chai-http'))
 
-describe.only('API popular shows test', () => {
+xdescribe('API popular shows test', () => {
   it('gets popular shows', (done) => {
     chai.request(server)
       .get('/api/popular')

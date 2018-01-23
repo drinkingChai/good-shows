@@ -1,5 +1,5 @@
 const assert = require('assert')
-const server = require('../server')
+// const server = require('../server')
 const chai = require('chai')
 const chaiHttp = require('chai-http')
 chai.use(chaiHttp)

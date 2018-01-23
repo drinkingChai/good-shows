@@ -4,7 +4,7 @@ const ShowData = require('../server/src/showData')
 const User = require('../server/src/user')
 const Comment = require('../server/src/comment')
 
-describe('Add Comment test', () => {
+xdescribe('Add Comment test', () => {
   let got, comment, peter, emilia
 
   beforeEach(done => {

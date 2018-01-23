@@ -1,5 +1,5 @@
 const assert = require('assert')
-const server = require('../server')
+// const server = require('../server')
 const chai = require('chai')
 const qs = require('qs')
 const User = require('../server/src/user')
