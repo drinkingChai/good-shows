@@ -10,7 +10,7 @@ class LocalModal extends Component {
       this.setState({ cursor: nextProps.cursor })
     }
     else {
-      this.removeListener()
+      this.removeListener(true)
       this.setState({ cursor: {} })
     }
   }
@@ -24,9 +24,10 @@ class LocalModal extends Component {
     this.setState({ open: true })
   }
 
-  removeListener = () => {
+  removeListener = (fromParent) => {
     document.removeEventListener('click', this.clickFunction)
     this.setState({ open: false })
+    if (!fromParent) this.props.onClose()
   }
 
   componentWillUnmount = () => {

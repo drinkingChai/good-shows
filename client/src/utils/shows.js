@@ -8,4 +8,4 @@ export const removeShow = (tmdbId) => dispatch =>
   axios.delete('/api/show', { tmdbId })
 
 export const changeList = (tmdbId, list) => dispatch =>
-  axios.put('/api/show', { tmdbId, list })
+  axios.put('/api/show/list', { tmdbId, list })

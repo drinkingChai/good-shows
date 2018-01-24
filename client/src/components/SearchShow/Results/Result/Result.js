@@ -27,10 +27,14 @@ class Result extends Component {
     this.setState({ menuOpen: true, cursor: { x: cursorX, y: cursorY } })
   }
 
+  closeMenu = () => {
+    this.setState({ menuOpen: false })
+  }
+
   render = () => {
     return (
       <div className='Result' ref={ node => this.node = node }>
-        <LocalModal open={ this.state.menuOpen } cursor={ this.state.cursor } hideClose>
+        <LocalModal open={ this.state.menuOpen } onClose={ this.closeMenu } cursor={ this.state.cursor } hideClose>
           <ListPopup tmdbId={ this.state.tmdbId }/>
         </LocalModal>
 

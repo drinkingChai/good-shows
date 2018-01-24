@@ -51,12 +51,15 @@ const UserSchema = new Schema({
 }, { usePushEach: true })
 
 UserSchema.pre('save', function(next) {
-  bcrypt.hash(this.password, +process.env.SALT)
-    .then(hash => {
-      this.password = hash
-      next()
-    })
-    .catch(next)
+  if (this.isNew) {
+    bcrypt.hash(this.password, +process.env.SALT)
+      .then(hash => {
+        this.password = hash
+        next()
+      })
+      .catch(next)
+  }
+  else next()
 })
 
 UserSchema.virtual('tokenData').get(function() {

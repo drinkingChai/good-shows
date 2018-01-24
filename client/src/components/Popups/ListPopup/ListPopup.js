@@ -17,7 +17,11 @@ class ListPopup extends Component {
   }
 
   handleListClick = (listName) => (ev) => {
-    this.props.addShowToList(this.props.tmdbId, listName)
+    if (this.state.inList) {
+      this.props.changeListTo(this.props.tmdbId, listName)
+    } else {
+      this.props.addShowToList(this.props.tmdbId, listName)
+    }
   }
 
   render = () => {

@@ -5,7 +5,7 @@ const User = require('../src/user')
 const request = require('request-promise')
 const { verifyMiddleware } = require('./tokenHelpers')
 
-let options = {
+let getOptions = () => ({
   method: 'GET',
   url: 'https://api.themoviedb.org/3/tv/',
   qs: {
@@ -13,7 +13,7 @@ let options = {
     api_key: ''
   },
   body: '{}'
-}
+})
 
 router.get('/', verifyMiddleware, (req, res, next) => {
   User.findById(req.user._id)
@@ -42,6 +42,7 @@ router.post('/', verifyMiddleware, (req, res, next) => {
     .then(showData => {
       if (showData) return showData
 
+      let options = getOptions()
       options.qs.api_key = process.env.TMDB_API_KEY
       options.url = options.url + req.body.tmdbId
 
@@ -74,7 +75,7 @@ router.post('/', verifyMiddleware, (req, res, next) => {
         .populate({ path: 'defaultList', model: 'list' })
         .then(user => {
           user.shows.push(show)
-          let listName = req.body.listName || user.defaultList.name
+          let listName = req.body.list || user.defaultList.name
           let list = user.lists.find(l => l.name === listName)
           show.list = list
           list.shows.push(show)
