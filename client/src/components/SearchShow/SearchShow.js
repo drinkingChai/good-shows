@@ -5,6 +5,7 @@ import SearchBar from '../SearchBar/SearchBar'
 import searchShows from '../../utils/searchShows'
 import Results from './Results/Results'
 import Paginator from '../Paginator/Paginator'
+import qs from 'qs'
 
 class SearchShow extends Component {
   state = {
@@ -14,9 +15,18 @@ class SearchShow extends Component {
     searchStr: ''
   }
 
+  componentDidMount = () => {
+    let query = qs.parse(this.props.location.search.slice(1))
+    if (query.q) { this.searchFn(query.q) }
+  }
+
   searchFn = (searchStr) => {
     this.props.search(searchStr)
       .then((result) => this.setResults(result, searchStr))
+      .then(() => this.props.history.push({
+        pathname: '/search',
+        search: `?q=${searchStr}`
+      }))
   }
 
   changePage = (pageNum) => {
