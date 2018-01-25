@@ -9,7 +9,8 @@
     padding-left: 14px;
     color: #ffffff;
     font-weight: 300;
-    font-size: 14px; }
+    font-size: .9em;
+    line-height: 1.2em; }
     .Footer p span {
       font-weight: 400; }
   .Footer img {

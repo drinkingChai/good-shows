@@ -1,19 +1,15 @@
 .LoginForm {
   padding: 40px 60px;
-  background: #ffffff; }
-  .LoginForm h3 {
-    font-family: 'Josefin Slab', serif;
-    text-align: center;
-    margin-bottom: 32px;
-    margin-top: 16px; }
+  background: #191919; }
+  .LoginForm .Banner .content {
+    padding: 30px; }
   .LoginForm form input {
     display: block;
-    width: calc(100% - 12px);
-    margin: 12px 0; }
-  .LoginForm form button {
+    margin: 25px 0;
     width: 100%; }
-  .LoginForm .login .Button {
-    margin: 10px 0; }
+  .LoginForm form button {
+    width: 215px;
+    margin: 5px 0; }
   .LoginForm .ErrorPane {
     margin-top: 22px;
     margin-left: -60px;

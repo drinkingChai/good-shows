@@ -27,7 +27,7 @@ router.post('/local', (req, res, next) => {
   passport.authenticate('local', function(err, token, info) {
     if (err) return next(err)
 
-    if (!token) return next(new Error(info))
+    if (!token) return next(new Error(info.message || info))
 
     res.send(token)
   })(req, res, next)

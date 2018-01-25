@@ -1,22 +1,17 @@
 .LoginForm {
   padding: 40px 60px;
-  background: #ffffff;
-  h3 {
-    font-family: 'Josefin Slab', serif;
-    text-align: center;
-    margin-bottom: 32px;
-    margin-top: 16px;
-  }
+  background: #191919;
+  .Banner .content {
+    padding: 30px;
+  } 
   form input {
     display: block;
-    width: calc(100% - 12px);
-    margin: 12px 0;
-  }
-  form button {
+    margin: 25px 0;
     width: 100%;
   }
-  .login .Button {
-    margin: 10px 0;
+  form button {
+    width: 215px;
+    margin: 5px 0;
   }
   .ErrorPane {
     margin-top: 22px;

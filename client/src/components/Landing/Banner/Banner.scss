@@ -1,32 +1,23 @@
 .Banner {
-  height: 382px;
   position: relative;
+  color: #ffffff;
   div.content {
-    position: absolute;
+    position: relative;
     left: 50%;
-    top: 25%;
-    transform: translate(-50%, -25%);
-    .Button {
-      transform: translateY(68px);
-      width: 212px;
-    }
+    padding: 85px;
+    transform: translateX(-50%);
+    width: fit-content;
     p {
-      margin-top: 0;
+      margin: 0;
       text-align: right;
     }
   }
   h1 {
-    margin-bottom: 0;
+    font-family: 'Yeseva One', cursive;
+    margin: 0;
     font-weight: 400;
     span {
       font-weight: 700;
-    }
-  }
-  
-  .Modal > .inner {
-    width: 500px;
-    .LoginForm {
-      border-radius: 5px;
     }
   }
 }

@@ -1,15 +1,21 @@
 // app-wide stles
 @import '_fonts.scss';
 
+* {
+  box-sizing: border-box;
+}
+
 html {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', 'Open Sans', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 1em;
+  line-height: 1.5em;
+  background: #2B2B2B;
 }
 
 p { margin: 0; }
