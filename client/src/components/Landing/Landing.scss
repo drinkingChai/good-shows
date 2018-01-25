@@ -1,19 +1,19 @@
 .Landing {
+  min-height: 100vh;
   .landing-content {
     display: grid;
     grid-template-columns: 1.2fr 1.1fr .9fr;
   }
   .Blurb {
     text-align: center;
-    // height: 382px;
-    .inner {
-      // transform: translateY(50%);
-    }
   }
   .Modal > .inner {
-    width: 500px;
+    min-width: 500px;
     .LoginForm {
       border-radius: 5px;
     }
+  }
+  .Footer {
+    // margin-top: 156px;
   }
 }

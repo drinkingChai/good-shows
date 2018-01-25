@@ -1,11 +1,11 @@
-.Landing .landing-content {
-  display: grid;
-  grid-template-columns: 1.2fr 1.1fr .9fr; }
-
-.Landing .Blurb {
-  text-align: center; }
-
-.Landing .Modal > .inner {
-  width: 500px; }
-  .Landing .Modal > .inner .LoginForm {
-    border-radius: 5px; }
+.Landing {
+  min-height: 100vh; }
+  .Landing .landing-content {
+    display: grid;
+    grid-template-columns: 1.2fr 1.1fr .9fr; }
+  .Landing .Blurb {
+    text-align: center; }
+  .Landing .Modal > .inner {
+    min-width: 500px; }
+    .Landing .Modal > .inner .LoginForm {
+      border-radius: 5px; }

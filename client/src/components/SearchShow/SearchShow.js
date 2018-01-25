@@ -3,9 +3,12 @@ import './SearchShow.css'
 import { connect } from 'react-redux'
 import SearchBar from '../SearchBar/SearchBar'
 import searchShows from '../../utils/searchShows'
-import Results from './Results/Results'
+import Results from '../Results/Results'
 import Paginator from '../Paginator/Paginator'
 import qs from 'qs'
+import Lists from '../Lists/Lists'
+import Sidebar from '../Sidebar/Sidebar'
+import { mapState } from '../../mappers/user'
 
 class SearchShow extends Component {
   state = {
@@ -17,15 +20,15 @@ class SearchShow extends Component {
 
   componentDidMount = () => {
     let query = qs.parse(this.props.location.search.slice(1))
-    if (query.q) { this.searchFn(query.q) }
+    if (query.search) { this.searchFn(query.search) }
   }
 
   searchFn = (searchStr) => {
     this.props.search(searchStr)
       .then((result) => this.setResults(result, searchStr))
       .then(() => this.props.history.push({
-        pathname: '/search',
-        search: `?q=${searchStr}`
+        pathname: '/lists',
+        search: `?search=${searchStr}`
       }))
   }
 
@@ -46,19 +49,23 @@ class SearchShow extends Component {
   render = () => {
     return (
       <div className='SearchShow'>
-        <SearchBar
-          placeHolder='search for movies or shows'
-          debounceFn={ this.searchFn }
-          debounceTime={ 500 } />
+        <Sidebar>
+          <SearchBar
+            placeHolder='Search'
+            debounceFn={ this.searchFn }
+            debounceTime={ 500 } />
 
-        <div className='divider'></div>
+          <p>My Lists</p>
+          <Lists lists={ this.props.lists } />
+        </Sidebar>
 
-        <Results results={ this.state.results } />
-
-        <Paginator
-          page={ this.state.page }
-          totalPages={ this.state.totalPages }
-          onPageChange={ this.changePage } />
+        <div className="search-results">
+          <Results results={ this.state.results } />
+          <Paginator
+            page={ this.state.page }
+            totalPages={ this.state.totalPages }
+            onPageChange={ this.changePage } />
+        </div>
       </div>
     )
   }
@@ -69,4 +76,4 @@ const mapDispatch = dispatch => ({
     return dispatch(searchShows(searchStr, page))
   }
 })
-export default connect(null, mapDispatch)(SearchShow)
+export default connect(mapState, mapDispatch)(SearchShow)

@@ -1,12 +1,12 @@
 .Banner {
   position: relative;
-  color: #ffffff; }
+  color: #ffffff;
+  width: 100%; }
   .Banner div.content {
     position: relative;
-    left: 50%;
-    padding: 85px;
-    transform: translateX(-50%);
-    width: fit-content; }
+    padding: 85px 0;
+    width: fit-content;
+    margin: 0 auto; }
     .Banner div.content p {
       margin: 0;
       text-align: right; }

@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import './Result.css'
-import getPosterUrl from '../../../../utils/getPosterUrl'
-import LocalModal from '../../../LocalModal/LocalModal'
-import ListPopup from '../../../Popups/ListPopup/ListPopup'
+import getPosterUrl from '../../../utils/getPosterUrl'
 import { connect } from 'react-redux'
-import { mapState } from '../../../../mappers/user'
+import { mapState } from '../../../mappers/user'
 
 class Result extends Component {
   state = {
@@ -19,13 +17,14 @@ class Result extends Component {
 
   componentDidMount = () => {
     let { name, overview, id } = this.props.info
-    overview = overview.length > 280 ? overview.slice(0, 250).trim() + '...' : overview
+    overview = overview.length > 200 ? overview.slice(0, 200).trim() + '...' : overview
     const posterPath = this.props.info.poster_path
     const inList = this.props.shows.find(s => s.showData.tmdbId === id) ? true : false
     this.setState({ name, overview, posterPath, tmdbId: id, inList })
   }
 
   handlePlusClick = (ev) => {
+    // deprc
     let cursorX = ev.pageX - this.node.offsetLeft
     let cursorY = ev.pageY - this.node.offsetTop
     this.setState({ menuOpen: true, cursor: { x: cursorX, y: cursorY } })
@@ -38,11 +37,8 @@ class Result extends Component {
   render = () => {
     return (
       <div className='Result' ref={ node => this.node = node }>
-        <LocalModal open={ this.state.menuOpen } onClose={ this.closeMenu } cursor={ this.state.cursor } hideClose>
-          <ListPopup tmdbId={ this.state.tmdbId }/>
-        </LocalModal>
 
-        <h4>{ this.state.name }</h4>
+        <span className='title'>{ this.state.name }</span>
         <div className='image'>
           <img src={ getPosterUrl(342, this.state.posterPath) } alt='poster' />
         </div>

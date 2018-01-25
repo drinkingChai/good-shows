@@ -34,23 +34,23 @@ class Nav extends Component {
     return (
       <nav className='Nav'>
         <div>
-          <Link to='/'><h3 className='logo'>good<span>shows</span></h3></Link>
+          <Link to='/'><h3 className='logo'>good<span>Shows</span></h3></Link>
         </div>
 
         <div className='links'>
-          <NavLink to='/search' activeClassName='active'><h3>Search</h3></NavLink>
-          <NavLink to='/friends' activeClassName='active'><h3>Friends</h3></NavLink>
+          <NavLink to='/lists' activeClassName='active'><li>Browse</li></NavLink>
+          <NavLink to='/friends' activeClassName='active'><li>Friends</li></NavLink>
           <NavLink to='/account' activeClassName='active'>
-            <h3>{ this.props.user.name.split(' ')[0] }</h3>
+            <li>{ this.props.user.name.split(' ')[0] }</li>
             <div className='image'>
               <img src={ this.props.user.profileImage || DefaultIcon } alt='profile' />
             </div>
           </NavLink>
-          <div className='dd-arrow' onClick={ this.toggleDD }></div>
+          <div className='dd-arrow' onClick={ this.toggleDD }><i className='ti-angle-down'></i></div>
         </div>
 
         <div className={ `dd ${this.state.ddOpen ? 'open' : 'closed'}` } ref={ node => this.node = node }>
-          <a onClick={ this.props.signUserOut }><h3>Log Out</h3></a>
+          <a onClick={ this.props.signUserOut }><li>Log Out</li></a>
         </div>
       </nav>
     )

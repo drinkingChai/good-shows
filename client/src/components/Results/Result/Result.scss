@@ -1,35 +1,42 @@
 .Result {
-  width: 505px;
+  width: 428px;
   height: 328px;
   position: relative;
   box-shadow: 0 2px 5px -2px rgba(0, 0, 0, 0.5);
+  background: #ffffff;
   .image {
     width: 181px;
     height: 266px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     position: absolute;
     top: 31px;
-    right: 22px;
+    right: -18px;
     z-index: 99;
     img {
       width: 100%;
       height: 100%;
     }
   }
-  h4 {
+  span.title {
+    display: block;
+    left: -18px;
+    top: 18px;
     font-size: 18px;
+    position: absolute;
+    width: 477px;
     background: #353535;
     font-weight: 400;
     color: #ffffff;
     padding: 19px 23px;
     margin: 0;
+    background-image: linear-gradient(-134deg, #FC5185 0%, #FF5D5D 100%);
   }
   p {
-    padding: 22px 23px;
+    padding: 95px 23px 22px 23px;
     width: 255px;
     font-size: 14px;
     line-height: 21px;
-    font-weight: 300;
+    color: #000000;
   }
   .buttons {
     padding: 20px 16px 23px 0;
@@ -37,20 +44,22 @@
     bottom: 0;
     left: 23px;
     right: 25px;
-    border-top: solid 1px #D1D1D1;
     z-index: 20;
     a {
-      background: #E6E6E6;
-      color: #878787;
+      background: #ffc2d6;
+      color: #484747;
       font-size: 13px;
       padding: 6px;
       border-radius: 100%;
       display: inline-block;
-      width: 16px;
-      height: 16px;
+      width: 20px;
+      height: 20px;
       text-align: center;
       margin-right: 13px;
       cursor: pointer;
+      svg {
+        transform: translate(-10px, -10px);
+      }
     }
   }
 }

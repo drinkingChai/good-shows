@@ -1,19 +1,22 @@
 .SearchShow {
-  .SearchBar {
-    padding-top: 32px;
-    input {
-      width: 30%;
-      position: relative;
-      left: 50%;
-      transform: translateX(-50%);
+  .Sidebar {
+    width: 21%;
+    & > p {
+      font-weight: 300;
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
+    .Lists {
+      li {
+        padding: 11px 0 14px 0;
+      }
     }
   }
-  .divider {
-    width: 173px;
-    height: 1px;
-    background: #FC5185;
-    position: relative;
-    margin: 50px auto;
+  .search-results {
+    position: absolute;
+    left: 21%;
+    right: 0;
+    top: 84px;
   }
   .Paginator {
     padding-top: 35px;

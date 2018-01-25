@@ -24,11 +24,16 @@ class Blurb extends Component {
         <div className='inner'>
           <h3>Find Your Next Show</h3>
           <div>
-            <p>With great streaming sites like Hulu, Netflix, and HBO,</p>
-            <p>it can be difficult to keep separate “watch list” for each one.</p>
+            <p>
+              With great streaming sites like Hulu, Netflix, and HBO,
+              it can be difficult to keep separate “watch list” for each one.
+            </p>
             <br/>
-            <p>good<span>Shows</span> gives you one place manage your watchlist,</p>
-            <p>and lets your friends know what you’re watching.</p>
+            <p>
+              good<span>Shows</span> gives you one place manage your watchlist,
+              and lets your friends know what you’re watching.
+            </p>
+            <br/>
           </div>
           <p>Sign up or log in to get started.</p>
 

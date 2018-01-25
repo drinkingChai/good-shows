@@ -1,20 +1,24 @@
 .Nav {
   position: fixed;
   z-index: 9999;
-  background-color: #FC5185;
   color: #ffffff;
   width: 100%;
-  box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.5);
-  height: 44px; }
+  height: 44px;
+  padding: 10px 27px;
+  font-weight: 300; }
+  .Nav li {
+    list-style-type: none;
+    display: inline-block; }
   .Nav a {
-    text-decoration: none; }
-  .Nav a.active h3 {
-    font-weight: 700; }
+    cursor: pointer;
+    text-decoration: none;
+    border-bottom: solid 3px transparent; }
+  .Nav a.active {
+    border-bottom: solid 3px #fc5185; }
   .Nav h3.logo {
-    font-size: 18px;
-    margin-top: 12px; }
+    font-size: 18px; }
   .Nav h3 {
-    font-size: 14px;
+    font-family: 'Yeseva One', cursive;
     font-weight: 400;
     cursor: pointer;
     margin: 0;
@@ -28,28 +32,23 @@
     display: inline-block;
     border-radius: 100%;
     padding: 5px;
-    transform: translateY(25%);
+    transform: translateY(2px);
     margin-left: 16px;
     box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.2); }
     .Nav .image img {
       width: 100%; }
   .Nav > div {
-    display: inline-block;
-    transform: translateY(-4px);
-    padding: 0 22px; }
+    display: inline-block; }
   .Nav .dd-arrow {
     display: inline-block;
-    border: solid 7px;
-    border-top-color: rgba(0, 0, 0, 0.3);
-    border-left-color: transparent;
-    border-right-color: transparent;
-    border-bottom-color: transparent;
-    transform: translateY(6px);
     cursor: pointer; }
   .Nav .dd {
     position: absolute;
-    background-color: #fc5185d6;
-    padding: 15px;
+    background-color: #f5f5f570;
+    border-radius: 5px;
+    font-size: .9em;
+    padding: 10px 15px 8px 15px;
+    transform: translateX(-5px);
     top: 44px;
     right: 0; }
     .Nav .dd.closed {
@@ -58,7 +57,8 @@
       display: block; }
   .Nav .links {
     position: absolute;
-    right: 0; }
+    right: 20px;
+    top: 5px; }
     .Nav .links a {
       display: inline-block;
       margin-right: 32px; }

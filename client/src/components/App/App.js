@@ -4,7 +4,6 @@ import Landing from '../Landing/Landing'
 import { connect } from 'react-redux'
 import Main from '../Main/Main'
 import { withRouter } from 'react-router-dom'
-import Footer from '../Footer/Footer'
 import '../../fonts/themify-icons/themify-icons.css'
 import { mapState, mapDispatch } from '../../mappers/user'
 
@@ -22,7 +21,6 @@ class App extends Component {
         { this.props.token ?
           <Main /> :
           <Landing /> }
-        <Footer />
       </div>
     );
   }
