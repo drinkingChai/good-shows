@@ -24,6 +24,10 @@ class ListPopup extends Component {
     }
   }
 
+  handleRemoveClick = (ev) => {
+    this.props.removeShowFromList(this.props.tmdbId)
+  }
+
   render = () => {
     return (
       <div className='ListPopup'>
@@ -37,6 +41,10 @@ class ListPopup extends Component {
             { list.name === this.state.inList && <i className='ti-check'></i> }
           </div>
         )}
+        <div
+          onClick={ this.handleRemoveClick }
+          className='list-item remove-x'
+        >Remove</div>
       </div>
     )
   }
