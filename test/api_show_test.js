@@ -28,7 +28,7 @@ describe.only('ADD show test', () => {
       .catch(done)
   })
 
-  it('GET /api/show all user shows', (done) => {
+  xit('GET /api/show all user shows', (done) => {
     request(server)
       .post('/api/auth/local')
       .send({ email: peter.email, password: 'peter' })
@@ -60,7 +60,7 @@ describe.only('ADD show test', () => {
       })
   })
 
-  xit('/POST add a show to user list', (done) => {
+  it('/POST add a show to user list', (done) => {
     request(server)
       .post('/api/auth/local')
       .send({ email: peter.email, password: 'peter' })
@@ -71,13 +71,14 @@ describe.only('ADD show test', () => {
         request(server)
           .post('/api/show')
           .set('Authorization', `Bearer ${token}`)
-          .send({ tmdbId: 1399 })
+          .send({ tmdbId: 1399, list: 'Watch List' })
           .end((err, res) => {
             if (err) return done(err)
 
             User.findOne({ email: peter.email })            
               .populate({
                 path: 'shows',
+                model: 'show',
                 populate: {
                   path: 'showData',
                   model: 'showData'

@@ -26,6 +26,8 @@ function verifyMiddleware(req, res, next) {
 
   verifyToken(req.headers.authorization)
     .then(result => {
+      if (!result) throw new Error('Invalid token or jwt error.')
+        
       req.user = result
       next()
     })

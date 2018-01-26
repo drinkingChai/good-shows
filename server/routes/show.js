@@ -2,15 +2,16 @@ const router = require('express').Router()
 const Show = require('../src/show')
 const ShowData = require('../src/showData')
 const User = require('../src/user')
+const List = require('../src/list')
 const request = require('request-promise')
 const { verifyMiddleware } = require('./tokenHelpers')
 
-let getOptions = () => ({
+let createOptions = (api_key, tmdbId) => ({
   method: 'GET',
-  url: 'https://api.themoviedb.org/3/tv/',
+  url: `https://api.themoviedb.org/3/tv/${tmdbId}`,
   qs: {
     language: 'en-US',
-    api_key: ''
+    api_key: api_key
   },
   body: '{}'
 })
@@ -42,9 +43,7 @@ router.post('/', verifyMiddleware, (req, res, next) => {
     .then(showData => {
       if (showData) return showData
 
-      let options = getOptions()
-      options.qs.api_key = process.env.TMDB_API_KEY
-      options.url = options.url + req.body.tmdbId
+      let options = createOptions(process.env.TMDB_API_KEY, req.body.tmdbId)
 
       return request(options)
         .then(result => {
@@ -60,6 +59,9 @@ router.post('/', verifyMiddleware, (req, res, next) => {
           })
 
           return newShowData.save()
+            .then(() => {
+              return newShowData
+            })
         })
     })
     .then(showData => {
@@ -70,20 +72,15 @@ router.post('/', verifyMiddleware, (req, res, next) => {
       return newShow.save()
     })
     .then(show => {
-      return User.findOne({ email: req.user.email })
-        .populate({ path: 'lists', model: 'list' })
-        .populate({ path: 'defaultList', model: 'list' })
-        .then(user => {
-          user.shows.push(show)
-          let listName = req.body.list || user.defaultList.name
-          let list = user.lists.find(l => l.name === listName)
+      return List.findOne({ user: req.user._id, name: req.body.list })
+        .then(list => {
+          // let list = user.lists.find(l => l.name === listName)
           show.list = list
           list.shows.push(show)
           
           return Promise.all([
             show.save(),
-            list.save(),
-            user.save()
+            list.save()
           ])
         })
     })
@@ -93,19 +90,20 @@ router.post('/', verifyMiddleware, (req, res, next) => {
     .catch(next)
 })
 
-router.delete('/', verifyMiddleware, (req, res, next) => {
+router.delete('/:tmdbId', verifyMiddleware, (req, res, next) => {
   // remove from lists
   User.findOne({ email: req.user.email })
     .populate({
       path: 'shows',
+      model: 'show',
       populate: {
         path: 'showData',
         model: 'showData'
       }
     })
     .then(user => {
-      let show = user.shows.find(show => show.showData.tmdbId === +req.body.tmdbId)
-      user.shows = user.shows.filter(show => show.showData.tmdbId !== +req.body.tmdbId)
+      let show = user.shows.find(show => show.showData.tmdbId === +req.params.tmdbId)
+      user.shows = user.shows.filter(show => show.showData.tmdbId !== +req.params.tmdbId)
 
       return Promise.all([
         show.remove(),

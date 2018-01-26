@@ -3,10 +3,8 @@
   font-weight: 300;
   padding: 14px 14px 15px 14px;
   background: #FFFFFF;
-  border: 0;
+  border: solid 2px #282828;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-  border-radius: 5px;
-  border-radius: 5px;
   outline: none;
   -webkit-appearance: none;
   -moz-appearance: none;

@@ -3,6 +3,8 @@ import './Result.css'
 import getPosterUrl from '../../../utils/getPosterUrl'
 import { connect } from 'react-redux'
 import { mapState } from '../../../mappers/user'
+import ListPopup from '../../Popups/ListPopup/ListPopup'
+import PopupWrapper from '../../Popups/PopupWrapper/PopupWrapper'
 
 class Result extends Component {
   state = {
@@ -24,9 +26,9 @@ class Result extends Component {
   }
 
   handlePlusClick = (ev) => {
-    // deprc
-    let cursorX = ev.pageX - this.node.offsetLeft
-    let cursorY = ev.pageY - this.node.offsetTop
+    // depr
+    let cursorX = ev.pageX
+    let cursorY = ev.pageY
     this.setState({ menuOpen: true, cursor: { x: cursorX, y: cursorY } })
   }
 
@@ -37,6 +39,12 @@ class Result extends Component {
   render = () => {
     return (
       <div className='Result' ref={ node => this.node = node }>
+        <PopupWrapper
+          open={ this.state.menuOpen }
+          onClose={ this.closeMenu }
+        >
+          <ListPopup tmdbId={ this.state.tmdbId }/>
+        </PopupWrapper>
 
         <span className='title'>{ this.state.name }</span>
         <div className='image'>

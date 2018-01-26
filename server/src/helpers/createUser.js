@@ -12,13 +12,14 @@ const defaultLists = (user) => {
 const createUser = (user) => {
   let lists = defaultLists(user)
   user.lists = lists
-  user.defaultList = lists[0]
   
   return Promise.all([
     List.insertMany(lists),
     user.save()
   ])
-  .then(() => User.findById(user._id))
+  .then(() => {
+    return user
+  })
 }
 
 module.exports = {

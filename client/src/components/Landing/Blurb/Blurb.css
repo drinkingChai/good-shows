@@ -1,7 +1,7 @@
 .Blurb {
   color: #000000;
   margin-bottom: 108px; }
-  .Blurb p {
+  .Blurb > .inner p {
     max-width: 415px; }
   .Blurb p span {
     font-weight: 700; }

@@ -1,19 +1,22 @@
 .ListPopup {
-  background: #353535;
-  color: #ffffff;
-  box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.5);
-  min-width: 150px;
-  cursor: pointer;
-  transform: translateY(-100%); }
-  .ListPopup .list-item {
-    padding: 12px;
-    transition: background 300ms; }
-    .ListPopup .list-item:not(:last-child) {
-      border-bottom: solid 1px #282828; }
-    .ListPopup .list-item:hover {
-      background: #FC5185;
-      color: #ffffff; }
-    .ListPopup .list-item i {
+  background: #ffffff;
+  color: #000000;
+  border: solid 2px #212121;
+  padding: 20px 0 11px 0px;
+  z-index: 999; }
+  .ListPopup li {
+    list-style-type: none;
+    cursor: pointer;
+    padding: 9px 20px;
+    position: relative; }
+    .ListPopup li:hover {
+      background: #FFE1EA; }
+    .ListPopup li:first-child {
+      background: #ffffff;
+      border: solid 2px #212121;
+      transform: translateX(17px);
+      margin-bottom: 9px; }
+    .ListPopup li i {
       position: absolute;
-      right: 12px;
-      font-weight: 700; }
+      right: 20px;
+      top: 11px; }

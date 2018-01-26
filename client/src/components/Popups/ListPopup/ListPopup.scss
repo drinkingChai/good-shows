@@ -1,24 +1,28 @@
 .ListPopup {
-  background: #353535;
-  color: #ffffff;
-  box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.5);
-  min-width: 150px;
-  cursor: pointer;
-  transform: translateY(-100%);
-  .list-item {
-    padding: 12px;
-    transition: background 300ms;
-    &:not(:last-child) {
-      border-bottom: solid 1px darken(#353535, 5%);
-    }
+  // position: absolute;
+  background: #ffffff;
+  color: #000000;
+  border: solid 2px #212121;
+  padding: 20px 0 11px 0px;
+  z-index: 999;
+  li {
+    list-style-type: none;
+    cursor: pointer;
+    padding: 9px 20px;
+    position: relative;
     &:hover {
-      background: #FC5185;
-      color: #ffffff;
+      background: #FFE1EA;
+    }
+    &:first-child {
+      background: #ffffff;
+      border: solid 2px #212121;
+      transform: translateX(17px);
+      margin-bottom: 9px;
     }
     i {
       position: absolute;
-      right: 12px;
-      font-weight: 700;
+      right: 20px;
+      top: 11px;
     }
   }
 }

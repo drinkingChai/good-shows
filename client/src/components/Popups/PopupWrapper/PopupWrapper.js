@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import './LocalModal.css'
+import './PopupWrapper.css'
 
-class LocalModal extends Component {
+class PopupWrapper extends Component {
   state = { open: false, cursor: {} }
 
   componentWillReceiveProps = nextProps => {
@@ -40,9 +40,15 @@ class LocalModal extends Component {
 
   render = () => {
     return (
-      <div className={ `LocalModal ${this.state.open ? 'open' : 'closed'}` } ref={ node => this.outer = node }>
-        { !this.props.hideClose && <button className='close' onClick={ this.close }><i className='ti-close'></i></button> }
-        <div className='inner' ref={ node => this.node = node } style={{ top: this.state.cursor.y, left: this.state.cursor.x }}>
+      <div
+        className={ `PopupWrapper ${this.state.open ? 'open' : 'closed'}` }
+        ref={ node => this.outer = node }
+        // style={ this.state.cursor && { top: this.state.cursor.y, left: this.state.cursor.x }}
+      >
+        <div 
+          className='inner'
+          ref={ node => this.node = node }
+        >
           { this.props.children }
         </div>
       </div>
@@ -50,4 +56,4 @@ class LocalModal extends Component {
   }
 }
 
-export default LocalModal
+export default PopupWrapper 

@@ -1,0 +1,17 @@
+.PopupWrapper {
+  transform: translateY(100%);
+  position: absolute;
+  left: 25px;
+  top: 25px;
+  z-index: 999;
+  &.open {
+    display: block;
+    position: absolute;
+  }
+  &.closed {
+    display: none;
+  }
+  .inner {
+    // position: absolute;
+  }
+}

@@ -1,7 +1,7 @@
 .Blurb {
   color: #000000;
   margin-bottom: 108px;
-  p {
+  & > .inner p {
     max-width: 415px;
   }
   p span {

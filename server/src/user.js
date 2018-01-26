@@ -43,11 +43,7 @@ const UserSchema = new Schema({
   pendingFriends: [{
     type: Schema.Types.ObjectId,
     ref: 'user'
-  }],
-  defaultList: {
-    type: Schema.Types.ObjectId,
-    ref: 'list'
-  }
+  }]
 }, { usePushEach: true })
 
 UserSchema.pre('save', function(next) {

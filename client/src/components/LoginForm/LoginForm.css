@@ -7,9 +7,10 @@
     display: block;
     margin: 25px 0;
     width: 100%; }
-  .LoginForm form button {
+  .LoginForm form .Button {
     width: 215px;
-    margin: 5px 0; }
+    margin: 5px 0;
+    color: #ffffff; }
   .LoginForm .ErrorPane {
     margin-top: 22px;
     margin-left: -60px;

@@ -7,11 +7,19 @@ import { mapDispatch } from '../../../mappers/shows'
 class ListPopup extends Component {
   state = { lists: [], inList: null }
 
+  componentDidMount = () => {
+    this.setStateFromProps(this.props)
+  }
+
   componentWillReceiveProps = nextProps => {
-    let hasShow = nextProps.shows.find(s => s.showData.tmdbId === nextProps.tmdbId)
+    this.setStateFromProps(nextProps)
+  }
+
+  setStateFromProps = (_props) => {
+    let hasShow = _props.shows.find(s => s.showData.tmdbId === this.props.tmdbId)
 
     this.setState({
-      lists: nextProps.lists,
+      lists: _props.lists,
       inList: hasShow ? hasShow.list.name : null
     })
   }
@@ -31,20 +39,21 @@ class ListPopup extends Component {
   render = () => {
     return (
       <div className='ListPopup'>
+        <li className='create-new-list'>Create a new list</li>
         { this.state.lists.map(list =>
-          <div
+          <li
             onClick={ this.handleListClick(list.name) }
-            className={ `list-item ${list.name === this.state.inList ? 'in-list' : 'not-in-list'}` }
+            className={ `${list.name === this.state.inList ? 'in-list' : 'not-in-list'}` }
             key={ list._id }
           >
             { list.name }
             { list.name === this.state.inList && <i className='ti-check'></i> }
-          </div>
+          </li>
         )}
-        <div
+        <li
           onClick={ this.handleRemoveClick }
-          className='list-item remove-x'
-        >Remove</div>
+          className='remove-x'
+        >Remove</li>
       </div>
     )
   }

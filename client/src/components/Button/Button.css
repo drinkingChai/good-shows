@@ -1,11 +1,10 @@
 .Button {
   height: 42px;
   font-size: 1em;
-  color: #FFFFFF;
-  border: 0;
-  background: #FC5185;
+  border: solid 2px #FC5185;
+  color: #FC5185;
+  background: transparent;
   box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.5);
-  border-radius: 5px;
   outline: none;
   cursor: pointer;
   -webkit-appearance: none;
