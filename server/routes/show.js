@@ -16,19 +16,6 @@ let createOptions = (api_key, tmdbId) => ({
   body: '{}'
 })
 
-// router.get('/', verifyMiddleware, (req, res, next) => {
-//   List.findOne({ user: req.user._id, name: 'All Shows' })
-//     .populate({
-//       path: 'showData',
-//       model: 'showData'
-//     })
-//     .then(shows => {
-//       console.log(shows)
-//       res.send(shows)
-//     })
-//     .catch(next)
-// })
-
 router.post('/', verifyMiddleware, (req, res, next) => {
   // add to a list
   // find in ShowData, if not
@@ -42,8 +29,6 @@ router.post('/', verifyMiddleware, (req, res, next) => {
       if (showData) return showData
 
       let options = createOptions(process.env.TMDB_API_KEY, req.body.tmdbId)
-
-      console.log(options)
 
       return request(options)
         .then(result => {

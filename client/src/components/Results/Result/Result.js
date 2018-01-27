@@ -18,17 +18,21 @@ class Result extends Component {
   }
 
   componentWillReceiveProps = nextProps => {
-    let inList = nextProps.allShows.shows.find(s => +s.tmdbId === +this.state.tmdbId)
+    let inList = nextProps.allShows.find(s => +s.tmdbId === +this.state.tmdbId)
     inList = inList ? inList.list.name : false
     this.setState({ inList })
   }
 
   componentDidMount = () => {
+    // info from tmdb
     let { name, overview, id } = this.props.info
     overview = overview.length > 200 ? overview.slice(0, 200).trim() + '...' : overview
     const posterPath = this.props.info.poster_path
-    let inList = this.props.allShows.shows.find(s => +s.tmdbId === +this.props.info.id)
+
+    // check if it's in list
+    let inList = this.props.allShows.find(s => +s.tmdbId === +this.props.info.id)
     inList = inList ? inList.list.name : false
+
     this.setState({ name, overview, posterPath, tmdbId: id, inList })
   }
 
@@ -61,9 +65,10 @@ class Result extends Component {
         <p>{ this.state.overview }</p>
 
         <div className='buttons'>
-          <a onClick={ this.handlePlusClick }>
-            { this.state.inList ? <i className="fas fa-check"></i> : <i className="fas fa-plus"></i> }
-          </a>
+        { !this.state.inList ?
+          <a onClick={ this.handlePlusClick }><i className="fas fa-plus"></i></a> :
+          <a onClick={ this.handlePlusClick }><i className="fas fa-check"></i></a>
+        }
           <a><i className="fas fa-share"></i></a>
           <a><i className="fas fa-star"></i></a>
           <a><i className="fas fa-ellipsis-h"></i></a>

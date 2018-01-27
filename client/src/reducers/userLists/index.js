@@ -16,5 +16,5 @@ export default function (state = initialState, action) {
 }
 
 export const getUserLists = () => dispatch =>
-  axios.get('/api/list')
+  axios.get('/api/list/alllists')
     .then(res => dispatch(setLists(res.data)))

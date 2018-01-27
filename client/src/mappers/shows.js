@@ -1,4 +1,5 @@
 import { getUserLists } from '../reducers/userLists'
+import { getAllShows } from '../reducers/userAllShows'
 import axios from 'axios'
 
 const addShow = (tmdbId, list) => dispatch =>
@@ -14,13 +15,16 @@ export const mapDispatch = dispatch => ({
   addShowToList(tmdbId, list) {
     return dispatch(addShow(tmdbId, list))
       .then(() => dispatch(getUserLists()))
+      .then(() => dispatch(getAllShows()))
   },
   removeShowFromList(tmdbId) {
     return dispatch(removeShow(tmdbId))
       .then(() => dispatch(getUserLists()))
+      .then(() => dispatch(getAllShows()))
   },
   changeListTo(tmdbId, list) {
     return dispatch(changeList(tmdbId, list))
       .then(() => dispatch(getUserLists()))
+      .then(() => dispatch(getAllShows()))
   }
 })
