@@ -1,11 +1,8 @@
 .PopupWrapper {
   transform: translateY(100%);
   position: absolute;
-  left: 25px;
-  top: 25px;
   z-index: 999; }
   .PopupWrapper.open {
-    display: block;
-    position: absolute; }
+    display: block; }
   .PopupWrapper.closed {
     display: none; }

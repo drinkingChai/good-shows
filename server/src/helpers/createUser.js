@@ -3,9 +3,10 @@ const List = require('../list')
 
 const defaultLists = (user) => {
   return [
-    new List({ name: 'Watch List', user }),
-    new List({ name: 'Watching', user }),
-    new List({ name: 'Watched', user })
+    new List({ name: 'To Watch', user }),
+    new List({ name: 'Currently Watching', user }),
+    new List({ name: 'Watched', user }),
+    new List({ name: 'All Shows', user })
   ]
 }
 

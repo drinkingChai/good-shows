@@ -4,16 +4,16 @@ mongoose.Promise = Promise
 
 require('dotenv').config()
 
-before(done => {
+before((done) => {
   mongoose.connect('mongodb://localhost/good_shows_test', { useMongoClient: true })
   mongoose.connection
     .once('open', () => done())
-    .on('error', error => {
+    .on('error', (error) => {
       console.warn('Error', error)
     })
 })
 
-beforeEach(done => {
+beforeEach((done) => {
   const { users, lists, shows, showdatas, comments, genres } = mongoose.connection.collections // lowercase, mongo normalizes
   users.drop(() => {
     showdatas.drop(() => {

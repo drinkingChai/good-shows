@@ -11,7 +11,8 @@
     position: absolute;
     top: 31px;
     right: -18px;
-    z-index: 99; }
+    z-index: 99;
+    border: solid 2px #232323; }
     .Result .image img {
       width: 100%;
       height: 100%; }

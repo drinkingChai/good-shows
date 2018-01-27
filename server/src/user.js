@@ -27,11 +27,6 @@ const UserSchema = new Schema({
     },
     required: [true, 'Password is required.']    
   },
-  shows: [{
-    type: Schema.Types.ObjectId,
-    ref: 'show',
-    default: []
-  }],
   lists: [{
     type: Schema.Types.ObjectId,
     ref: 'list'
@@ -62,7 +57,6 @@ UserSchema.virtual('tokenData').get(function() {
   return {
     name: this.name,
     email: this.email,
-    shows: this.shows,
     friends: this.friends,
     _id: this._id
   }
@@ -70,14 +64,6 @@ UserSchema.virtual('tokenData').get(function() {
 
 UserSchema.statics.verifyLogin = function(email, password) {
   return this.findOne({ email })
-    .populate({
-      path: 'shows',
-      model: 'show',
-      populate: {
-        path: 'list',
-        model: 'list'
-      }
-    })
     .then(user => {
       if (!user) return null
 

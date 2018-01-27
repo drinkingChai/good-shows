@@ -7,6 +7,9 @@ const ShowSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'list'
   },
+  tmdbId: {
+    type: String 
+  },
   showData: {
     type: Schema.Types.ObjectId,
     ref: 'showData'
@@ -19,7 +22,11 @@ const ShowSchema = new Schema({
   comments: [{
     type: Schema.Types.ObjectId,
     ref: 'comment'
-  }]
+  }],
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'user'
+  }
 }, { usePushEach: true, timestamps: true })
 
 ShowSchema.virtual('likesCount').get(function() {

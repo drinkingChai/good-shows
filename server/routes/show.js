@@ -16,38 +16,42 @@ let createOptions = (api_key, tmdbId) => ({
   body: '{}'
 })
 
-router.get('/', verifyMiddleware, (req, res, next) => {
-  User.findById(req.user._id)
-    .populate({
-      path: 'shows',
-      model: 'show',
-      populate: [{
-        path: 'list',
-        model: 'list'
-      }, {
-        path: 'showData',
-        model: 'showData'
-      }]
-    })
-    .then(user => {
-      res.send(user.shows)
-    })
-    .catch(next)
-})
+// router.get('/', verifyMiddleware, (req, res, next) => {
+//   List.findOne({ user: req.user._id, name: 'All Shows' })
+//     .populate({
+//       path: 'showData',
+//       model: 'showData'
+//     })
+//     .then(shows => {
+//       console.log(shows)
+//       res.send(shows)
+//     })
+//     .catch(next)
+// })
 
 router.post('/', verifyMiddleware, (req, res, next) => {
   // add to a list
   // find in ShowData, if not
   // search TMDB api, add to ShowData
-  ShowData.findOne({ tmdbId: req.body.tmdbId })
+  Show.findOne({ user: req.user._id, tmdbId: req.body.tmdbId })
+    .then(show => {
+      if (show) throw new Error('Show cannot be added twice!')
+    })
+    .then(() => ShowData.findOne({ tmdbId: req.body.tmdbId }))
     .then(showData => {
       if (showData) return showData
 
       let options = createOptions(process.env.TMDB_API_KEY, req.body.tmdbId)
 
+      console.log(options)
+
       return request(options)
         .then(result => {
-          const { name, overview, genres, first_air_date, vote_average, poster_path, id } = JSON.parse(result)
+          const {
+            name, overview, genres,
+            first_air_date, vote_average, poster_path, id
+          } = JSON.parse(result)
+
           let newShowData = new ShowData({
             name,
             overview,
@@ -59,30 +63,33 @@ router.post('/', verifyMiddleware, (req, res, next) => {
           })
 
           return newShowData.save()
-            .then(() => {
-              return newShowData
-            })
         })
     })
     .then(showData => {
       let newShow = new Show({
-        showData
+        showData,
+        tmdbId: showData.tmdbId,
+        user: req.user
       })
 
       return newShow.save()
     })
     .then(show => {
-      return List.findOne({ user: req.user._id, name: req.body.list })
-        .then(list => {
-          // let list = user.lists.find(l => l.name === listName)
-          show.list = list
-          list.shows.push(show)
-          
-          return Promise.all([
-            show.save(),
-            list.save()
-          ])
-        })
+      return Promise.all([
+        List.findOne({ user: req.user._id, name: req.body.list }),
+        List.findOne({ user: req.user._id, name: 'All Shows' })
+      ])
+      .then(([list, allShows]) => {
+        show.list = list
+        list.shows.push(show)
+        allShows.shows.push(show)
+
+        return Promise.all([
+          allShows.save(),
+          show.save(),
+          list.save()
+        ])
+      })
     })
     .then(() => {
       res.sendStatus(200)
@@ -116,39 +123,41 @@ router.delete('/:tmdbId', verifyMiddleware, (req, res, next) => {
 
 router.put('/list', verifyMiddleware, (req, res, next) => {
   // change list
-  User.findOne({ email: req.user.email })
-    .populate({
-      path: 'shows',
-      model: 'show',
-      populate: {
-        path: 'showData',
-        model: 'showData'
-      }
-    })
-    .populate({
-      path: 'lists',
-      model: 'list',
-      populate: {
-        path: 'shows',
-        model: 'show'
-      }
-    })
-    .then(user => {
-      let show = user.shows.find(s => s.showData.tmdbId === +req.body.tmdbId)
-      let prevList = user.lists.find(list => show.list.toString() === list._id.toString())
-      prevList.shows = prevList.shows.filter(s => s._id.toString() !== show._id.toString())
-      let nextLilst = user.lists.find(list => list.name === req.body.list)
-      nextLilst.shows.push(show)
-      show.list = nextLilst
+  // body: { tmdbId: <String>, fromList: <String>, toList: <String> }
+  res.sendStatus(200)
+  // User.findOne({ email: req.user.email })
+  //   .populate({
+  //     path: 'shows',
+  //     model: 'show',
+  //     populate: {
+  //       path: 'showData',
+  //       model: 'showData'
+  //     }
+  //   })
+  //   .populate({
+  //     path: 'lists',
+  //     model: 'list',
+  //     populate: {
+  //       path: 'shows',
+  //       model: 'show'
+  //     }
+  //   })
+  //   .then(user => {
+  //     let show = user.shows.find(s => s.showData.tmdbId === +req.body.tmdbId)
+  //     let prevList = user.lists.find(list => show.list.toString() === list._id.toString())
+  //     prevList.shows = prevList.shows.filter(s => s._id.toString() !== show._id.toString())
+  //     let nextLilst = user.lists.find(list => list.name === req.body.list)
+  //     nextLilst.shows.push(show)
+  //     show.list = nextLilst
 
-      return Promise.all([
-        show.save(),
-        prevList.save(),
-        nextLilst.save()
-      ])
-    })
-    .then(() => res.sendStatus(200))
-    .catch(next)
+  //     return Promise.all([
+  //       show.save(),
+  //       prevList.save(),
+  //       nextLilst.save()
+  //     ])
+  //   })
+  //   .then(() => res.sendStatus(200))
+  //   .catch(next)
 })
 
 router.put('/', verifyMiddleware, (req, res, next) => {

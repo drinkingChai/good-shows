@@ -1,19 +1,19 @@
 const router = require('express').Router()
 const { verifyMiddleware } = require('./tokenHelpers')
-const User = require('../src/user')
+const List = require('../src/list')
 
 router.get('/', verifyMiddleware, (req, res, next) => {
-  User.findById(req.user._id)
+  List.find({ user: req.user._id })
     .populate({
-      path: 'lists',
-      model: 'list',
+      path: 'shows',
+      model: 'show',
       populate: {
-        path: 'shows',
-        model: 'show'
+        path: 'list',
+        model: 'list'
       }
     })
-    .then(user => {
-      res.send(user.lists)
+    .then(lists => {
+      res.send(lists)
     })
     .catch(next)
 })

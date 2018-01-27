@@ -5,7 +5,7 @@ import { mapState } from '../../../mappers/user'
 import { mapDispatch } from '../../../mappers/shows'
 
 class ListPopup extends Component {
-  state = { lists: [], inList: null }
+  state = { lists: [], inList: false }
 
   componentDidMount = () => {
     this.setStateFromProps(this.props)
@@ -16,17 +16,16 @@ class ListPopup extends Component {
   }
 
   setStateFromProps = (_props) => {
-    let hasShow = _props.shows.find(s => s.showData.tmdbId === this.props.tmdbId)
-
+    let lists = _props.lists.filter(l => l.name !== 'All Shows')
     this.setState({
-      lists: _props.lists,
-      inList: hasShow ? hasShow.list.name : null
+      lists,
+      inList: _props.inList
     })
   }
 
   handleListClick = (listName) => (ev) => {
     if (this.state.inList) {
-      this.props.changeListTo(this.props.tmdbId, listName)
+      // this.props.changeListTo(this.props.tmdbId, listName)
     } else {
       this.props.addShowToList(this.props.tmdbId, listName)
     }

@@ -17,19 +17,23 @@ class Result extends Component {
     inList: false
   }
 
+  componentWillReceiveProps = nextProps => {
+    let inList = nextProps.allShows.shows.find(s => +s.tmdbId === +this.state.tmdbId)
+    inList = inList ? inList.list.name : false
+    this.setState({ inList })
+  }
+
   componentDidMount = () => {
     let { name, overview, id } = this.props.info
     overview = overview.length > 200 ? overview.slice(0, 200).trim() + '...' : overview
     const posterPath = this.props.info.poster_path
-    const inList = this.props.shows.find(s => s.showData.tmdbId === id) ? true : false
+    let inList = this.props.allShows.shows.find(s => +s.tmdbId === +this.props.info.id)
+    inList = inList ? inList.list.name : false
     this.setState({ name, overview, posterPath, tmdbId: id, inList })
   }
 
   handlePlusClick = (ev) => {
-    // depr
-    let cursorX = ev.pageX
-    let cursorY = ev.pageY
-    this.setState({ menuOpen: true, cursor: { x: cursorX, y: cursorY } })
+    this.setState({ menuOpen: true })
   }
 
   closeMenu = () => {
@@ -42,8 +46,12 @@ class Result extends Component {
         <PopupWrapper
           open={ this.state.menuOpen }
           onClose={ this.closeMenu }
+          cursor={ this.state.cursor }
         >
-          <ListPopup tmdbId={ this.state.tmdbId }/>
+          <ListPopup
+            tmdbId={ this.state.tmdbId }
+            inList={ this.state.inList }
+          />
         </PopupWrapper>
 
         <span className='title'>{ this.state.name }</span>

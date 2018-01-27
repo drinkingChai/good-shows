@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './PopupWrapper.css'
 
 class PopupWrapper extends Component {
-  state = { open: false, cursor: {} }
+  state = { open: false, cursor: { top: 0, left: 0 } }
 
   componentWillReceiveProps = nextProps => {
     if (nextProps.open) {
@@ -43,7 +43,6 @@ class PopupWrapper extends Component {
       <div
         className={ `PopupWrapper ${this.state.open ? 'open' : 'closed'}` }
         ref={ node => this.outer = node }
-        // style={ this.state.cursor && { top: this.state.cursor.y, left: this.state.cursor.x }}
       >
         <div 
           className='inner'
