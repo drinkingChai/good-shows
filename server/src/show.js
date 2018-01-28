@@ -8,7 +8,7 @@ const ShowSchema = new Schema({
     ref: 'list'
   },
   tmdbId: {
-    type: String 
+    type: Number 
   },
   showData: {
     type: Schema.Types.ObjectId,
@@ -26,12 +26,12 @@ const ShowSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'user'
+  },
+  isPrivate: {
+    type: Boolean,
+    default: false
   }
 }, { usePushEach: true, timestamps: true })
-
-ShowSchema.virtual('likesCount').get(function() {
-  return this.likes.length
-})
 
 const Show = mongoose.model('show', ShowSchema)
 

@@ -3,8 +3,8 @@ import './Result.css'
 import getPosterUrl from '../../../utils/getPosterUrl'
 import { connect } from 'react-redux'
 import { mapState } from '../../../mappers/user'
-import ListPopup from '../../Popups/ListPopup/ListPopup'
-import PopupWrapper from '../../Popups/PopupWrapper/PopupWrapper'
+import Modal from '../../Modal/Modal'
+import AddEditShow from '../../AddEditShow/AddEditShow'
 
 class Result extends Component {
   state = {
@@ -47,16 +47,12 @@ class Result extends Component {
   render = () => {
     return (
       <div className='Result' ref={ node => this.node = node }>
-        <PopupWrapper
-          open={ this.state.menuOpen }
-          onClose={ this.closeMenu }
-          cursor={ this.state.cursor }
-        >
-          <ListPopup
-            tmdbId={ this.state.tmdbId }
-            inList={ this.state.inList }
-          />
-        </PopupWrapper>
+        <Modal open={ this.state.menuOpen }>
+          <AddEditShow
+            info={ this.props.info }
+            lists={ this.props.userLists }
+            inList={ this.state.inList } />
+        </Modal>
 
         <span className='title'>{ this.state.name }</span>
         <div className='image'>
@@ -67,11 +63,9 @@ class Result extends Component {
         <div className='buttons'>
         { !this.state.inList ?
           <a onClick={ this.handlePlusClick }><i className="fas fa-plus"></i></a> :
-          <a onClick={ this.handlePlusClick }><i className="fas fa-check"></i></a>
-        }
+          <a onClick={ this.handlePlusClick }><i className="fas fa-check"></i></a> }
           <a><i className="fas fa-share"></i></a>
           <a><i className="fas fa-star"></i></a>
-          <a><i className="fas fa-ellipsis-h"></i></a>
         </div>
       </div>
     )

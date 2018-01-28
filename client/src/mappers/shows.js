@@ -8,8 +8,8 @@ const addShow = (tmdbId, list) => dispatch =>
 const removeShow = (tmdbId) => dispatch =>
   axios.delete(`/api/show/${tmdbId}`)
 
-const changeList = (tmdbId, list) => dispatch =>
-  axios.put('/api/show/list', { tmdbId, list })
+const changeList = (tmdbId, fromList, toList) => dispatch =>
+  axios.put('/api/show/changelist', { tmdbId, fromList, toList })
 
 export const mapDispatch = dispatch => ({
   addShowToList(tmdbId, list) {
@@ -22,8 +22,8 @@ export const mapDispatch = dispatch => ({
       .then(() => dispatch(getUserLists()))
       .then(() => dispatch(getAllShows()))
   },
-  changeListTo(tmdbId, list) {
-    return dispatch(changeList(tmdbId, list))
+  changeListTo(tmdbId, fromList, toList) {
+    return dispatch(changeList(tmdbId, fromList, toList))
       .then(() => dispatch(getUserLists()))
       .then(() => dispatch(getAllShows()))
   }

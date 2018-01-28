@@ -4,7 +4,7 @@
   position: relative;
   box-shadow: 0 2px 5px -2px rgba(0, 0, 0, 0.5);
   background: #ffffff;
-  .image {
+  & > .image {
     width: 181px;
     height: 266px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -18,28 +18,31 @@
       height: 100%;
     }
   }
-  span.title {
+  & > span.title {
     display: block;
-    left: -18px;
+    // left: -18px;
     top: 18px;
     font-size: 18px;
     position: absolute;
-    width: 477px;
-    background: #353535;
+    // width: 477px;
+    // background: #353535;
     font-weight: 400;
-    color: #ffffff;
-    padding: 19px 23px;
+    color: #353535;
+    // color: #ffffff;
+    // padding: 19px 23px;
+    padding: 12px 20px;
     margin: 0;
-    background-image: linear-gradient(-134deg, #FC5185 0%, #FF5D5D 100%);
+    // background-image: linear-gradient(-134deg, #FC5185 0%, #FF5D5D 100%);
   }
-  p {
+  & > p {
     padding: 95px 23px 22px 23px;
     width: 255px;
     font-size: 14px;
     line-height: 21px;
+    font-weight: 300;
     color: #000000;
   }
-  .buttons {
+  & > .buttons {
     padding: 20px 16px 23px 0;
     position: absolute;
     bottom: 0;

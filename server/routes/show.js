@@ -106,43 +106,35 @@ router.delete('/:tmdbId', verifyMiddleware, (req, res, next) => {
     .catch(next)
 })
 
-router.put('/list', verifyMiddleware, (req, res, next) => {
+router.put('/changelist', verifyMiddleware, (req, res, next) => {
   // change list
   // body: { tmdbId: <String>, fromList: <String>, toList: <String> }
-  res.sendStatus(200)
-  // User.findOne({ email: req.user.email })
-  //   .populate({
-  //     path: 'shows',
-  //     model: 'show',
-  //     populate: {
-  //       path: 'showData',
-  //       model: 'showData'
-  //     }
-  //   })
-  //   .populate({
-  //     path: 'lists',
-  //     model: 'list',
-  //     populate: {
-  //       path: 'shows',
-  //       model: 'show'
-  //     }
-  //   })
-  //   .then(user => {
-  //     let show = user.shows.find(s => s.showData.tmdbId === +req.body.tmdbId)
-  //     let prevList = user.lists.find(list => show.list.toString() === list._id.toString())
-  //     prevList.shows = prevList.shows.filter(s => s._id.toString() !== show._id.toString())
-  //     let nextLilst = user.lists.find(list => list.name === req.body.list)
-  //     nextLilst.shows.push(show)
-  //     show.list = nextLilst
+  let show
+  Show.findOne({
+    user: req.user._id,
+    tmdbId: +req.body.tmdbId
+  })
+  .populate('list')
+  .then((_show) => {
+    show = _show
+  })
+  .then(() => Promise.all([
+    List.findOne({ user: req.user._id, name: req.body.fromList }),
+    List.findOne({ user: req.user._id, name: req.body.toList })
+  ]))
+  .then(([fromList, toList]) => {
+    show.list = toList
+    fromList.shows = fromList.shows.filter(s => s._id !== show._id)
+    toList.shows.push(show)
 
-  //     return Promise.all([
-  //       show.save(),
-  //       prevList.save(),
-  //       nextLilst.save()
-  //     ])
-  //   })
-  //   .then(() => res.sendStatus(200))
-  //   .catch(next)
+    return Promise.all([
+      show.save(),
+      fromList.save(),
+      toList.save()
+    ])
+  })
+  .then(() => res.sendStatus(200))
+  .catch(next)
 })
 
 router.put('/', verifyMiddleware, (req, res, next) => {
