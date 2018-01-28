@@ -4,6 +4,7 @@ import getPosterUrl from '../../utils/getPosterUrl'
 import { connect } from 'react-redux'
 import { mapState } from '../../mappers/user'
 import { mapDispatch } from '../../mappers/shows'
+import { searchByTmdbId } from '../../utils/searchShows'
 
 class AddEditShow extends Component {
   state = {
@@ -17,7 +18,10 @@ class AddEditShow extends Component {
   }
 
   componentDidMount = () => {
-    this.setState(this.props)
+    searchByTmdbId(this.props.match.params.tmdbId)
+      .then((info) => {
+        this.setState({ info })
+      })
   }
 
   handleClick = (list) => (ev) => {

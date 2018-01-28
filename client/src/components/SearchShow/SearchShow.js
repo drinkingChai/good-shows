@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './SearchShow.css'
 import { connect } from 'react-redux'
 import SearchBar from '../SearchBar/SearchBar'
-import searchShows from '../../utils/searchShows'
+import { searchByStr } from '../../utils/searchShows'
 import Results from '../Results/Results'
 import Paginator from '../Paginator/Paginator'
 import qs from 'qs'
@@ -73,7 +73,7 @@ class SearchShow extends Component {
 
 const mapDispatch = dispatch => ({
   search(searchStr, page) {
-    return dispatch(searchShows(searchStr, page))
+    return dispatch(searchByStr(searchStr, page))
   }
 })
 export default connect(mapState, mapDispatch)(SearchShow)

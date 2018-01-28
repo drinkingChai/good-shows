@@ -3,8 +3,7 @@ import './Result.css'
 import getPosterUrl from '../../../utils/getPosterUrl'
 import { connect } from 'react-redux'
 import { mapState } from '../../../mappers/user'
-import Modal from '../../Modal/Modal'
-import AddEditShow from '../../AddEditShow/AddEditShow'
+import { Link } from 'react-router-dom'
 
 class Result extends Component {
   state = {
@@ -47,13 +46,6 @@ class Result extends Component {
   render = () => {
     return (
       <div className='Result' ref={ node => this.node = node }>
-        <Modal open={ this.state.menuOpen }>
-          <AddEditShow
-            info={ this.props.info }
-            lists={ this.props.userLists }
-            inList={ this.state.inList } />
-        </Modal>
-
         <span className='title'>{ this.state.name }</span>
         <div className='image'>
           <img src={ getPosterUrl(342, this.state.posterPath) } alt='poster' />
@@ -61,9 +53,10 @@ class Result extends Component {
         <p>{ this.state.overview }</p>
 
         <div className='buttons'>
-        { !this.state.inList ?
+        { /* !this.state.inList ?
           <a onClick={ this.handlePlusClick }><i className="fas fa-plus"></i></a> :
-          <a onClick={ this.handlePlusClick }><i className="fas fa-check"></i></a> }
+          <a onClick={ this.handlePlusClick }><i className="fas fa-check"></i></a> */ }
+          <Link to={ `/show/${this.state.tmdbId}` }><i className='fas fa-check'></i></Link>
           <a><i className="fas fa-share"></i></a>
           <a><i className="fas fa-star"></i></a>
         </div>

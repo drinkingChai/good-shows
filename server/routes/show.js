@@ -16,6 +16,17 @@ let createOptions = (api_key, tmdbId) => ({
   body: '{}'
 })
 
+router.get('/:tmdbId', (req, res, next) => {
+  console.log('hit')
+  let options = createOptions(process.env.TMDB_API_KEY, req.params.tmdbId)
+
+  request(options)
+    .then((result) => {
+      res.send(result)
+    })
+    .catch(next)
+})
+
 router.post('/', verifyMiddleware, (req, res, next) => {
   // add to a list
   // find in ShowData, if not
