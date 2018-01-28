@@ -1,10 +1,8 @@
 const router = require('express').Router()
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
-const User = require('../src/user')
+// const User = require('../../db/user')
 const { createToken, verifyToken } = require('./tokenHelpers')
-const List = require('../src/list')
-const { createUser } = require('../src/helpers/createUser')
 
 passport.use(new LocalStrategy({
     usernameField: 'email',
@@ -47,8 +45,8 @@ router.post('/new', (req, res, next) => {
     .then(user => {
       if (user) throw new Error('An account is already registered with that email.')
 
-      let newUser = new User({ name, email, password })
-      return createUser(newUser)
+      // let newUser = new User({ name, email, password })
+      // return createUser(newUser)
     })
     .then(user => {
       res.send({ userInfo: user.tokenData, token: createToken(user.tokenData) })
