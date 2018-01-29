@@ -7,10 +7,10 @@ import './App.css';
 import '../../fonts/themify-icons/themify-icons.css'
 
 // mappers
-import { mapState, mapDispatch } from '../../mappers/user'
+import { mapState, mapDispatch } from '../../mappers/user.mapper'
 
 // components
-import LandingPage from '../LandingPage/LandingPage'
+import GuestRouter from '../Routers/GuestRouter'
 
 class App extends Component {
   componentDidMount = () => {
@@ -23,7 +23,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <LandingPage />
+        <GuestRouter />
         { /* this.props.token ?
           <Main /> :
           <Landing /> */ }

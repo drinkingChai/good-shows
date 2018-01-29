@@ -18,7 +18,27 @@
       margin-bottom: 1em;
     }
     .Button {
-      margin-top: 30px;
+      display: block;
+      margin-top: 45px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    &.login {
+      padding: 35px 57px;
+      .Input {
+        width: 100%;
+        margin-bottom: 20px;
+        &[type='password'] {
+          margin-bottom: 35px;
+        }
+        &.name {
+          margin-top: 45px;
+        }
+      }
+      .Button {
+        width: 100%;
+        margin: 0;
+      }
     }
   }
 }

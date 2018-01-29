@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { setClientAuth, removeClientAuth } from '../../utils'
+import { setClientAuth, removeClientAuth } from '../utils'
 
 const SET_USER = 'SET_USER'
 

@@ -15,4 +15,19 @@
       margin: 0;
       margin-bottom: 1em; }
     .LandingPage .content .Button {
-      margin-top: 30px; }
+      display: block;
+      margin-top: 45px;
+      margin-left: auto;
+      margin-right: auto; }
+    .LandingPage .content.login {
+      padding: 35px 57px; }
+      .LandingPage .content.login .Input {
+        width: 100%;
+        margin-bottom: 20px; }
+        .LandingPage .content.login .Input[type='password'] {
+          margin-bottom: 35px; }
+        .LandingPage .content.login .Input.name {
+          margin-top: 45px; }
+      .LandingPage .content.login .Button {
+        width: 100%;
+        margin: 0; }

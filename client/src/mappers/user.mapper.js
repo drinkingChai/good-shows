@@ -1,19 +1,25 @@
-import { signIn, regAndSignIn, verifyClientToken, signOut } from '../reducers/currentUser'
+import { signIn, regAndSignIn, verifyClientToken, signOut } from '../reducers/user.reducer'
 
-export const mapState = ({ currentUser }) => ({
-  user: currentUser.userInfo,
-  token: currentUser.token
+// utils
+import { axiosErrorParser } from '../utils'
+
+export const mapState = ({ user }) => ({
+  user: user.user,
+  token: user.token
 })
 
 export const mapDispatch = dispatch => ({
   attemptLogIn(email, password) {
     return dispatch(signIn(email, password))
+      .catch(axiosErrorParser)
   },
   attemptRegister(name, email, password) {
     return dispatch(regAndSignIn(name, email, password))
+      .catch(axiosErrorParser)
   },
   attemptLoadWithToken(token) {
     return dispatch(verifyClientToken(token))
+      .catch(axiosErrorParser)
   },
   signUserOut() {
     dispatch(signOut())
