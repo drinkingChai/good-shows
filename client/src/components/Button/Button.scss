@@ -1,7 +1,9 @@
+@import '../../styles/_colors.scss';
+
 .Button {
   padding: 15px 30px;
-  background: #242424;
-  color: #ffffff;
+  background: $black;
+  color: $white;
   border: 0;
   outline: none;
   font-weight: 300;

@@ -1,10 +1,12 @@
+@import '../../styles/_colors.scss';
+
 .TopBar {
   // height: 50px;
   padding: 15px;
   text-align: center;
   font-size: .85em;
-  color: #ffffff;
-  background-color: #FF397B;
+  color: $white;
+  background-color: $base;
   font-weight: 300;
   position: fixed;
   width: 100%;

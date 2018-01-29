@@ -1,3 +1,5 @@
+@import '../../styles/_colors.scss';
+
 .NavBar {
   background: #323232;
   color: #ffffff;
@@ -10,6 +12,6 @@
   display: flex;
   justify-content: space-between;
   a.active {
-    color: #FF397B;
+    color: $base;
   }
 }

@@ -1,18 +1,20 @@
+@import '../../styles/_colors.scss';
+
 .LandingPage {
-  background: #FF397B;
+  background: $base;
   min-height: 100vh;
   text-align: center;
   padding: 27px;
 
   h1 {
     margin-top: 75px;
-    color: #ffffff;
+    color: $white;
     font-weight: 400;
   }
   .content {
     margin-top: 95px;
     padding: 35px 30px;
-    background: #ffffff;
+    background: $white;
     p {
       margin: 0;
       margin-bottom: 1em;
