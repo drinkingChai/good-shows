@@ -2,12 +2,11 @@ const express = require('express'),
       morgan = require('morgan'),
       bodyParser = require('body-parser'),
       mongoose = require('mongoose'),
+      db = require('../db'),
       app = express(),
       port = process.env.PORT || 3001
 
 require('dotenv').config()
-mongoose.Promise = Promise,
-mongoose.connect(process.env.DATABASE_URI, { useMongoClient: true })
 
 app.use(morgan('dev'))
 app.use(bodyParser.json())
@@ -21,12 +20,12 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500).send(err.message)
 })
 
-mongoose.connection
-  .once('open', () => {
+db.sync()
+  .then(() => {
     app.listen(port, () => console.log(`listening on port ${port}`))
   })
-  .on('error', error => {
-    console.warn('Error', error)
+  .catch((err) => {
+    console.warn('Error', err)
   })
 
 module.exports = app

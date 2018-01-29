@@ -11,6 +11,7 @@ import { mapState, mapDispatch } from '../../mappers/user.mapper'
 
 // components
 import GuestRouter from '../Routers/GuestRouter'
+import UserRouter from '../Routers/UserRouter'
 
 class App extends Component {
   componentDidMount = () => {
@@ -23,10 +24,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <GuestRouter />
-        { /* this.props.token ?
-          <Main /> :
-          <Landing /> */ }
+      { !this.props.token ?
+        <GuestRouter /> :
+        <UserRouter /> }
       </div>
     );
   }
