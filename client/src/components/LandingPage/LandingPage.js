@@ -30,12 +30,14 @@ class LandingPage extends Component {
   handleLogin = (ev) => {
     ev.preventDefault()
     this.props.attemptLogIn(this.state.email, this.state.password)
+      .then(() => this.props.history.push('/search'))
   }
 
   handleRegister = (ev) => {
     ev.preventDefault()
     const { name, email, password } = this.state
     this.props.attemptRegister(name, email, password)
+      .then(() => this.props.history.push('/search'))
   }
 
   render = () => {

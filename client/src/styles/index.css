@@ -391,7 +391,9 @@ template {
   display: none; }
 
 html {
-  font-size: 14px;
+  font-size: 14px; }
+
+* {
   letter-spacing: 1px; }
 
 body {

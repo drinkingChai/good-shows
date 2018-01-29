@@ -1,0 +1,28 @@
+.SearchResult {
+  display: flex;
+  margin-bottom: 35px;
+  position: relative; }
+  .SearchResult img.poster {
+    width: 85px;
+    height: 120px; }
+  .SearchResult h4, .SearchResult p {
+    margin: 0; }
+  .SearchResult h4 {
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-bottom: 10px; }
+  .SearchResult p {
+    font-size: .85em;
+    line-height: 1.25em; }
+  .SearchResult section {
+    margin-left: 20px;
+    font-weight: 300; }
+  .SearchResult .buttons {
+    position: absolute;
+    right: 0;
+    bottom: -1em;
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 15px;
+    font-size: 1.15em;
+    color: #CACACA; }
