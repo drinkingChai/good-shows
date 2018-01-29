@@ -1,26 +1,32 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 
 // components
 import Search from '../Search/Search'
 import TopBar from '../TopBar/TopBar'
 import NavBar from '../NavBar/NavBar'
+import ShowAddEdit from '../ShowAddEdit/ShowAddEdit'
 
 // styles
 import './Main.css'
 
-export default function () {
-  return (
-    <div>
-      <TopBar />
+class Main extends Component {
+  render = () => {
+    return (
+      <div>
+        <TopBar />
 
-      <div className='Main'>
-        <Switch>
-          <Route exact path='/search' component={ Search } />
-        </Switch>
+        <div className='Main'>
+          <Switch>
+            <Route path='/search' component={ Search } />
+            <Route exact path='/show/:id' component={ ShowAddEdit } />
+          </Switch>
+        </div>
+        
+        <NavBar />
       </div>
-      
-      <NavBar />
-    </div>
-  )
+    )
+  }
 }
+
+export default Main

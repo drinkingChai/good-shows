@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 // styles
 import './SearchResult.css'
@@ -30,7 +31,7 @@ class SearchResult extends Component {
           <p className='overview'>{ overview.length > 125 ? overview.slice(0, 125) + '...' : overview }</p>
           <div className='buttons'>
             <a><i className='fa fa-star'></i></a>
-            <a><i className='fa fa-plus'></i></a>
+            <Link to={ `/show/${this.state.id}` }><i className='fa fa-plus'></i></Link>
           </div>
         </section>
       </div>

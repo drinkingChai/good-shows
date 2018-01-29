@@ -12,7 +12,7 @@ let options = {
   body: '{}'
 }
 
-router.get('/', (req, res, next) => {
+router.get('/name', (req, res, next) => {
   options.qs.api_key = process.env.TMDB_API_KEY
   options.qs.query = req.query.name
   options.qs.page = req.query.page
@@ -28,6 +28,10 @@ router.get('/', (req, res, next) => {
       res.send(JSON.parse(searchResults))
     })
     .catch(next)
+})
+
+router.get('/id', (req, res, next) => {
+  
 })
 
 module.exports = router

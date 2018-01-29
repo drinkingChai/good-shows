@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import qs from 'qs'
+import qs from 'qs'
 
 // styles
 import './Search.css'
@@ -21,6 +21,12 @@ class Search extends Component {
   }
 
   componentDidMount = () => {
+    let query = qs.parse(this.props.location.search.slice(1))
+    if (query.input) {
+      this.setState({ input: query.input, page: query.page || 1 }, () => {
+        this.setSearchResults()
+      })
+    }
   }
 
   handleSearch = (ev) => {
@@ -28,16 +34,22 @@ class Search extends Component {
       clearInterval(this.state.interval)
     }
     let interval = setInterval(() => {
-      this.props.search(this.state.input, this.state.page)
-        .then(({ page, results }) => {
-          this.setState({ page, results })
-        })
-      
       clearInterval(this.state.interval)
-      this.setState({ interval: null })
+      this.setSearchResults()
     }, 500)
 
     this.setState({ input: ev.target.value, interval })
+  }
+
+  setSearchResults = () => {
+    this.props.search(this.state.input, this.state.page)
+      .then(({ page, results }) => {
+        this.setState({ page, results, interval: null })
+        this.props.history.push({
+          pathname: '/search',
+          search: `?input=${this.state.input}&page${page}`
+        })
+      })
   }
 
   render = () => {
