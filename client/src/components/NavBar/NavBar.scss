@@ -1,0 +1,14 @@
+.NavBar {
+  background: #323232;
+  color: #ffffff;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  padding: 13px 30px 16px 30px;
+  font-size: 1.4em;
+  display: flex;
+  justify-content: space-between;
+  a.active {
+    color: #FF397B;
+  }
+}

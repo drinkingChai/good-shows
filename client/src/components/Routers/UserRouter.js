@@ -11,14 +11,16 @@ import './Main.css'
 
 export default function () {
   return (
-    <main className='Main'>
+    <div>
       <TopBar />
 
-      <Switch>
-        <Route exact path='/' component={ Search } />
-      </Switch>
+      <div className='Main'>
+        <Switch>
+          <Route exact path='/search' component={ Search } />
+        </Switch>
+      </div>
       
       <NavBar />
-    </main>
+    </div>
   )
 }

@@ -6,7 +6,7 @@ import './NavBar.css'
 
 // links
 let links = [
-  { path: '/', icon: 'fas fa-search' },
+  { path: '/search', icon: 'fas fa-search' },
   { path: '/friends', icon: 'fas fa-users' },
   { path: '/list', icon: 'fas fa-list-ul' },
   { path: '/profile', icon: 'fas fa-user' }

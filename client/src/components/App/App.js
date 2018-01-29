@@ -17,6 +17,7 @@ class App extends Component {
   componentDidMount = () => {
     if (localStorage['token']) {
       this.props.attemptLoadWithToken(localStorage['token'])
+        .then(() => this.props.history.push('/search'))
         .catch(err => this.props.signUserOut())
     }
   }
