@@ -3,13 +3,22 @@ const conn = require('./conn'),
 
 // valid lists are 'To Watch' and 'Watched'
 const ShowItemSchema = {
-  favorite: Sequelize.BOOLEAN,
-  private: Sequelize.BOOLEAN,
+  favorite: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
+  private: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
   list: {
     type: Sequelize.STRING,
     defaultValue: 'To Watch'
   },
-  notes: Sequelize.TEXT
+  notes: {
+    type: Sequelize.TEXT,
+    defaultValue: ''
+  }
 }
 
 const ShowItem = conn.define('showitem', ShowItemSchema)

@@ -27,6 +27,10 @@ class Show extends Component {
     if (tmdbId) this.props.getShow(tmdbId)
   }
 
+  saveHandler = () => {
+    this.props.addShow(this.state.show)
+  }
+
   render = () => {
     const { show } = this.state
 
@@ -78,7 +82,7 @@ class Show extends Component {
           </ul>
         </div>
 
-        <a>SAVE</a>
+        <a onClick={ this.saveHandler }>SAVE</a>
       </div>
     )
   }

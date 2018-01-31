@@ -19,5 +19,5 @@ export const getUserShows = () => dispatch =>
   axios.get('/api/shows')
     .then((res) => dispatch(setUserShows(res.data)))
 
-export const addShow = (tmdbId) => dispatch =>
-  axios.post('/api/shows', { tmdbId })
+export const addShow = (show) => dispatch =>
+  axios.post('/api/shows', { show })

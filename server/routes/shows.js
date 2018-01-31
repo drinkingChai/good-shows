@@ -18,7 +18,7 @@ router.get('/', verifyMiddleware, (req, res, next) => {
 })
 
 router.post('/', verifyMiddleware, (req, res, next) => {
-  const tmdbId = +req.body.tmdbId
+  const tmdbId = +req.body.show.id
 
   ShowItem.findOne({
     where: { userId: req.user.id },
@@ -31,16 +31,18 @@ router.post('/', verifyMiddleware, (req, res, next) => {
     // safety
     if (show) throw new Error('Show cannot be added twice!')
   })
-  .then(() => Show.findOne({ tmdbId }))
+  .then(() => Show.findOne({ where: { tmdbId } }))
   .then((show) => {
     if (show) return show
 
-    return searchSingleOptions(process.env.TMDB_API_KEY, +tmdbId)
-    .then((result) => Show.create(result))
+    const { first_air_date, vote_average } = req.body.show
+    Object.assign(req.body.show, { firstAirDate: first_air_date, rating: vote_average, tmdbId })
+
+    return Show.create(req.body.show)
   })
   .then((show) => ShowItem.create({ showId: show.id, userId: +req.user.id }))
   .then(() => {
-    res.sendSatus(200)
+    res.sendStatus(200)
   })
   .catch(next)
 })

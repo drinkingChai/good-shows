@@ -10,8 +10,8 @@ export const mapDispatch = dispatch => ({
   getShow(tmdbId) {
     return dispatch(getShow(tmdbId))
   },
-  addShow(tmdbId) {
-    return dispatch(addShow(tmdbId))
+  addShow(show) {
+    return dispatch(addShow(show))
     .then(() => dispatch(getUserShows()))
   }
 })
