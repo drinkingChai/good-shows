@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 // styles
 import './ShowItem.scss'
+import '../../SearchPage/SearchResult/SearchResult.scss'
 
 // components
 import Poster from '../../Poster/Poster'
@@ -43,12 +44,12 @@ class ShowItem extends Component {
     const { item, show } = this.state
 
     return (
-      <div className='ShowItem'>
+      <div className='ShowItem SearchResult'>
         <Poster src={ show.poster_path } size={ 185 } />
 
         <section>
           <h4 className='title'>{ show.name }</h4>
-          <p className='overview'>{ show.overview.length > 125 ? show.overview.slice(0, 125) + '...' : show.overview }</p>
+          <p className='overview'>{ show.overview.length > 110 ? show.overview.slice(0, 110) + '...' : show.overview }</p>
           <div className='buttons'>
             <a onClick={ this.makePrivateHandler } className={ `${item.isPrivate ? 'true' : ''}` }><i className='fa fa-lock'></i></a>
             <a onClick={ this.addFavoriteHandler } className={ `${item.favorite ? 'true' : ''}` }><i className='fa fa-star'></i></a>
