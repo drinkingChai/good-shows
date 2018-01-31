@@ -14,12 +14,18 @@ class Show extends Component {
   state = {
     show: {},
     favorite: false,
-    private: false,
-    list: 'To Watch'
+    isPrivate: false,
+    list: 'To Watch',
+    showItemId: null
   }
 
   componentWillReceiveProps = nextProps => {
-    this.setState({ show: nextProps.show })
+    let showItem = nextProps.usershows.find(si => +si.show.tmdbId === +nextProps.match.params.tmdbId)
+    if (showItem) {
+      this.setState({ show: nextProps.show, showItemId: showItem.id })
+    } else {
+      this.setState({ show: nextProps.show })
+    }
   }
 
   componentDidMount = () => {
@@ -28,7 +34,12 @@ class Show extends Component {
   }
 
   saveHandler = () => {
-    this.props.addShow(this.state.show)
+    if (this.state.showItemId) {
+      const { favorite, isPrivate, list } = this.state
+      this.props.updateShow(this.state.showItemId, { favorite, isPrivate, list })
+    } else {
+      this.props.addShow(this.state.show)
+    }
   }
 
   render = () => {

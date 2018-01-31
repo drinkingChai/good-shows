@@ -50,9 +50,10 @@ router.post('/', verifyMiddleware, (req, res, next) => {
 router.put('/:id', verifyMiddleware, (req, res, next) => {
   ShowItem.findById(req.params.id)
   .then((showItem) => {
-    Object.assign(showItem, req.body)
-    return showItem.update()
+    Object.assign(showItem, req.body.show)
+    return showItem.save()
   })
+  .then(() => res.sendStatus(200))
   .catch(next)
 })
 

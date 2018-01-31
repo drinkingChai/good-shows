@@ -1,9 +1,10 @@
 import { getShow } from '../reducers/show.reducer'
-import { addShow, getUserShows } from '../reducers/usershows.reducer'
+import { addShow, getUserShows, updateShow } from '../reducers/usershows.reducer'
 
-export const mapState = ({ user, show }) => ({
+export const mapState = ({ user, show, usershows }) => ({
   user: user.info,
-  show
+  show,
+  usershows
 })
 
 export const mapDispatch = dispatch => ({
@@ -12,6 +13,10 @@ export const mapDispatch = dispatch => ({
   },
   addShow(show) {
     return dispatch(addShow(show))
+    .then(() => dispatch(getUserShows()))
+  },
+  updateShow(id, show) {
+    return dispatch(updateShow(id, show))
     .then(() => dispatch(getUserShows()))
   }
 })

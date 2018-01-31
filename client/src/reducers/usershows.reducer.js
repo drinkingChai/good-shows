@@ -21,3 +21,6 @@ export const getUserShows = () => dispatch =>
 
 export const addShow = (show) => dispatch =>
   axios.post('/api/shows', { show })
+
+export const updateShow = (id, show) => dispatch =>
+  axios.put(`/api/shows/${id}`, { show })

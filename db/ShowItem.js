@@ -7,7 +7,7 @@ const ShowItemSchema = {
     type: Sequelize.BOOLEAN,
     defaultValue: false
   },
-  private: {
+  isPrivate: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
   },
