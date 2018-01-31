@@ -8,7 +8,8 @@ router.get('/', verifyMiddleware, (req, res, next) => {
     where: { userId: req.user.id },
     include: {
       model: Show
-    }
+    },
+    order: [['createdAt', 'ASC']]
   })
   .then((showItems) => {
     res.send(showItems)
@@ -36,6 +37,8 @@ router.post('/', verifyMiddleware, (req, res, next) => {
 
     const { first_air_date, vote_average, poster_path } = req.body.show
     Object.assign(req.body.show, { first_air_date, vote_average, poster_path, tmdbId })
+
+    delete req.body.show.id
 
     return Show.create(req.body.show)
   })

@@ -1,0 +1,10 @@
+@import '../../../styles/colors.scss';
+
+.ShowItem {
+  .buttons {
+    color: $gray;    
+    a.true {
+      color: $base;
+    }
+  }
+}

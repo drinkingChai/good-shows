@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import qs from 'qs'
 
 // styles
-import './Search.scss'
+import './SearchPage.scss'
 
 // components
 import Input from '../Input/Input'
@@ -12,7 +12,10 @@ import SearchResult from './SearchResult/SearchResult'
 // utils
 import { searchTmdb } from '../../utils'
 
-class Search extends Component {
+// mappers
+import { mapState } from '../../mappers/show.mapper'
+
+class SearchPage extends Component {
   state = {
     input: '',
     interval: null,
@@ -54,7 +57,7 @@ class Search extends Component {
 
   render = () => {
     return (
-      <div className='Search'>
+      <div className='SearchPage'>
         <Input
           value={ this.state.input }
           onChange={ this.handleSearch }
@@ -76,4 +79,4 @@ const mapDispatch = dispatch => ({
     return dispatch(searchTmdb(input, page))
   }
 })
-export default connect(null, mapDispatch)(Search)
+export default connect(mapState, mapDispatch)(SearchPage)

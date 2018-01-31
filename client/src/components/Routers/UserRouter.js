@@ -6,9 +6,10 @@ import TopBar from '../TopBar/TopBar'
 import NavBar from '../NavBar/NavBar'
 
 // pages
-import Search from '../Search/Search'
-import Show from '../Show/Show'
+import SearchPage from '../SearchPage/SearchPage'
+import ShowPage from '../ShowPage/ShowPage'
 import ProfilePage from '../ProfilePage/ProfilePage'
+import ListPage from '../ListPage/ListPage'
 
 // styles
 import './Main.scss'
@@ -21,9 +22,10 @@ class Main extends Component {
 
         <div className='Main'>
           <Switch>
-            <Route path='/search' component={ Search } />
-            <Route exact path='/show/:tmdbId' component={ Show } />
+            <Route path='/search' component={ SearchPage } />
+            <Route exact path='/show/:tmdbId' component={ ShowPage } />
             <Route exact path='/profile' component={ ProfilePage } />
+            <Route exact path='/list' component={ ListPage } />
           </Switch>
         </div>
         

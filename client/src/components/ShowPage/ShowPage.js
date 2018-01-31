@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 // styles
-import './Show.scss'
+import './ShowPage.scss'
 
 // mappers
 import { mapState, mapDispatch } from '../../mappers/show.mapper'
@@ -61,7 +61,7 @@ class Show extends Component {
     const { show, listNames, list, favorite, isPrivate, showItemId } = this.state
 
     return (
-      <div className='Show'>
+      <div className='ShowPage'>
         <span className='back-button' onClick={ this.props.history.goBack }><i className='fa fa-chevron-left'></i></span>
 
         <div className='top'>

@@ -4,7 +4,13 @@ import { addShow, getUserShows, updateShow } from '../reducers/usershows.reducer
 export const mapState = ({ user, show, usershows }) => ({
   user: user.info,
   show,
-  usershows
+  usershows,
+  watched: usershows.filter(show => show.list === 'Watched'),
+  toWatch: usershows.filter(show => show.list === 'To Watch'),
+  userShowIds: usershows.reduce((obj, showItem) => {
+    obj[showItem.show.tmdbId] = true
+    return obj
+  }, {})
 })
 
 export const mapDispatch = dispatch => ({
