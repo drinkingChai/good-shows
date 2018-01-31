@@ -1,13 +1,13 @@
 const router = require('express').Router()
 const { verifyMiddleware } = require('./helpers/token.helper')
-const { searchSingleOptions, searchMultiOptions } = require('./helpers/tmdb.helper')
+const { getTvDetails, searchTv } = require('./helpers/tmdb.helper')
 
 router.get('/:tmdbId', verifyMiddleware, (req, res, next) => {
   const { tmdbId } = req.params
 
   if (!tmdbId) return res.send({})
 
-  searchSingleOptions(process.env.TMDB_API_KEY, tmdbId)
+  getTvDetails(process.env.TMDB_API_KEY, tmdbId)
   .then((results) => {
     res.send(results)
   })
@@ -23,7 +23,7 @@ router.get('/', (req, res, next) => {
     results: []
   })
 
-  searchMultiOptions(process.env.TMDB_API_KEY, name, +page)
+  searchTv(process.env.TMDB_API_KEY, name, +page)
   .then(results => {
     res.send(results)
   })

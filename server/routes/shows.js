@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const { verifyMiddleware } = require('./helpers/token.helper')
-const { searchSingleOptions } = require('./helpers/tmdb.helper')
 const { User, Show, ShowItem } = require('../../db')
 
 // get all user shows
@@ -35,8 +34,8 @@ router.post('/', verifyMiddleware, (req, res, next) => {
   .then((show) => {
     if (show) return show
 
-    const { first_air_date, vote_average } = req.body.show
-    Object.assign(req.body.show, { firstAirDate: first_air_date, rating: vote_average, tmdbId })
+    const { first_air_date, vote_average, poster_path } = req.body.show
+    Object.assign(req.body.show, { first_air_date, vote_average, poster_path, tmdbId })
 
     return Show.create(req.body.show)
   })

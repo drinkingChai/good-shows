@@ -5,8 +5,9 @@ const ShowSchema = {
   name: Sequelize.STRING,
   overview: Sequelize.TEXT,
   tmdbId: Sequelize.INTEGER,
-  rating: Sequelize.FLOAT,
-  firstAirDate: Sequelize.DATE 
+  vote_average: Sequelize.FLOAT,
+  first_air_date: Sequelize.DATE,
+  poster_path: Sequelize.STRING 
 }
 
 const Show = conn.define('show', ShowSchema)

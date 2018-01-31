@@ -1,0 +1,18 @@
+@import '../../styles/colors.scss';
+
+.Show {
+  .lists {
+    span.check {
+      opacity: 0;
+      &.visible {
+        opacity: 1;
+      }
+    }
+  }
+  .prop {
+    color: $gray;
+    &.true {
+      color: $base;
+    }
+  }
+}

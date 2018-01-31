@@ -1,6 +1,6 @@
 const request = require('request-promise')
 
-const searchMultiOptions = (api_key, query = '', page = 1) => {
+const searchTv = (api_key, query = '', page = 1) => {
   let options = {
     method: 'GET',
     url: `https://api.themoviedb.org/3/search/tv`,
@@ -17,7 +17,7 @@ const searchMultiOptions = (api_key, query = '', page = 1) => {
   .then(JSON.parse)
 }
 
-const searchSingleOptions = (api_key, tmdbId) => {
+const getTvDetails = (api_key, tmdbId) => {
   let options = {
     method: 'GET',
     url: `https://api.themoviedb.org/3/tv/${tmdbId}`,
@@ -33,6 +33,6 @@ const searchSingleOptions = (api_key, tmdbId) => {
 }
 
 module.exports = {
-  searchMultiOptions,
-  searchSingleOptions
+  searchTv,
+  getTvDetails 
 }

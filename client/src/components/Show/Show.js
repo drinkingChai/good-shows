@@ -10,19 +10,25 @@ import { mapState, mapDispatch } from '../../mappers/show.mapper'
 // components
 import Poster from '../Poster/Poster'
 
+// utils
+import { formatDate } from '../../utils'
+
 class Show extends Component {
   state = {
     show: {},
     favorite: false,
     isPrivate: false,
     list: 'To Watch',
+    listNames: ['To Watch', 'Watched'],
     showItemId: null
   }
 
   componentWillReceiveProps = nextProps => {
     let showItem = nextProps.usershows.find(si => +si.show.tmdbId === +nextProps.match.params.tmdbId)
     if (showItem) {
-      this.setState({ show: nextProps.show, showItemId: showItem.id })
+      const { show, favorite, isPrivate, list } = showItem
+      console.log(showItem.list)
+      this.setState({ show, favorite, isPrivate, list, showItemId: showItem.id })
     } else {
       this.setState({ show: nextProps.show })
     }
@@ -42,8 +48,16 @@ class Show extends Component {
     }
   }
 
+  changeListHandler = (listName) => (ev) => {
+    this.setState({ list: listName })
+  }
+
+  changePropHandler = (propName) => (ev) => {
+    this.setState({ [propName]: !this.state[propName] })
+  }
+
   render = () => {
-    const { show } = this.state
+    const { show, listNames, list, favorite, isPrivate, showItemId } = this.state
 
     return (
       <div className='Show'>
@@ -59,7 +73,7 @@ class Show extends Component {
             </div>
 
             <div className='stat'>
-              <span>{ show.first_air_date }</span>
+              <span>{ formatDate(show.first_air_date) }</span>
               <label>RELEASED</label>
             </div>
           </div>
@@ -68,32 +82,30 @@ class Show extends Component {
         <p className='overview'>{ show.overview }</p>
 
         <div className='prompts'>
-          <div className='prompt-group'>
+          <div className='prompt-group' onClick={ this.changePropHandler('favorite') }>
             <label>FAVORITE?</label>
-            <span><i className='fa fa-star'></i></span>
+            <span className={ `prop ${favorite ? 'true' : ''}` }><i className='fa fa-star'></i></span>
           </div>
 
-          <div className='prompt-group'>
+          <div className='prompt-group' onClick={ this.changePropHandler('isPrivate') }>
             <label>PRIVATE?</label>
-            <span><i className='fa fa-check'></i></span>
+            <span className={ `prop ${isPrivate ? 'true' : ''}` }><i className='fa fa-check'></i></span>
           </div>
         </div>
 
         <div className='lists'>
           <label>PICK A LIST</label>
+
           <ul>
-            <li>
-              <span>To Watch</span>
-              <i className='fa fa-check'></i>
-            </li>
-            <li>
-              <span>Watched</span>
-              <i className='fa fa-check'></i>
-            </li>
+          { listNames.map((listName, i) =>
+            <li key={ i } onClick={ this.changeListHandler(listName) }>
+              <span>{ listName }</span>
+              <span className={ `check ${listName === list ? 'visible' : 'hidden'}` }><i className='fa fa-check'></i></span>
+            </li> ) }
           </ul>
         </div>
 
-        <a onClick={ this.saveHandler }>SAVE</a>
+        <a onClick={ this.saveHandler }>{ showItemId ? 'SAVE' : 'ADD' }</a>
       </div>
     )
   }
