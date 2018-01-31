@@ -36,7 +36,6 @@ const getterMethods = {
   }
 }
 
-
 const hashPassword = (instance, password) => {
   return bcrypt.hash(instance.password, +process.env.SALT)
     .then((hashed) => {

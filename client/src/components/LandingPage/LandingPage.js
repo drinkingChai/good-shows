@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 // styles
-import './LandingPage.css'
+import './LandingPage.scss'
 
 // components
 import Button from '../Button/Button'

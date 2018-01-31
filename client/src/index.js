@@ -6,7 +6,7 @@ import store from './reducers';
 import registerServiceWorker from './registerServiceWorker';
 
 // styles
-import './styles/index.css';
+import './styles/index.scss';
 
 // components
 import App from './components/App/App';

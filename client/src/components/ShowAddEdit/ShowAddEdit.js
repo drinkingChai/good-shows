@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 // styles
-import './ShowAddEdit.css'
+import './ShowAddEdit.scss'
 
 // utils
 

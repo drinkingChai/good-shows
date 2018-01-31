@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import qs from 'qs'
 
 // styles
-import './Search.css'
+import './Search.scss'
 
 // components
 import Input from '../Input/Input'

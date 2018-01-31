@@ -1,7 +1,7 @@
 import React from 'react'
 
 // styles
-import './Input.css'
+import './Input.scss'
 
 export default function (props) {
   return (

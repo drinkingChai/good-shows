@@ -1,7 +1,7 @@
 import React from 'react'
 
 // styles
-import './Button.css'
+import './Button.scss'
 
 export default function (props) {
   return (

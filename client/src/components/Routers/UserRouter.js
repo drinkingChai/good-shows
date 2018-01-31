@@ -8,7 +8,7 @@ import NavBar from '../NavBar/NavBar'
 import ShowAddEdit from '../ShowAddEdit/ShowAddEdit'
 
 // styles
-import './Main.css'
+import './Main.scss'
 
 class Main extends Component {
   render = () => {

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 // styles
-import './App.css';
+import './App.scss';
 import '../../fonts/themify-icons/themify-icons.css'
 
 // mappers

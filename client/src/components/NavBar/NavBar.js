@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
 
 // styles
-import './NavBar.css'
+import './NavBar.scss'
 
 // links
 let links = [

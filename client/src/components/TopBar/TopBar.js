@@ -1,7 +1,7 @@
 import React from 'react'
 
 // styes
-import './TopBar.css'
+import './TopBar.scss'
 
 export default function () {
   return (
