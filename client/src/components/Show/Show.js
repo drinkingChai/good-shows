@@ -9,6 +9,7 @@ import { mapState, mapDispatch } from '../../mappers/show.mapper'
 
 // components
 import Poster from '../Poster/Poster'
+import Button from '../Button/Button'
 
 // utils
 import { formatDate } from '../../utils'
@@ -105,7 +106,7 @@ class Show extends Component {
           </ul>
         </div>
 
-        <a onClick={ this.saveHandler }>{ showItemId ? 'SAVE' : 'ADD' }</a>
+        <Button onClick={ this.saveHandler } className='save'>{ showItemId ? 'SAVE' : 'ADD' }</Button>
       </div>
     )
   }

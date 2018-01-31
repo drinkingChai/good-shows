@@ -5,6 +5,6 @@ import './Button.scss'
 
 export default function (props) {
   return (
-    <button {...props} className='Button'>{ props.children }</button>
+    <button {...props} className={ `Button ${props.className || ''}` }>{ props.children }</button>
   )
 }
