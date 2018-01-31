@@ -62,6 +62,8 @@ class Show extends Component {
 
     return (
       <div className='Show'>
+        <span className='back-button' onClick={ this.props.history.goBack }><i className='fa fa-chevron-left'></i></span>
+
         <div className='top'>
           <Poster src={ show.poster_path } size={ 185 } />
 
