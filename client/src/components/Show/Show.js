@@ -12,7 +12,10 @@ import Poster from '../Poster/Poster'
 
 class Show extends Component {
   state = {
-    show: {}
+    show: {},
+    favorite: false,
+    private: false,
+    list: 'To Watch'
   }
 
   componentWillReceiveProps = nextProps => {

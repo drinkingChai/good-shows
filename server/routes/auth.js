@@ -2,7 +2,7 @@ const router = require('express').Router()
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const User = require('../../db/User')
-const { createToken, verifyToken } = require('./tokenHelpers')
+const { createToken, verifyToken } = require('./helpers/token.helper')
 
 passport.use(new LocalStrategy({
     usernameField: 'email',

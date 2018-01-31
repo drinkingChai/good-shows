@@ -9,7 +9,8 @@
     "server": "node server",
     "client": "node start-client.js",
     "dev-server": "nodemon server --ignore client/",
-    "dev": "concurrently \"npm run dev-server\" \"npm run client\""
+    "dev": "concurrently \"npm run dev-server\" \"npm run client\"",
+    "seed": "node seed"
   },
   "keywords": [],
   "author": "",

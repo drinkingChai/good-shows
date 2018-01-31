@@ -4,11 +4,13 @@ import thunkMiddleware from 'redux-thunk'
 
 import user from './user.reducer'
 import show from './show.reducer'
+import usershows from './usershows.reducer'
 
 export default createStore(
   combineReducers({
     user,
-    show
+    show,
+    usershows
   }),
   applyMiddleware(thunkMiddleware, loggerMiddleware)
 )
