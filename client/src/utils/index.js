@@ -1,4 +1,4 @@
 export * from './auth.util'
-export * from './axiosErrorParser.util'
-export * from './posterUrl.util'
+export * from './axioserror.util'
+export * from './poster.util'
 export * from './search.util'

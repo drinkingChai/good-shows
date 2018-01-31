@@ -6,10 +6,10 @@ import './NavBar.scss'
 
 // links
 let links = [
-  { path: '/search', icon: 'fas fa-search' },
-  { path: '/friends', icon: 'fas fa-users' },
-  { path: '/list', icon: 'fas fa-list-ul' },
-  { path: '/profile', icon: 'fas fa-user' }
+  { path: '/search', icon: 'fas fa-search', label: 'Search' },
+  { path: '/friends', icon: 'fas fa-users', label: 'Friends' },
+  { path: '/list', icon: 'fas fa-list-ul', label: 'List' },
+  { path: '/profile', icon: 'fas fa-user', label: 'Profile' }
 ]
 
 const NavBar = (props) => {
@@ -20,7 +20,10 @@ const NavBar = (props) => {
         to={ link.path }
         key={ i }
         activeClassName='active'
-      ><i className={ link.icon }></i></NavLink> )}
+      >
+        <span><i className={ link.icon }></i></span>
+        <label>{ link.label }</label>
+      </NavLink> )}
     </nav>
   )
 }

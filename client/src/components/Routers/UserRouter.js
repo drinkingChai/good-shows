@@ -5,7 +5,7 @@ import { Switch, Route } from 'react-router-dom'
 import Search from '../Search/Search'
 import TopBar from '../TopBar/TopBar'
 import NavBar from '../NavBar/NavBar'
-import ShowAddEdit from '../ShowAddEdit/ShowAddEdit'
+import Show from '../Show/Show'
 
 // styles
 import './Main.scss'
@@ -19,7 +19,7 @@ class Main extends Component {
         <div className='Main'>
           <Switch>
             <Route path='/search' component={ Search } />
-            <Route exact path='/show/:id' component={ ShowAddEdit } />
+            <Route exact path='/show/:tmdbId' component={ Show } />
           </Switch>
         </div>
         

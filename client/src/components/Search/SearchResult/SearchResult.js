@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 // styles
 import './SearchResult.scss'
 
-// utils
-import { getPosterUrl } from '../../../utils'
+// components
+import Poster from '../../Poster/Poster'
 
 class SearchResult extends Component {
   state = {
@@ -24,7 +24,7 @@ class SearchResult extends Component {
 
     return (
       <div className='SearchResult'>
-        <img src={ getPosterUrl(185, poster_path) } className='poster' alt='poster' />
+        <Poster src={ poster_path } size={ 185 } />
 
         <section>
           <h4 className='title'>{ name }</h4>

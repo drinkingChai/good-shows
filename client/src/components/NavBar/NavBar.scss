@@ -7,10 +7,17 @@
   z-index: 999;
   width: 100%;
   bottom: 0;
-  padding: 13px 30px 16px 30px;
-  font-size: 1.4em;
+  padding: 7px 30px 3px 30px;
   display: flex;
   justify-content: space-between;
+  text-align: center;
+  span {
+    font-size: 1.4em;
+    display: block;
+  }
+  label {
+    font-size: .80em;
+  }
   a.active {
     color: $base;
   }

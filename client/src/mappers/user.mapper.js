@@ -1,7 +1,7 @@
 import { signIn, regAndSignIn, verifyClientToken, signOut } from '../reducers/user.reducer'
 
 // utils
-import axiosErrorParser from '../utils/axiosErrorParser.util'
+import axiosErrorParser from '../utils/axioserror.util'
 
 export const mapState = ({ user }) => ({
   user: user.userInfo,
