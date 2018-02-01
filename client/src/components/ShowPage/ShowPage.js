@@ -26,20 +26,19 @@ class Show extends Component {
 
   componentWillReceiveProps = nextProps => {
     let { tmdbId } = nextProps.match.params
-    let showItem = nextProps.usershows.find(si => +si.show.tmdbId === +nextProps.match.params.tmdbId)
+    let showItem = nextProps.usershows.find(si => +si.show.tmdbId === +tmdbId)
     if (showItem) {
       const { show, favorite, isPrivate, list } = showItem
       this.setState({ show, favorite, isPrivate, list, showItemId: showItem.id })
     } else {
-      nextProps.getShow(tmdbId)
-        .then(() => this.setState({ show: nextProps.show }))
+      this.setState({ show: nextProps.show })
     }
   }
 
   componentDidMount = () => {
     window.scrollTo(0, 0)
     let { tmdbId } = this.props.match.params
-    let showItem = this.props.usershows.find(si => +si.show.tmdbId === +this.props.match.params.tmdbId)
+    let showItem = this.props.usershows.find(si => +si.show.tmdbId === +tmdbId)
     if (showItem) {
       const { show, favorite, isPrivate, list } = showItem
       this.setState({ show, favorite, isPrivate, list, showItemId: showItem.id })

@@ -12,9 +12,6 @@ import SearchResult from './SearchResult/SearchResult'
 // utils
 import { searchTmdb } from '../../utils'
 
-// mappers
-import { mapState } from '../../mappers/show.mapper'
-
 class SearchPage extends Component {
   state = {
     input: '',
@@ -79,4 +76,4 @@ const mapDispatch = dispatch => ({
     return dispatch(searchTmdb(input, page))
   }
 })
-export default connect(mapState, mapDispatch)(SearchPage)
+export default connect(null, mapDispatch)(SearchPage)

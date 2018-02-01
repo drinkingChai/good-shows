@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 // styles
@@ -7,20 +8,25 @@ import './SearchResult.scss'
 // components
 import Poster from '../../Poster/Poster'
 
+// mappers
+import { mapState } from '../../../mappers/show.mapper'
+
 class SearchResult extends Component {
   state = {
     poster_path: '',
     overview: '',
     name: '',
-    id: ''
+    id: '',
+    inList: false
   }
 
   componentDidMount = () => {
-    this.setState({ ...this.props.result })
+    const inList = this.props.userShowIds && this.props.userShowIds[this.props.result.id]
+    this.setState({ ...this.props.result, inList })
   }
 
   render = () => {
-    const { name, poster_path, overview } = this.state
+    const { id, name, poster_path, overview, inList } = this.state
 
     return (
       <div className='SearchResult'>
@@ -30,8 +36,12 @@ class SearchResult extends Component {
           <h4 className='title'>{ name }</h4>
           <p className='overview'>{ overview.length > 125 ? overview.slice(0, 125) + '...' : overview }</p>
           <div className='buttons'>
-            <a><i className='fa fa-star'></i></a>
-            <Link to={ `/show/${this.state.id}` }><i className='fa fa-plus'></i></Link>
+            <a><i className='fa fa-share'></i></a>
+            <Link to={ `/show/${id}` }>
+            { inList ?
+              <span className='check'><i className='fa fa-check'></i></span> :
+              <span><i className='fa fa-plus'></i></span> }
+            </Link>
           </div>
         </section>
       </div>
@@ -39,4 +49,4 @@ class SearchResult extends Component {
   }
 }
 
-export default SearchResult
+export default connect(mapState)(SearchResult)
