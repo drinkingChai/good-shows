@@ -1,5 +1,6 @@
 import { getShow } from '../reducers/show.reducer'
 import { addShow, getUserShows, updateShow } from '../reducers/usershows.reducer'
+import { getSearchResults } from '../reducers/search.reducer'
 
 export const mapState = ({ user, show, usershows }) => ({
   user: user.info,
@@ -15,6 +16,7 @@ export const mapState = ({ user, show, usershows }) => ({
 
 export const mapDispatch = dispatch => ({
   getShow(tmdbId) {
+    console.log('firing from reducer')
     return dispatch(getShow(tmdbId))
   },
   addShow(show) {
@@ -24,5 +26,8 @@ export const mapDispatch = dispatch => ({
   updateShow(id, show) {
     return dispatch(updateShow(id, show))
     .then(() => dispatch(getUserShows()))
+  },
+  searchShows(name, page = 1) {
+    return dispatch(getSearchResults(name, page))
   }
 })
