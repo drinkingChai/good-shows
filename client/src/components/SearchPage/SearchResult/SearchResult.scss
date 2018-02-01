@@ -1,13 +1,10 @@
 @import '../../../styles/colors.scss';
 
 .SearchResult {
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
   margin-bottom: 35px;
   position: relative;
-  img.poster {
-    width: 85px;
-    height: 120px;
-  }
   h4, p {
     margin: 0;
   }
@@ -21,6 +18,7 @@
     line-height: 1.25em;
   }
   section {
+    display: inline-block;
     margin-left: 20px;
     font-weight: 300;
   }

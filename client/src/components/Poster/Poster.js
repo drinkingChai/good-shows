@@ -7,6 +7,8 @@ import './Poster.scss'
 import { getPosterUrl } from '../../utils'
 
 const Poster = (props) =>
-  <img src={ getPosterUrl(props.size, props.src) } className='Poster' alt='poster' />
+  <div className='Poster'>
+    <img src={ getPosterUrl(props.size, props.src) } alt='poster' />
+  </div>
 
 export default Poster

@@ -1,6 +1,11 @@
 @import '../../styles/colors.scss';
 
 .Poster {
+  display: inline-block;
   width: 85px;
   height: 120px;
+  img {
+    height: 100%;
+    width: 100%;
+  }
 }
