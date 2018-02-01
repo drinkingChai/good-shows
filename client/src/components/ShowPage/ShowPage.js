@@ -52,7 +52,7 @@ class Show extends Component {
       const { favorite, isPrivate, list } = this.state
       this.props.updateShow(this.state.showItemId, { favorite, isPrivate, list })
     } else {
-      this.props.addShow(this.state.show)
+      this.props.addShow(this.state)
     }
   }
 

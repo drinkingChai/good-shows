@@ -18,7 +18,8 @@ router.get('/', verifyMiddleware, (req, res, next) => {
 })
 
 router.post('/', verifyMiddleware, (req, res, next) => {
-  const tmdbId = +req.body.show.id
+  const { show, isPrivate, favorite, list } = req.body
+  const tmdbId = +show.id
 
   ShowItem.findOne({
     where: { userId: req.user.id },
@@ -42,7 +43,7 @@ router.post('/', verifyMiddleware, (req, res, next) => {
 
     return Show.create(req.body.show)
   })
-  .then((show) => ShowItem.create({ showId: show.id, userId: +req.user.id }))
+  .then((show) => ShowItem.create({ showId: show.id, userId: +req.user.id, isPrivate, favorite, list }))
   .then(() => {
     res.sendStatus(200)
   })
