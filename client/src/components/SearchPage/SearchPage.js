@@ -23,8 +23,7 @@ class SearchPage extends Component {
   componentWillReceiveProps = nextProps => {
     const { search } = nextProps
     if (search) {
-      let { page, results } = search
-      page = page || 1
+      const { page, results } = search
       this.setState({ results, page })
     }
   }

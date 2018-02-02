@@ -20,9 +20,16 @@ class SearchResult extends Component {
     inList: false
   }
 
+  componentWillReceiveProps = nextProps => {
+    const { userShowIds, result } = nextProps
+    const inList = userShowIds && userShowIds[result.id]
+    this.setState({ ...result, inList })
+  }
+
   componentDidMount = () => {
-    const inList = this.props.userShowIds && this.props.userShowIds[this.props.result.id]
-    this.setState({ ...this.props.result, inList })
+    const { userShowIds, result } = this.props
+    const inList = userShowIds && userShowIds[result.id]
+    this.setState({ ...result, inList })
   }
 
   render = () => {
