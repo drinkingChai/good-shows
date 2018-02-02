@@ -2,7 +2,7 @@
 
 .SearchResult {
   display: grid;
-  grid-auto-flow: column;
+  grid-template-columns: 85px 1fr;
   margin-bottom: 35px;
   position: relative;
   h4, p {
