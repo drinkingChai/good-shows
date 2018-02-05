@@ -17,9 +17,13 @@ const userSchema = {
 
 const userHooks = {
   beforeCreate(instance, options) {
+    instance.name = instance.name.toLowerCase()
+
     return hashPassword(instance)
   },
   beforeUpdate(instance, options) {
+    if (instance.name) instance.name = instance.name.toLowerCase()
+      
     return instance.changed('password') ?
       hashPassword(instance) :
       instance
