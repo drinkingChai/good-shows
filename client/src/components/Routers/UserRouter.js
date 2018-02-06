@@ -10,6 +10,7 @@ import SearchPage from '../SearchPage/SearchPage'
 import ShowPage from '../ShowPage/ShowPage'
 import ProfilePage from '../ProfilePage/ProfilePage'
 import ListPage from '../ListPage/ListPage'
+import FriendsPage from '../FriendsPage/FriendsPage'
 
 // styles
 import './Main.scss'
@@ -26,6 +27,7 @@ class Main extends Component {
             <Route exact path='/show/:tmdbId' component={ ShowPage } />
             <Route exact path='/profile' component={ ProfilePage } />
             <Route exact path='/list' component={ ListPage } />
+            <Route exact path='/friends' component={ FriendsPage } />
           </Switch>
         </div>
         

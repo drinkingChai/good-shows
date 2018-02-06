@@ -11,11 +11,12 @@ router.get('/search', verifyMiddleware, (req, res, next) => {
       [Op.or]: [{
         name: { [Op.iRegexp]: input }
       }, {
-        email: { [Op.isRegexp]: input }
-      }]
+        email: { [Op.iRegexp]: input }
+      }],
+      [Op.not]: { id: req.user.id }
     }
   })
-  .then(res.send)
+  .then(users => res.send(users))
   .catch(next)
 })
 
