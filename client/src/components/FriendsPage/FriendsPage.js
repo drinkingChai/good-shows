@@ -6,6 +6,7 @@ import './FriendsPage.scss'
 
 // components
 import Input from '../Input/Input'
+import Tabs from '../Tabs/Tabs'
 
 // mappers
 import { mapDispatch } from '../../mappers/friends.mapper'
@@ -13,7 +14,10 @@ import { mapDispatch } from '../../mappers/friends.mapper'
 class FriendsPage extends Component {
   state = {
     input: '',
-    interval: null
+    interval: null,
+    friends: [],
+    requests: [],
+    activeList: 'friends'
   }
 
   handleSearch = (ev) => {
@@ -36,8 +40,12 @@ class FriendsPage extends Component {
     this.setState({ input: value, interval })
   }
 
+  setActiveList = (listName) => (ev) => {
+    this.setState({ activeList: listName })
+  }
+
   render = () => {
-    const { input } = this.state
+    const { input, activeList } = this.state
 
     return (
       <div className='FriendsPage'>
@@ -45,6 +53,13 @@ class FriendsPage extends Component {
           value={ input }
           onChange={ this.handleSearch }
           placeholder='SEARCH FRIENDS OR ADD' />
+
+        <Tabs
+          items={ [{ stateName: 'friends', label: 'FRIENDS' }, { stateName: 'requests', label: 'REQUESTS' }] }
+          setActiveList={ this.setActiveList }
+          activeList={ activeList } />
+
+
       </div>
     )
   }

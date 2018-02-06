@@ -7,6 +7,7 @@ import './ListPage.scss'
 // components
 import Input from '../Input/Input'
 import ShowItem from './ShowItem/ShowItem'
+import Tabs from '../Tabs/Tabs'
 
 // mappers
 import { mapState } from '../../mappers/show.mapper'
@@ -62,10 +63,10 @@ class ListPage extends Component {
           onChange={ this.handleSearch }
           placeholder='SEARCH' />
 
-        <div className='tabs'>
-          <a onClick={ this.setActiveList('watched') } className={ `tab ${activeList === 'watched' ? 'active' : ''}` }>WATCHED</a>
-          <a onClick={ this.setActiveList('toWatch') } className={ `tab ${activeList === 'toWatch' ? 'active' : ''}` }>TO WATCH</a>
-        </div>
+        <Tabs
+          items={ [{ stateName: 'watched', label: 'WATCHED' }, { stateName: 'toWatch', label: 'TO WATCH' }] }
+          setActiveList={ this.setActiveList }
+          activeList={ activeList } />
 
         { showList.map((showItem, i) => 
           <ShowItem item={ showItem } show={ showItem.show } key={ i } /> )}

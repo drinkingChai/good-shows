@@ -16,8 +16,23 @@ router.get('/search', verifyMiddleware, (req, res, next) => {
       [Op.not]: { id: req.user.id }
     }
   })
-  .then(users => res.send(users))
+  .then(users => res.send(users.map(user => user.tokenData))) // reusing token data for info
   .catch(next)
+})
+
+router.get('/', verifyMiddleware, (req, res, next) => {
+  const userId = req.user.id
+
+  Friends.findAll({
+    where: { userId },
+    include: User
+  })
+  .then(friends => {
+    console.log(friends)
+    res.sendStatus(200)
+  })
+  .catch(next)
+  // .then(friends => res.send())
 })
 
 // user making a request to another user
