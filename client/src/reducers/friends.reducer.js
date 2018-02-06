@@ -26,5 +26,9 @@ export const getFriendSearch = input => dispatch =>
   axios.get(`/api/friends/search?input=${input}`)
     .then(res => dispatch(setFriendSearch(res.data)))
 
+export const requestAdd = friendId => dispatch =>
+  axios.post('/api/friends/request', { friendId })
+
 export const getUserFriends = input => dispatch =>
-  axios.get()
+  axios.get('/api/friends')
+    .then(res => dispatch(setFriends(res.data)))

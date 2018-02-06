@@ -7,9 +7,10 @@ import './FriendsPage.scss'
 // components
 import Input from '../Input/Input'
 import Tabs from '../Tabs/Tabs'
+import Friend from './Friend/Friend'
 
 // mappers
-import { mapDispatch } from '../../mappers/friends.mapper'
+import { mapState, mapDispatch } from '../../mappers/friends.mapper'
 
 class FriendsPage extends Component {
   state = {
@@ -17,7 +18,13 @@ class FriendsPage extends Component {
     interval: null,
     friends: [],
     requests: [],
+    friendSearch: [],
     activeList: 'friends'
+  }
+
+  componentWillReceiveProps = nextProps => {
+    const { friendSearch, friends, requests } = nextProps
+    this.setState({ friendSearch, friends, requests })
   }
 
   handleSearch = (ev) => {
@@ -35,9 +42,11 @@ class FriendsPage extends Component {
 
         this.props.searchFriends(input)
       }, 500)
-    }
 
-    this.setState({ input: value, interval })
+      this.setState({ input: value, interval, activeList: 'friendSearch' })
+    } else {
+      this.setState({ input: value, activeList: 'friends' })
+    }
   }
 
   setActiveList = (listName) => (ev) => {
@@ -46,6 +55,7 @@ class FriendsPage extends Component {
 
   render = () => {
     const { input, activeList } = this.state
+    const friendList = this.state[activeList]
 
     return (
       <div className='FriendsPage'>
@@ -59,10 +69,11 @@ class FriendsPage extends Component {
           setActiveList={ this.setActiveList }
           activeList={ activeList } />
 
-
+        { friendList.map((user, i) => 
+          <Friend key={ i } { ...user } /> )}
       </div>
     )
   }
 }
 
-export default connect(null, mapDispatch)(FriendsPage)
+export default connect(mapState, mapDispatch)(FriendsPage)

@@ -21,18 +21,22 @@ router.get('/search', verifyMiddleware, (req, res, next) => {
 })
 
 router.get('/', verifyMiddleware, (req, res, next) => {
-  const userId = req.user.id
+  const { id } = req.user
 
-  Friends.findAll({
-    where: { userId },
-    include: User
+  User.findOne({
+    where: { id },
+    include: [{ all: true }]
   })
-  .then(friends => {
-    console.log(friends)
-    res.sendStatus(200)
+  .then(user => {
+    let friends = JSON.parse(JSON.stringify(user)).friend
+    friends = friends.map(friend => {
+      let f = Object.assign({}, friend.tokenData, { status: friend.friends.status }) // reusing token data for info
+      return f
+    })
+
+    res.send(friends)
   })
   .catch(next)
-  // .then(friends => res.send())
 })
 
 // user making a request to another user
@@ -42,7 +46,7 @@ router.post('/request', verifyMiddleware, (req, res, next) => {
 
   Friends.findOne({ where: { userId, friendId } })
   .then(rel => {
-    if (rel && rel.status === 'pending') throw new Error('Request cannot be made twice')
+    if (rel && rel.status === 'pending') throw new Error('Friend request cannot be made twice')
     if (rel && rel.status === 'friends') throw new Error('Already on friend list')
 
     return Friends.create({ userId, friendId, status: 'pending' })
