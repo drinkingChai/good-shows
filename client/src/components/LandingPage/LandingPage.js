@@ -45,7 +45,7 @@ class LandingPage extends Component {
       <div className='LandingPage'>
         <h1>GOOD SHOWS</h1>
 
-        { !this.state.loginShown ?
+      { !this.state.loginShown ?
         <div className='content'>
           <p>
             With great streaming sites like Hulu, Netflix, and HBO, it can be difficult to keep separate “watch list” for each one.
