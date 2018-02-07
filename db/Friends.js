@@ -9,6 +9,14 @@ const friendsSchema = {
       is: /^(pending$)|^(friends$)/,
       notEmpty: true
     }
+  },
+  userId: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  friendId: {
+    type: Sequelize.INTEGER,
+    allowNull: false
   }
 }
 

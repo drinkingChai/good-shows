@@ -3,7 +3,10 @@ const db = require('./db')
 const { User } = db
 
 const createUser = () =>
-  User.create({ email: 'test@good.com', password: 'test@good.com' })
+  Promise.all([
+    User.create({ name: 'test', email: 'test@good.com', password: 'test' }),
+    User.create({ name: 'test2', email: 'test2@good.com', password: 'test' })
+  ])
 
 conn.sync({ force: true })
   .then(() => createUser())

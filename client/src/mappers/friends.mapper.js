@@ -1,8 +1,8 @@
-import { getFriendSearch, requestAdd } from '../reducers/friends.reducer'
+import { getFriendSearch, getFriendRequests, requestAdd, confirmFriend } from '../reducers/friends.reducer'
 
 export const mapState = ({ friends }) => ({
-  friends: friends.friends.filter(f => f.status === 'friends'),
-  requests: friends.friends.filter(f => f.status === 'pending'),
+  friends: friends.friends,
+  requests: friends.requests,
   friendSearch: friends.friendSearch
 })
 
@@ -12,5 +12,10 @@ export const mapDispatch = dispatch => ({
   },
   makeFriendRequest(id) {
     return dispatch(requestAdd(id))
+  },
+  confirmFriendRequest(id) {
+    return dispatch(confirmFriend(id))
+      .then(() => dispatch(getFriendSearch()))
+      .then(() => dispatch(getFriendRequests()))
   }
 })

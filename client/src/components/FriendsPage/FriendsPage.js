@@ -27,6 +27,11 @@ class FriendsPage extends Component {
     this.setState({ friendSearch, friends, requests })
   }
 
+  componentDidMount = () => {
+    const { friendSearch, friends, requests } = this.props
+    this.setState({ friendSearch, friends, requests })
+  }
+
   handleSearch = (ev) => {
     let { interval } = this.state
     const { value } = ev.target

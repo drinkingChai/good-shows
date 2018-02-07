@@ -1,6 +1,6 @@
 import { signIn, regAndSignIn, verifyClientToken, signOut } from '../reducers/user.reducer'
 import { getUserShows } from '../reducers/usershows.reducer'
-import { getUserFriends } from '../reducers/friends.reducer'
+import { getUserFriends, getFriendRequests } from '../reducers/friends.reducer'
 
 // utils
 import axiosErrorParser from '../utils/axioserror.util'
@@ -15,18 +15,21 @@ export const mapDispatch = dispatch => ({
     return dispatch(signIn(email, password))
       .then(() => dispatch(getUserShows()))
       .then(() => dispatch(getUserFriends()))
+      .then(() => dispatch(getFriendRequests()))
       .catch(axiosErrorParser)
   },
   attemptRegister(name, email, password) {
     return dispatch(regAndSignIn(name, email, password))
       .then(() => dispatch(getUserShows()))
       .then(() => dispatch(getUserFriends()))
+      .then(() => dispatch(getFriendRequests()))
       .catch(axiosErrorParser)
   },
   attemptLoadWithToken(token) {
     return dispatch(verifyClientToken(token))
       .then(() => dispatch(getUserShows()))
       .then(() => dispatch(getUserFriends()))
+      .then(() => dispatch(getFriendRequests()))
       .catch(axiosErrorParser)
   },
   signUserOut() {

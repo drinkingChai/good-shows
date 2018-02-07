@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const { verifyMiddleware } = require('./helpers/token.helper')
+const { parseSequelize } = require('./helpers/sequelize.helper')
 const { User, Friends } = require('../../db')
 const { Op } = require('sequelize')
 
@@ -20,21 +21,40 @@ router.get('/search', verifyMiddleware, (req, res, next) => {
   .catch(next)
 })
 
+// get all friends
 router.get('/', verifyMiddleware, (req, res, next) => {
-  const { id } = req.user
+  const userId = req.user.id
 
-  User.findOne({
-    where: { id },
-    include: [{ all: true }]
+  Friends.findAll({
+    where: { userId, status: 'friends' }
   })
-  .then(user => {
-    let friends = JSON.parse(JSON.stringify(user)).friend
-    friends = friends.map(friend => {
-      let f = Object.assign({}, friend.tokenData, { status: friend.friends.status }) // reusing token data for info
-      return f
+  .then(friends => {
+    let friendIds = friends.map(f => f.friendId)
+    return User.findAll({
+      where: { id: { [Op.in]: friendIds } }
     })
+  })
+  .then(users => {
+    res.send(users.map(user => user.tokenData)) // reusing token data for info
+  })
+  .catch(next)
+})
 
-    res.send(friends)
+// get all friend requests
+router.get('/requests', verifyMiddleware, (req, res, next) => {
+  const userId = req.user.id
+
+  Friends.findAll({
+    where: { friendId: userId, status: 'pending' }
+  })
+  .then(friends => {
+    let requestIds = friends.map(f => f.userId)
+    return User.findAll({
+      where: { id: { [Op.in]: requestIds } }
+    })
+  })
+  .then(users => {
+    res.send(users.map(user => user.tokenData)) // reusing token data for info
   })
   .catch(next)
 })

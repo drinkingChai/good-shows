@@ -10,7 +10,6 @@ const sync = () => conn.sync()
 ShowItem.belongsTo(User)
 ShowItem.belongsTo(Show)
 Show.hasMany(ShowItem)
-User.belongsToMany(User, { as: 'friend', through: 'friends' }) // friend singular
 
 module.exports = {
   sync,
