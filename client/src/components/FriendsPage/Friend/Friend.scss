@@ -4,6 +4,8 @@
   position: relative;
   display: flex;
   margin-bottom: 30px;
+  background: $white;
+  // z-index: 99;
   section {
     margin-left: 20px;
     h4 {
@@ -23,6 +25,43 @@
     font-size: 1.15em;
     color: $gray;
     right: 0;
-    bottom: 0;
+    bottom: 25%;
   }
+  .Button.confirm-btn {
+    position: absolute;
+    // left: -30px; bottom: 0; right: -30px;
+    width: 100vw;
+    background: $base;
+    // z-index: -1;
+    &.shown {
+      // transform: translate(0%, 100%);
+    }
+  }
+  .pop-over & {
+    margin-bottom: 0;
+    width: 100vw;
+    padding: 14px 30px 9px 30px;
+    
+  }
+  .pop-over .action {
+    right: 30px;
+    bottom: 27px;
+    color: $base;
+  }
+}
+
+.pop-over {
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: rgba(36,36,36,0.48);
+  z-index: 9999;
+  .inner {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+}
+
+body.pop-over-open {
+  overflow: hidden;
 }
