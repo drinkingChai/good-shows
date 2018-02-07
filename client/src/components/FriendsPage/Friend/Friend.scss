@@ -1,0 +1,28 @@
+@import '../../../styles/colors.scss';
+
+.Friend {
+  position: relative;
+  display: flex;
+  margin-bottom: 30px;
+  section {
+    margin-left: 20px;
+    h4 {
+      font-weight: 400;
+      text-transform: uppercase;
+      margin: 0;
+    }
+    p {
+      font-weight: 300;
+      color: $gray;
+      font-size: .8em;
+      margin: 0;
+    }
+  }
+  .action {
+    position: absolute;
+    font-size: 1.15em;
+    color: $gray;
+    right: 0;
+    bottom: 0;
+  }
+}

@@ -55,7 +55,7 @@ class FriendsPage extends Component {
   }
 
   setActiveList = (listName) => (ev) => {
-    this.setState({ activeList: listName })
+    this.setState({ activeList: listName, input: '' })
   }
 
   render = () => {

@@ -34,11 +34,14 @@ class Friend extends Component {
     // key is needed so SVG renders
 
     return (
-      <div>
+      <div className='Friend'>
         <SVGInline svg={ jdenticon.toSvg(id, 50) } />
-        <h4>{ name }</h4>
-        <p>{ email }</p>
-        <span className='action'>
+        <section>
+          <h4>{ name }</h4>
+          <p>{ email }</p>
+        </section>
+
+        <div className='action'>
           { searching && status === 'pending' ?
             <div key={ 4 }><i className='fa fa-hourglass-half'></i></div> :
             status === 'pending' ?
@@ -46,7 +49,7 @@ class Friend extends Component {
             status === 'friends' ?
             <div key={ 2 }><i className='fa fa-ellipsis-h'></i></div> :
             <div key={ 3 } onClick={ () => makeFriendRequest(id) }><i className='fa fa-plus'></i></div> }
-        </span>
+        </div>
       </div> 
     )
   }
