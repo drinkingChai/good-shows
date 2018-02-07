@@ -5,19 +5,38 @@ const { User, Friends } = require('../../db')
 const { Op } = require('sequelize')
 
 router.get('/search', verifyMiddleware, (req, res, next) => {
+  const userId = req.user.id
   const { input } = req.query
+  let userFriendIds = {}
 
-  User.findAll({
-    where: {
-      [Op.or]: [{
-        name: { [Op.iRegexp]: input }
-      }, {
-        email: { [Op.iRegexp]: input }
-      }],
-      [Op.not]: { id: req.user.id }
-    }
+  Friends.findAll({
+    where: { userId }
   })
-  .then(users => res.send(users.map(user => user.tokenData))) // reusing token data for info
+  .then(friends => {
+    userFriendIds = friends.reduce((obj, f) => {
+      obj[f.friendId] = f.status
+      return obj
+    }, {})
+  })
+  .then(() =>
+    User.findAll({
+      where: {
+        [Op.or]: [{
+          name: { [Op.iRegexp]: input }
+        }, {
+          email: { [Op.iRegexp]: input }
+        }],
+        [Op.not]: { id: req.user.id }
+      }
+    })
+  )
+  .then(users => {
+    let results = users.map(user => {
+      let u = Object.assign({}, user.tokenData, { status: userFriendIds[user.id] || null }) // reusing token data for info
+      return u
+    })
+    res.send(results)
+  })
   .catch(next)
 })
 
@@ -35,7 +54,7 @@ router.get('/', verifyMiddleware, (req, res, next) => {
     })
   })
   .then(users => {
-    res.send(users.map(user => user.tokenData)) // reusing token data for info
+    res.send(users.map(user => Object.assign({}, user.tokenData, { status: 'friends' }))) // reusing token data for info
   })
   .catch(next)
 })
@@ -54,7 +73,7 @@ router.get('/requests', verifyMiddleware, (req, res, next) => {
     })
   })
   .then(users => {
-    res.send(users.map(user => user.tokenData)) // reusing token data for info
+    res.send(users.map(user => Object.assign({}, user.tokenData, { status: 'pending' }))) // reusing token data for info
   })
   .catch(next)
 })

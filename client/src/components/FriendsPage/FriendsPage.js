@@ -75,7 +75,7 @@ class FriendsPage extends Component {
           activeList={ activeList } />
 
         { friendList.map((user, i) => 
-          <Friend key={ i } { ...user } /> )}
+          <Friend key={ i } { ...user } searching={ activeList === 'friendSearch' } /> )}
       </div>
     )
   }
