@@ -12,6 +12,15 @@ import Button from '../../Button/Button'
 // mappers
 import { mapDispatch } from '../../../mappers/friends.mapper'
 
+const FriendInfo = ({ id, name, email }) =>
+  <div className='friend-info'>
+    <SVGInline svg={ jdenticon.toSvg(id, 50) } />
+    <section>
+      <h4>{ name }</h4>
+      <p>{ email }</p>
+    </section>
+  </div>
+
 class Friend extends Component {
   state = {
     id: null,
@@ -48,6 +57,7 @@ class Friend extends Component {
 
   render = () => {
     const { id, name, email, status, buttonShown } = this.state
+    const friendProps = { id, name, email }
     const { makeFriendRequest, confirmFriendRequest, searching } = this.props
 
     const btnStates = [
@@ -67,11 +77,7 @@ class Friend extends Component {
       <div className='Friend'>
         {/* <div className='pop-over'></div> */}
 
-        <SVGInline svg={ jdenticon.toSvg(id, 50) } />
-        <section>
-          <h4>{ name }</h4>
-          <p>{ email }</p>
-        </section>
+        <FriendInfo { ...friendProps } />
 
         <div className='action'>
           { searching && status === 'pending' ?
@@ -87,20 +93,16 @@ class Friend extends Component {
         <div className='pop-over'>
           <div className='inner' ref={ popoverInner => this.popoverInner = popoverInner }>
             <div className='Friend'>
-              <SVGInline svg={ jdenticon.toSvg(id, 50) } />
-              <section>
-                <h4>{ name }</h4>
-                <p>{ email }</p>
-              </section>
-            </div>
+              <FriendInfo { ...friendProps } />
 
-            <div className='action'>
-              <div><i className={btnState.icon}></i></div>
-            </div>
+              <div className='action'>
+                <div><i className={btnState.icon}></i></div>
+              </div>
 
-            <Button
-              onClick={ () => btnState.fn(id) }
-              className={ `confirm-btn ${buttonShown ? 'shown' : ''}` }>{ btnState.label }</Button>
+              <Button
+                onClick={ () => btnState.fn(id) }
+                className={ `confirm-btn ${buttonShown ? 'shown' : ''}` }>{ btnState.label }</Button>
+            </div>
           </div>
         </div> : null }
       </div> 
