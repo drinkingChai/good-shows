@@ -99,7 +99,7 @@ class Show extends Component {
 
           <div className='prompt-group' onClick={ this.changePropHandler('isPrivate') }>
             <label>PRIVATE?</label>
-            <span className={ `prop ${isPrivate ? 'true' : ''}` }><i className='fa fa-check'></i></span>
+            <span className={ `prop ${isPrivate ? 'true' : ''}` }><i className='fa fa-lock'></i></span>
           </div>
         </div>
 
