@@ -1,4 +1,4 @@
-import { signIn, regAndSignIn, verifyClientToken, signOut } from '../reducers/user.reducer'
+import { signIn, regAndSignIn, verifyClientToken, signOut, updateUser, changePassword } from '../reducers/user.reducer'
 import { getUserShows } from '../reducers/usershows.reducer'
 import { getUserFriends, getFriendRequests } from '../reducers/friends.reducer'
 
@@ -36,9 +36,9 @@ export const mapDispatch = dispatch => ({
     dispatch(signOut())
   },
   attemptUpdate(userInfo) {
-    
+    return dispatch(updateUser(userInfo))
   },
-  attemptPasswordChange(newpassword) {
-
+  attemptPasswordChange(currentpass, newpass) {
+    return dispatch(changePassword(currentpass, newpass))
   }
 })

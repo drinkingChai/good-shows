@@ -40,7 +40,7 @@ const getterMethods = {
   }
 }
 
-const hashPassword = (instance, password) => {
+const hashPassword = instance => {
   return bcrypt.hash(instance.password, +process.env.SALT)
     .then((hashed) => {
       instance.password = hashed
@@ -61,6 +61,15 @@ User.verifyLogin = function(email, password) {
           return user.tokenData
         })
     })
+}
+
+User.prototype.changePassword = function(curpass, newpass) {
+  return bcrypt.compare(curpass, this.password)
+  .then((valid) => {
+    if (!valid) throw new Error('Current password incorrect.')
+
+    return this.update({ password: newpass })
+  })
 }
 
 module.exports = User

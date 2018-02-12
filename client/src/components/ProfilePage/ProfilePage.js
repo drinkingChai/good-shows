@@ -17,8 +17,8 @@ class ProfilePage extends Component {
   state = {
     name: '',
     email: '',
-    newpassword: '',
-    verifypassword: ''
+    currentpass: '',
+    newpass: ''
   }
 
   componentWillReceiveProps = nextProps => {
@@ -51,14 +51,13 @@ class ProfilePage extends Component {
   handlePasswordChange = ev => {
     ev.preventDefault()
 
-    const { newpassword, verifypassword } = this.state
-    if (!newpassword || newpassword !== verifypassword) return // dispaly error message
+    const { currentpass, newpass } = this.state
 
-    this.props.attemptPasswordChange(newpassword)
+    this.props.attemptPasswordChange(currentpass, newpass)
   }
 
   render = () => {
-    const { name, email, newpassword, verifypassword } = this.state
+    const { name, email, newpass, currentpass } = this.state
     const { user } = this.props
 
     return (
@@ -82,16 +81,16 @@ class ProfilePage extends Component {
 
         <form onSubmit={ this.handlePasswordChange }>
           <Input
-            value={ newpassword }
-            onChange={ this.handleChange('newpassword') }
+            value={ currentpass }
+            onChange={ this.handleChange('currentpass') }
             type='password'
-            placeholder='NEW PASSWORD' />
+            placeholder='CURRENT PASSWORD' />
 
           <Input
-            value={ verifypassword }
-            onChange={ this.handleChange('verifypassword') }
+            value={ newpass }
+            onChange={ this.handleChange('newpass') }
             type='password'
-            placeholder='VERIFY PASSWORD' />
+            placeholder='NEW PASSWORD' />
 
           <Button>CHANGE PASSWORD</Button>
         </form>

@@ -44,3 +44,17 @@ export const signOut = () => dispatch => {
   removeClientAuth()
   dispatch(setUser())
 }
+
+export const updateUser = userInfo => dispatch =>
+  axios.put('/api/user', userInfo)
+    .then(res => {
+      setClientAuth(res.data.token)
+      dispatch(setUser(res.data))
+    })
+
+export const changePassword = (currentpass, newpass) => dispatch =>
+  axios.put('/api/user/password', { currentpass, newpass })
+    .then(res => {
+      setClientAuth(res.data.token)
+      dispatch(setUser(res.data))
+    })
