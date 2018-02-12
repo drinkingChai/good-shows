@@ -34,5 +34,11 @@ export const mapDispatch = dispatch => ({
   },
   signUserOut() {
     dispatch(signOut())
+  },
+  attemptUpdate(userInfo) {
+    
+  },
+  attemptPasswordChange(newpassword) {
+
   }
 })
