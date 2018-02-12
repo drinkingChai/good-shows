@@ -44,16 +44,20 @@ class ProfilePage extends Component {
     ev.preventDefault()
 
     const { name, email } = this.state
+    const { attemptUpdate, setErrMsg } = this.props
 
-    this.props.attemptUpdate({ name, email })
+    attemptUpdate({ name, email })
+      .catch(err => setErrMsg(err.message))
   }
 
   handlePasswordChange = ev => {
     ev.preventDefault()
 
     const { currentpass, newpass } = this.state
+    const { attemptPasswordChange, setErrMsg } = this.props
 
-    this.props.attemptPasswordChange(currentpass, newpass)
+    attemptPasswordChange(currentpass, newpass)
+      .catch(err => setErrMsg(err.message))
   }
 
   render = () => {
@@ -68,13 +72,15 @@ class ProfilePage extends Component {
           <Input
             value={ name }
             onChange={ this.handleChange('name') }
-            placeholder='NAME' />
+            placeholder='NAME'
+            required />
 
           <Input
             value={ email }
             onChange={ this.handleChange('email') }
             type='email'
-            placeholder='EMAIL' />
+            placeholder='EMAIL'
+            required />
 
           <Button>UPDATE</Button>
         </form>
@@ -84,13 +90,15 @@ class ProfilePage extends Component {
             value={ currentpass }
             onChange={ this.handleChange('currentpass') }
             type='password'
-            placeholder='CURRENT PASSWORD' />
+            placeholder='CURRENT PASSWORD'
+            required />
 
           <Input
             value={ newpass }
             onChange={ this.handleChange('newpass') }
             type='password'
-            placeholder='NEW PASSWORD' />
+            placeholder='NEW PASSWORD'
+            required />
 
           <Button>CHANGE PASSWORD</Button>
         </form>

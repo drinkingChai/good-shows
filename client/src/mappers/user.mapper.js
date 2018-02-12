@@ -1,6 +1,7 @@
 import { signIn, regAndSignIn, verifyClientToken, signOut, updateUser, changePassword } from '../reducers/user.reducer'
 import { getUserShows } from '../reducers/usershows.reducer'
 import { getUserFriends, getFriendRequests } from '../reducers/friends.reducer'
+import { setMessage } from '../reducers/message.reducer'
 
 // utils
 import axiosErrorParser from '../utils/axioserror.util'
@@ -40,5 +41,8 @@ export const mapDispatch = dispatch => ({
   },
   attemptPasswordChange(currentpass, newpass) {
     return dispatch(changePassword(currentpass, newpass))
+  },
+  setErrMsg(msg) {
+    return dispatch(setMessage(msg))
   }
 })

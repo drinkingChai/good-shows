@@ -12,5 +12,5 @@ export default function axiosErrorParser(err) {
     let split = data.toString().split(': ')
     data = split[split.length - 1]
   // }
-  return data
+  throw new Error(data) 
 }

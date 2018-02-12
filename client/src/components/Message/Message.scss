@@ -1,0 +1,11 @@
+@import '../../styles/colors.scss';
+
+.Message {
+  background: $black;
+  transform: translate(0, -100%);
+  transition: transform 100ms;
+
+  &.shown {
+    transform: translate(0, 0);
+  }
+}

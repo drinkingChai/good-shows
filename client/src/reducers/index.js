@@ -7,6 +7,7 @@ import user from './user.reducer'
 import friends from './friends.reducer'
 import show from './show.reducer'
 import usershows from './usershows.reducer'
+import message from './message.reducer'
 
 export default createStore(
   combineReducers({
@@ -14,7 +15,8 @@ export default createStore(
     user,
     friends,
     show,
-    usershows
+    usershows,
+    message
   }),
   applyMiddleware(thunkMiddleware, loggerMiddleware)
 )

@@ -29,15 +29,24 @@ class LandingPage extends Component {
 
   handleLogin = (ev) => {
     ev.preventDefault()
-    this.props.attemptLogIn(this.state.email, this.state.password)
-      .then(() => this.props.history.push('/search'))
+
+    const { attemptLogIn, history, setErrMsg } = this.props
+    const { email, password } = this.state
+
+    attemptLogIn(email, password)
+      .then(() => history.push('/search'))
+      .catch(err => setErrMsg(err.message))
   }
 
   handleRegister = (ev) => {
     ev.preventDefault()
+
+    const { attemptRegister, history, setErrMsg } = this.props
     const { name, email, password } = this.state
+
     this.props.attemptRegister(name, email, password)
       .then(() => this.props.history.push('/search'))
+      .catch(err => setErrMsg(err.message))
   }
 
   render = () => {
@@ -64,12 +73,14 @@ class LandingPage extends Component {
               value={ this.state.email }
               type='email'
               onChange={ this.handleChange('email') }
-              placeholder='EMAIL' />
+              placeholder='EMAIL'
+              required />
             <Input
               value={ this.state.password }
               type='password'
               onChange={ this.handleChange('password') }
-              placeholder='PASSWORD' />
+              placeholder='PASSWORD'
+              required />
             <Button>LOG IN</Button>
           </form>
 
@@ -78,7 +89,8 @@ class LandingPage extends Component {
               value={ this.state.name }
               onChange={ this.handleChange('name') }
               className='name'
-              placeholder='NAME' />
+              placeholder='NAME'
+              required />
             <Button>SIGN UP!</Button>
           </form>
         </div> }
