@@ -44,20 +44,22 @@ class ProfilePage extends Component {
     ev.preventDefault()
 
     const { name, email } = this.state
-    const { attemptUpdate, setErrMsg } = this.props
+    const { attemptUpdate, setMsg } = this.props
 
     attemptUpdate({ name, email })
-      .catch(err => setErrMsg(err.message))
+      .then(() => setMsg('Updated!'))
+      .catch(err => setMsg(err.message))
   }
 
   handlePasswordChange = ev => {
     ev.preventDefault()
 
     const { currentpass, newpass } = this.state
-    const { attemptPasswordChange, setErrMsg } = this.props
+    const { attemptPasswordChange, setMsg } = this.props
 
     attemptPasswordChange(currentpass, newpass)
-      .catch(err => setErrMsg(err.message))
+      .then(() => setMsg('Password changed!'))
+      .catch(err => setMsg(err.message))
   }
 
   render = () => {

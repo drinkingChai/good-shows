@@ -4,7 +4,7 @@ import { getUserFriends, getFriendRequests } from '../reducers/friends.reducer'
 import { setMessage } from '../reducers/message.reducer'
 
 // utils
-import axiosErrorParser from '../utils/axioserror.util'
+import getAxiosError from '../utils/axioserror.util'
 
 export const mapState = ({ user }) => ({
   user: user.userInfo,
@@ -17,32 +17,34 @@ export const mapDispatch = dispatch => ({
       .then(() => dispatch(getUserShows()))
       .then(() => dispatch(getUserFriends()))
       .then(() => dispatch(getFriendRequests()))
-      .catch(axiosErrorParser)
+      .catch(getAxiosError)
   },
   attemptRegister(name, email, password) {
     return dispatch(regAndSignIn(name, email, password))
       .then(() => dispatch(getUserShows()))
       .then(() => dispatch(getUserFriends()))
       .then(() => dispatch(getFriendRequests()))
-      .catch(axiosErrorParser)
+      .catch(getAxiosError)
   },
   attemptLoadWithToken(token) {
     return dispatch(verifyClientToken(token))
       .then(() => dispatch(getUserShows()))
       .then(() => dispatch(getUserFriends()))
       .then(() => dispatch(getFriendRequests()))
-      .catch(axiosErrorParser)
+      .catch(getAxiosError)
   },
   signUserOut() {
     dispatch(signOut())
   },
   attemptUpdate(userInfo) {
     return dispatch(updateUser(userInfo))
+      .catch(getAxiosError)
   },
   attemptPasswordChange(currentpass, newpass) {
     return dispatch(changePassword(currentpass, newpass))
+      .catch(getAxiosError)
   },
-  setErrMsg(msg) {
+  setMsg(msg) {
     return dispatch(setMessage(msg))
   }
 })

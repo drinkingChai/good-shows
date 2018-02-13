@@ -38,7 +38,7 @@ class Message extends Component {
 
     return (
       <div className={ `Message TopBar ${interval ? 'shown' : ''}` }>
-        <p>{ message }</p>
+        { message }
       </div>
     )
   }

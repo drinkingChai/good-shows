@@ -65,7 +65,7 @@ const User = conn.define('user', userSchema, { hooks: userHooks, getterMethods: 
 User.verifyLogin = function(email, password) {
   return this.findOne({ where: { email }})
     .then(user => {
-      if (!user) throw new Error('User not found.')
+      if (!user) throw new Error('Email not registered.')
 
       return bcrypt.compare(password, user.password)
         .then((valid) => {

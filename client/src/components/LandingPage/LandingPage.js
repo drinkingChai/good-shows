@@ -30,23 +30,25 @@ class LandingPage extends Component {
   handleLogin = (ev) => {
     ev.preventDefault()
 
-    const { attemptLogIn, history, setErrMsg } = this.props
+    const { attemptLogIn, history, setMsg } = this.props
     const { email, password } = this.state
 
     attemptLogIn(email, password)
       .then(() => history.push('/search'))
-      .catch(err => setErrMsg(err.message))
+      .then(() => setMsg('Welcome!'))
+      .catch(err => setMsg(err.message))
   }
 
   handleRegister = (ev) => {
     ev.preventDefault()
 
-    const { attemptRegister, history, setErrMsg } = this.props
+    const { attemptRegister, history, setMsg } = this.props
     const { name, email, password } = this.state
 
-    this.props.attemptRegister(name, email, password)
-      .then(() => this.props.history.push('/search'))
-      .catch(err => setErrMsg(err.message))
+    attemptRegister(name, email, password)
+      .then(() => history.push('/search'))
+      .then(() => setMsg('Welcome!'))
+      .catch(err => setMsg(err.message))
   }
 
   render = () => {

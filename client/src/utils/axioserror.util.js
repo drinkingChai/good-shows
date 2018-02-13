@@ -1,4 +1,4 @@
-export default function axiosErrorParser(err) {
+export default function (err) {
   // let data = err.response.data.split(',')
   let data = err.response.data
   // console.log(data)

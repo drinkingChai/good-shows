@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const { verifyMiddleware } = require('./helpers/token.helper')
 const { parseSequelize } = require('./helpers/sequelize.helper')
-const { User, Friends } = require('../../db')
+const { User, Friends, ShowItem, Show } = require('../../db')
 const { Op } = require('sequelize')
 
 router.get('/search', verifyMiddleware, (req, res, next) => {
@@ -74,6 +74,33 @@ router.get('/requests', verifyMiddleware, (req, res, next) => {
   })
   .then(users => {
     res.send(users.map(user => Object.assign({}, user.tokenData, { status: 'pending' }))) // reusing token data for info
+  })
+  .catch(next)
+})
+
+// get lists of a friend
+router.get('/:friendId', verifyMiddleware, (req, res, next) => {
+  // confirm that users are friends
+  // get all showItems
+  const userId = req.user.id
+  const { friendId } = req.params
+
+  Friends.findOne({
+    where: { userId, friendId }
+  })
+  .then(rel => {
+    if (!rel) throw new Error('Invalid friend relationship')
+
+    return ShowItem.findAll({
+      where: { userId: req.user.id },
+      include: {
+        model: Show
+      },
+      order: [['createdAt', 'ASC']]
+    })
+  })
+  .then((showItems) => {
+    res.send(showItems)
   })
   .catch(next)
 })
