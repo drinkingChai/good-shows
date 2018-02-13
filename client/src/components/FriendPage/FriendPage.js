@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 // styles
@@ -12,6 +13,7 @@ import { mapState, mapDispatch } from '../../mappers/friend.mapper'
 import Tabs from '../Tabs/Tabs'
 import FriendInfo from '../FriendInfo/FriendInfo'
 import BackButton from '../BackButton/BackButton'
+import ShowPreview from '../ShowPreview/ShowPreview'
 
 class FriendPage extends Component {
   state = {
@@ -58,6 +60,18 @@ class FriendPage extends Component {
           items={ tabItems }
           setActiveList={ this.setActiveList }
           activeList={ activeList } />
+
+        { showList.map((showItem, i) => {
+            const { poster_path, name, overview, tmdbId } = showItem.show
+            const showProps = { poster_path, name, overview }
+            return (
+              <ShowPreview { ...showProps } key={ i }>
+                <div className='buttons'>
+                  <Link to={ `/show/${tmdbId}` }><i className='fa fa-ellipsis-h'></i></Link>
+                </div>
+              </ShowPreview>
+            )
+          })}
       </div>
     )
   }

@@ -43,8 +43,8 @@ class SearchResult extends Component {
             <a><i className='fa fa-share'></i></a>
             <Link to={ `/show/${id}` }>
             { inList ?
-              <span className='check'><i className='fa fa-check'></i></span> :
-              <span><i className='fa fa-plus'></i></span> }
+              <span className='check'><i key={ 1 } className='fa fa-check'></i></span> :
+              <span><i key={ 2 } className='fa fa-plus'></i></span> }
             </Link>
           </div>
         </ShowPreview>

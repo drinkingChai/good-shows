@@ -20,4 +20,15 @@
     margin-left: 20px;
     font-weight: 300;
   }
+  .buttons {
+    // optional, can override
+    position: absolute;
+    right: 0;
+    bottom: -1em;
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 15px;
+    font-size: 1.15em;
+    color: #CACACA;
+  }
 }
