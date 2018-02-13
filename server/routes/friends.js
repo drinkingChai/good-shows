@@ -79,7 +79,7 @@ router.get('/requests', verifyMiddleware, (req, res, next) => {
 })
 
 // get lists of a friend
-router.get('/:friendId', verifyMiddleware, (req, res, next) => {
+router.get('/:friendId/shows', verifyMiddleware, (req, res, next) => {
   // confirm that users are friends
   // get all showItems
   const userId = req.user.id
@@ -92,7 +92,7 @@ router.get('/:friendId', verifyMiddleware, (req, res, next) => {
     if (!rel) throw new Error('Invalid friend relationship')
 
     return ShowItem.findAll({
-      where: { userId: req.user.id },
+      where: { userId: friendId, isPrivate: false },
       include: {
         model: Show
       },

@@ -7,7 +7,7 @@ import './ShowItem.scss'
 import '../../SearchPage/SearchResult/SearchResult.scss'
 
 // components
-import Poster from '../../Poster/Poster'
+import ShowPreview from '../../ShowPreview/ShowPreview'
 
 // mappers
 import { mapDispatch } from '../../../mappers/show.mapper'
@@ -42,20 +42,18 @@ class ShowItem extends Component {
 
   render = () => {
     const { item, show } = this.state
+    const { poster_path, name, overview } = show
+    const showProps = { poster_path, name, overview }
 
     return (
       <div className='ShowItem SearchResult'>
-        <Poster src={ show.poster_path } size={ 185 } />
-
-        <section>
-          <h4 className='title'>{ show.name }</h4>
-          <p className='overview'>{ show.overview.length > 110 ? show.overview.slice(0, 110) + '...' : show.overview }</p>
+        <ShowPreview { ...showProps }>
           <div className='buttons'>
             <a onClick={ this.makePrivateHandler } className={ `${item.isPrivate ? 'true' : ''}` }><i className='fa fa-lock'></i></a>
             <a onClick={ this.addFavoriteHandler } className={ `${item.favorite ? 'true' : ''}` }><i className='fa fa-star'></i></a>
             <Link to={ `/show/${show.tmdbId}` }><i className='fa fa-ellipsis-h'></i></Link>
           </div>
-        </section>
+        </ShowPreview>
       </div>
     )
   }

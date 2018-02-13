@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import './SearchResult.scss'
 
 // components
-import Poster from '../../Poster/Poster'
+import ShowPreview from '../../ShowPreview/ShowPreview'
 
 // mappers
 import { mapState } from '../../../mappers/show.mapper'
@@ -34,14 +34,11 @@ class SearchResult extends Component {
 
   render = () => {
     const { id, name, poster_path, overview, inList } = this.state
+    const showProps = { name, poster_path, overview }
 
     return (
       <div className='SearchResult'>
-        <Poster src={ poster_path } size={ 185 } />
-
-        <section>
-          <h4 className='title'>{ name }</h4>
-          <p className='overview'>{ overview.length > 125 ? overview.slice(0, 125) + '...' : overview }</p>
+        <ShowPreview { ...showProps }>
           <div className='buttons'>
             <a><i className='fa fa-share'></i></a>
             <Link to={ `/show/${id}` }>
@@ -50,7 +47,7 @@ class SearchResult extends Component {
               <span><i className='fa fa-plus'></i></span> }
             </Link>
           </div>
-        </section>
+        </ShowPreview>
       </div>
     )
   }

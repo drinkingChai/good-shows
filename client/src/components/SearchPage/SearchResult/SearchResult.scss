@@ -1,27 +1,6 @@
 @import '../../../styles/colors.scss';
 
 .SearchResult {
-  display: grid;
-  grid-template-columns: 85px 1fr;
-  margin-bottom: 35px;
-  position: relative;
-  h4, p {
-    margin: 0;
-  }
-  h4 {
-    text-transform: uppercase;
-    font-weight: 400;
-    margin-bottom: 10px;
-  }
-  p {
-    font-size: .85em;
-    line-height: 1.25em;
-  }
-  section {
-    display: inline-block;
-    margin-left: 20px;
-    font-weight: 300;
-  }
   .buttons {
     position: absolute;
     right: 0;

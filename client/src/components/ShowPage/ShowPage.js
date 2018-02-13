@@ -10,6 +10,7 @@ import { mapState, mapDispatch } from '../../mappers/show.mapper'
 // components
 import Poster from '../Poster/Poster'
 import Button from '../Button/Button'
+import BackButton from '../BackButton/BackButton'
 
 // utils
 import { formatDate } from '../../utils'
@@ -69,7 +70,7 @@ class Show extends Component {
 
     return (
       <div className='ShowPage'>
-        <span className='back-button' onClick={ this.props.history.goBack }><i className='fa fa-chevron-left'></i></span>
+        <BackButton />
 
         <div className='top'>
           <Poster src={ show.poster_path } size={ 185 } />

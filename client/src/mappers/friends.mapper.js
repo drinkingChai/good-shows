@@ -1,9 +1,10 @@
 import { getFriendSearch, getUserFriends, getFriendRequests, requestAdd, confirmFriend } from '../reducers/friends.reducer'
 
-export const mapState = ({ friends }) => ({
+export const mapState = ({ friends, friend }) => ({
   friends: friends.friends,
   requests: friends.requests,
-  friendSearch: friends.friendSearch
+  friendSearch: friends.friendSearch,
+  friend: friend
 })
 
 export const mapDispatch = dispatch => ({

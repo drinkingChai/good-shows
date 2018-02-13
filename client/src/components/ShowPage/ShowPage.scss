@@ -2,14 +2,6 @@
 
 .ShowPage {
   padding-bottom: 40px;
-  .back-button {
-    color: $white;
-    position: fixed;
-    z-index: 999;
-    top: 15px;
-    left: 20px;
-    font-size: 1.4em;
-  }
   .top {
     display: flex;
     h4 {

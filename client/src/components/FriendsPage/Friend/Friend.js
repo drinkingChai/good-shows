@@ -1,25 +1,16 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import jdenticon from 'jdenticon'
-import SVGInline from 'react-svg-inline'
 
 // styles
 import './Friend.scss'
 
 // component
 import Button from '../../Button/Button'
+import FriendInfo from '../../FriendInfo/FriendInfo'
 
 // mappers
 import { mapDispatch } from '../../../mappers/friends.mapper'
-
-const FriendInfo = ({ id, name, email }) =>
-  <div className='friend-info'>
-    <SVGInline svg={ jdenticon.toSvg(id, 50) } />
-    <section>
-      <h4>{ name }</h4>
-      <p>{ email }</p>
-    </section>
-  </div>
 
 class Friend extends Component {
   state = {
@@ -82,10 +73,13 @@ class Friend extends Component {
         <div className='action'>
           { searching && status === 'pending' ?
             <div key={ 4 }><i className='fa fa-hourglass-half'></i></div> :
+
             status === 'pending' ?
             <div key={ 1 } onClick={ this.showButton }><i className='fa fa-check'></i></div> :
+
             status === 'friends' ?
-            <div key={ 2 }><i className='fa fa-ellipsis-h'></i></div> :
+            <div key={ 2 }><Link to={ `/friends/${id}` }><i className='fa fa-ellipsis-h'></i></Link></div> :
+
             <div key={ 3 } onClick={ this.showButton }><i className='fa fa-plus'></i></div> }
         </div>
 

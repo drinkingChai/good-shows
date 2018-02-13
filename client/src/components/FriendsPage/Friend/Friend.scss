@@ -2,27 +2,6 @@
 
 .Friend {
   position: relative;
-  .friend-info {
-    position: relative;
-    display: flex;
-    margin-bottom: 30px;
-    background: $white;
-    // z-index: 99;
-    section {
-      margin-left: 20px;
-      h4 {
-        font-weight: 400;
-        text-transform: uppercase;
-        margin: 0;
-      }
-      p {
-        font-weight: 300;
-        color: $gray;
-        font-size: .8em;
-        margin: 0;
-      }
-    }
-  }
   .Button.confirm-btn {
     position: absolute;
     // left: -30px; bottom: 0; right: -30px;

@@ -11,6 +11,7 @@ import ShowPage from '../ShowPage/ShowPage'
 import ProfilePage from '../ProfilePage/ProfilePage'
 import ListPage from '../ListPage/ListPage'
 import FriendsPage from '../FriendsPage/FriendsPage'
+import FriendPage from '../FriendPage/FriendPage'
 
 // styles
 import './Main.scss'
@@ -28,6 +29,7 @@ class Main extends Component {
             <Route exact path='/profile' component={ ProfilePage } />
             <Route exact path='/list' component={ ListPage } />
             <Route exact path='/friends' component={ FriendsPage } />
+            <Route exact path='/friends/:friendId' component={ FriendPage } />
           </Switch>
         </div>
         
