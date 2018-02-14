@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 
 // styles
 import './OopsPage.scss'
@@ -6,12 +7,14 @@ import './OopsPage.scss'
 // components
 import Button from '../Button/Button'
 
-export default function () {
+const OopsPage = ({ history }) => {
   return (
     <div className='OopsPage'>
       <h1>404</h1>
       <p>Something went wrong!</p>
-      <Button>GO BACK</Button>
+      <Button onClick={ history.goBack }>GO BACK</Button>
     </div>
   )
 }
+
+export default withRouter(OopsPage)

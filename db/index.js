@@ -3,6 +3,7 @@ const User = require('./User')
 const Friends = require('./Friends')
 const Show = require('./Show')
 const ShowItem = require('./ShowItem')
+const Recomms = require('./Recomms')
 
 const sync = () => conn.sync()
 
@@ -16,5 +17,6 @@ module.exports = {
   User,
   Friends,
   Show,
-  ShowItem
+  ShowItem,
+  Recomms
 }
