@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom'
 // components
 import TopBar from '../TopBar/TopBar'
 import NavBar from '../NavBar/NavBar'
+import Recomm from '../Recomm/Recomm'
 
 // pages
 import SearchPage from '../SearchPage/SearchPage'
@@ -20,7 +21,7 @@ class Main extends Component {
   render = () => {
     return (
       <div>
-        <TopBar />
+        <TopBar label='GOOD SHOWS' />
 
         <div className='Main'>
           <Switch>
@@ -34,6 +35,8 @@ class Main extends Component {
         </div>
         
         <NavBar />
+
+        <Recomm />
       </div>
     )
   }

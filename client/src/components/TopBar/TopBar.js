@@ -3,8 +3,10 @@ import React from 'react'
 // styes
 import './TopBar.scss'
 
-export default function () {
+const TopBar = ({ label }) => {
   return (
-    <div className='TopBar'>GOOD SHOWS</div>
+    <div className='TopBar'>{ label }</div>
   )
 }
+
+export default TopBar

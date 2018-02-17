@@ -1,0 +1,62 @@
+@import '../../styles/colors.scss';
+
+.Recomm {
+  height: 100vh;
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: 9991;
+  transform: translate(0, 100%);
+
+  .overlay {
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 9995;
+  }
+
+  .inner {
+    height: 92%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background: $white;
+    overflow: scroll;
+    transform: translate(0, 100%);
+    transition: all 100ms;
+
+    .content {
+      padding: 85px 30px 35px 30px;
+
+      .Input {
+        width: 100%;
+        margin-bottom: 45px;
+      }
+
+      .friend-list {
+        height: 185px;
+        overflow: scroll;
+        margin-bottom: 30px;
+      }
+
+      .Button {
+        display: block;
+        margin: 0 auto;
+        width: 200px;
+      }
+    }
+  }
+
+  &.open {
+    transform: translate(0, 0);
+    .inner {
+      transform: translate(0, 0);
+    }
+  }
+
+  .Friend a.selected {
+    color: $base;
+  }
+}
+
+body.recomm-open {
+  overflow: hidden;
+}

@@ -7,6 +7,7 @@ import './SearchResult.scss'
 
 // components
 import ShowPreview from '../../ShowPreview/ShowPreview'
+import ShareButton from '../../ShareButton/ShareButton'
 
 // mappers
 import { mapState } from '../../../mappers/show.mapper'
@@ -40,7 +41,7 @@ class SearchResult extends Component {
       <div className='SearchResult'>
         <ShowPreview { ...showProps }>
           <div className='buttons'>
-            <a><i className='fa fa-share'></i></a>
+            <ShareButton tmdbId={id} />
             <Link to={ `/show/${id}` }>
             { inList ?
               <span className='check'><i key={ 1 } className='fa fa-check'></i></span> :

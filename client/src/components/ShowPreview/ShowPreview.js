@@ -12,7 +12,7 @@ const ShowPreview = ({ children, poster_path, name, overview }) =>
 
     <section>
       <h4 className='title'>{ name }</h4>
-      <p className='overview'>{ overview.length > 110 ? overview.slice(0, 110) + '...' : overview }</p>
+      <p className='overview'>{ overview && overview.length > 110 ? overview.slice(0, 110) + '...' : overview }</p>
       
       { children }
     </section>

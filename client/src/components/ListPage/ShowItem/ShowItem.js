@@ -8,6 +8,7 @@ import '../../SearchPage/SearchResult/SearchResult.scss'
 
 // components
 import ShowPreview from '../../ShowPreview/ShowPreview'
+import ShareButton from '../../ShareButton/ShareButton'
 
 // mappers
 import { mapDispatch } from '../../../mappers/show.mapper'
@@ -42,13 +43,14 @@ class ShowItem extends Component {
 
   render = () => {
     const { item, show } = this.state
-    const { poster_path, name, overview } = show
+    const { tmdbId, poster_path, name, overview } = show
     const showProps = { poster_path, name, overview }
 
     return (
       <div className='ShowItem SearchResult'>
         <ShowPreview { ...showProps }>
           <div className='buttons'>
+            <ShareButton tmdbId={ tmdbId } />
             <a onClick={ this.makePrivateHandler } className={ `${item.isPrivate ? 'true' : ''}` }><i className='fa fa-lock'></i></a>
             <a onClick={ this.addFavoriteHandler } className={ `${item.favorite ? 'true' : ''}` }><i className='fa fa-star'></i></a>
             <Link to={ `/show/${show.tmdbId}` }><i className='fa fa-ellipsis-h'></i></Link>
