@@ -105,7 +105,7 @@ class ProfilePage extends Component {
           <Button>CHANGE PASSWORD</Button>
         </form>
 
-        <Button onClick={ this.handleSignOut }>Sign Out</Button>
+        <Button onClick={ this.handleSignOut }>SIGN OUT</Button>
       </div>
     )
   }

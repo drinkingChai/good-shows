@@ -1,5 +1,6 @@
-import { openRecomm, addUser, removeUser, reset } from '../reducers/recomm.reducer'
+import { openRecomm, makeRecomms, reset } from '../reducers/recomm.reducer'
 import { getShow } from '../reducers/show.reducer'
+import { setMessage } from '../reducers/message.reducer'
 
 export const mapState = ({ recomm, show, friends }) => ({
   open: recomm.isOpen,
@@ -18,5 +19,10 @@ export const mapDispatch = dispatch => ({
   },
   closeRecomm() {
     dispatch(reset())
+  },
+  makeRecomms(tmdbId, sendTo) {
+    return dispatch(makeRecomms(tmdbId, sendTo))
+      .then(() => dispatch(reset()))
+      .then(() => dispatch(setMessage('SENT!')))
   }
 })

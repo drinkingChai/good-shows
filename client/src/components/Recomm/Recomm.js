@@ -30,16 +30,24 @@ class Recomm extends Component {
 
       this.setState({ open: true, friendIds })
     }
+    else if (open === false) {
+      this.close()
+    }
   }
 
   handleClick = ev => {
     if (!this.inner.contains(ev.target)) {
-      document.removeEventListener('click', this.handleClick)
-      document.querySelector('body').classList.remove('recomm-open')
-
-      this.setState({ open: false, friendIds: {} })
+      this.close()
+      
       this.props.closeRecomm()
     }
+  }
+
+  close = () => {
+    document.removeEventListener('click', this.handleClick)
+    document.querySelector('body').classList.remove('recomm-open')
+
+    this.setState({ open: false, friendIds: {} })
   }
 
   toggleFriend = id => ev => {
@@ -47,6 +55,13 @@ class Recomm extends Component {
 
     friendIds[id] = !friendIds[id]
     this.setState({ friendIds })
+  }
+
+  handleSend = tmdbId => ev => {
+    const { friendIds } = this.state
+
+    const sendTo = Object.keys(friendIds).filter(id => friendIds[id] === true)
+    this.props.makeRecomms(tmdbId, sendTo)
   }
 
   render = () => {
@@ -87,7 +102,7 @@ class Recomm extends Component {
               </div> )}
             </div>
 
-            <Button>SEND</Button>
+            <Button onClick={ this.handleSend(id) }>SEND</Button>
           </div>
         </div>
       </div>

@@ -15,7 +15,7 @@ app.use('/api', require('./routes'))
 
 app.use((err, req, res, next) => {
   console.log('\n***************** server error *****************\n')
-  console.log(err.message)
+  console.log(err)
   console.log('\n*************** end server error ***************\n')
   res.status(err.status || 500).send(err.message)
 })

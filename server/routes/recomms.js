@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const { parseSequelize } = require('./helpers/sequelize.helper')
 const { verifyMiddleware } = require('./helpers/token.helper')
 const { Recomms, ShowItem, Show } = require('../../db')
 
@@ -14,6 +15,54 @@ router.get('/', verifyMiddleware, (req, res, next) => {
 })
 
 router.post('/', verifyMiddleware, (req, res, next) => {
+  const userId = req.user.id
+  let { tmdbId, friendIds } = req.body
+
+  Promise.all(friendIds.map(friendId => ShowItem.findOne({
+    where: { userId: friendId },
+    include: {
+      model: Show,
+      where: { tmdbId }
+    }
+  })))
+  .then(items => {
+    // if items already exist
+
+    let existing = parseSequelize(items).reduce((obj, i) => {
+      if (i) {
+        obj[i.userId] = true
+      }
+      return obj
+    }, {})
+
+    friendIds = friendIds.filter(friendId => !existing[friendId])
+
+    return Promise.all(friendIds.map(friendId => Recomms.findOne({
+      where: { tmdbId, friendId }
+    })))
+    .then(recomms => {
+      // if friend already has the recommendation
+
+      let existing = parseSequelize(recomms).reduce((obj, i) => {
+        if (i) {
+          obj[i.friendId] = true
+        }
+        return obj
+      }, {})
+
+      friendIds = friendIds.filter(friendId => !existing[friendId])
+
+      return Promise.all(friendIds.map(friendId => Recomms.create({
+        tmdbId, userId, friendId, status: 'pending'
+      })))
+    })
+  })
+  .then(() => res.sendStatus(200))
+  .catch(next)
+})
+
+router.post('/x', verifyMiddleware, (req, res, next) => {
+  // deprecated - single user
   // recommend a show
   const userId = req.user.id
   const { tmdbId, friendId } = req.body

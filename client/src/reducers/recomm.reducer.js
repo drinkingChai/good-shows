@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 const OPEN_RECOMM = 'OPEN_RECOMM'
 // const SET_SHOW = 'SET_SHOW'
 const ADD_USER = 'ADD_USER'
@@ -32,3 +34,6 @@ export default function(state = initialState, action) {
       return state
   }
 }
+
+export const makeRecomms = (tmdbId, friendIds) => dispatch =>
+  axios.post('/api/recomms', { tmdbId, friendIds })
