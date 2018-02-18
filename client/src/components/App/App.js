@@ -16,9 +16,14 @@ import Message from '../Message/Message'
 
 class App extends Component {
   componentDidMount = () => {
+    const { attemptLoadWithToken, signUserOut, history } = this.props
+
     if (localStorage['token']) {
-      this.props.attemptLoadWithToken(localStorage['token'])
-        .catch(err => this.props.signUserOut())
+      attemptLoadWithToken(localStorage['token'])
+        .catch(err => {
+          return signUserOut()
+          .then(() => history.push('/'))
+        })
     }
   }
 

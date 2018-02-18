@@ -26,6 +26,7 @@ class Recomm extends Component {
 
     if (open) {
       document.addEventListener('click', this.handleClick)
+      document.addEventListener('touchend', this.handleClick)
       document.querySelector('body').classList.add('recomm-open')
 
       this.setState({ open: true, friendIds })
@@ -45,6 +46,7 @@ class Recomm extends Component {
 
   close = () => {
     document.removeEventListener('click', this.handleClick)
+    document.removeEventListener('touchend', this.handleClick)
     document.querySelector('body').classList.remove('recomm-open')
 
     this.setState({ open: false, friendIds: {} })
@@ -76,6 +78,7 @@ class Recomm extends Component {
 
         <div className='inner' ref={ inner => this.inner = inner }>
           <TopBar label='RECOMMEND' />
+          <Button onClick={ this.handleSend(id) }>SEND</Button>
 
           <div className='content'>
             <ShowPreview { ...showProps }>
@@ -101,8 +104,6 @@ class Recomm extends Component {
                 </div>
               </div> )}
             </div>
-
-            <Button onClick={ this.handleSend(id) }>SEND</Button>
           </div>
         </div>
       </div>

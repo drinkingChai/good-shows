@@ -36,11 +36,13 @@ class Friend extends Component {
 
     document.querySelector('body').classList.add('pop-over-open')
     document.addEventListener('click', this.popOverClick)
+    document.addEventListener('touchend', this.popOverClick)
   }
 
   popOverClick = (ev) => {
     if (!this.popoverInner.contains(ev.target)) {
       document.removeEventListener('click', this.popOverClick)
+      document.removeEventListener('touchend', this.popOverClick)
       document.querySelector('body').classList.remove('pop-over-open')
       this.setState({ buttonShown: false })
     }

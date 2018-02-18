@@ -14,6 +14,7 @@ import Tabs from '../Tabs/Tabs'
 import FriendInfo from '../FriendInfo/FriendInfo'
 import BackButton from '../BackButton/BackButton'
 import ShowPreview from '../ShowPreview/ShowPreview'
+import ShareButton from '../ShareButton/ShareButton'
 
 class FriendPage extends Component {
   state = {
@@ -67,6 +68,7 @@ class FriendPage extends Component {
             return (
               <ShowPreview { ...showProps } key={ i }>
                 <div className='buttons'>
+                  <ShareButton tmdbId={ tmdbId } />
                   <Link to={ `/show/${tmdbId}` }><i className='fa fa-ellipsis-h'></i></Link>
                 </div>
               </ShowPreview>
