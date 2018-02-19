@@ -1,6 +1,7 @@
 import { signIn, regAndSignIn, verifyClientToken, signOut, updateUser, changePassword } from '../reducers/user.reducer'
 import { getUserShows } from '../reducers/usershows.reducer'
 import { getUserFriends, getFriendRequests } from '../reducers/friends.reducer'
+import { getUserRecomms } from '../reducers/userrecomms.reducer'
 import { setMessage } from '../reducers/message.reducer'
 
 // utils
@@ -17,6 +18,7 @@ export const mapDispatch = dispatch => ({
       .then(() => dispatch(getUserShows()))
       .then(() => dispatch(getUserFriends()))
       .then(() => dispatch(getFriendRequests()))
+      .then(() => dispatch(getUserRecomms()))
       .catch(getAxiosError)
   },
   attemptRegister(name, email, password) {
@@ -24,6 +26,7 @@ export const mapDispatch = dispatch => ({
       .then(() => dispatch(getUserShows()))
       .then(() => dispatch(getUserFriends()))
       .then(() => dispatch(getFriendRequests()))
+      .then(() => dispatch(getUserRecomms()))
       .catch(getAxiosError)
   },
   attemptLoadWithToken(token) {
@@ -31,6 +34,7 @@ export const mapDispatch = dispatch => ({
       .then(() => dispatch(getUserShows()))
       .then(() => dispatch(getUserFriends()))
       .then(() => dispatch(getFriendRequests()))
+      .then(() => dispatch(getUserRecomms()))
       .catch(getAxiosError)
   },
   signUserOut() {

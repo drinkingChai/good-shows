@@ -1,13 +1,13 @@
 const router = require('express').Router()
 const { parseSequelize } = require('./helpers/sequelize.helper')
 const { verifyMiddleware } = require('./helpers/token.helper')
-const { Recomms, ShowItem, Show } = require('../../db')
+const { Recomms, ShowItem, Show, User } = require('../../db')
 
 // get all recommendations
 router.get('/', verifyMiddleware, (req, res, next) => {
   const userId = req.user.id
 
-  Recomms.findOne({ where: { friendId: userId, status: 'pending' } })
+  Recomms.findAll({ where: { friendId: userId, status: 'pending' } })
   .then(recomms => {
     res.send(recomms)
   })

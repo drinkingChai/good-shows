@@ -56,6 +56,11 @@ class ListPage extends Component {
     const { activeList, input } = this.state
     const showList = this.state[activeList]
 
+    const tabItems = [
+      { stateName: 'watched', label: 'WATCHED' },
+      { stateName: 'toWatch', label: 'TO WATCH' }
+    ]
+
     return (
       <div className='ListPage'>
         <Input
@@ -64,7 +69,7 @@ class ListPage extends Component {
           placeholder='SEARCH' />
 
         <Tabs
-          items={ [{ stateName: 'watched', label: 'WATCHED' }, { stateName: 'toWatch', label: 'TO WATCH' }] }
+          items={ tabItems }
           setActiveList={ this.setActiveList }
           activeList={ activeList } />
 
