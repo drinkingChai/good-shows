@@ -6,5 +6,6 @@ router.use('/shows', require('./shows'))
 router.use('/friends', require('./friends'))
 router.use('/user', require('./user'))
 router.use('/recomms', require('./recomms'))
+router.use('/notifications', require('./notifications'))
 
 module.exports = router

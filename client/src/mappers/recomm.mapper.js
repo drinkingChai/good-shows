@@ -20,8 +20,8 @@ export const mapDispatch = dispatch => ({
   closeRecomm() {
     dispatch(reset())
   },
-  makeRecomms(tmdbId, sendTo) {
-    return dispatch(makeRecomms(tmdbId, sendTo))
+  makeRecomms(showInfo, sendTo) {
+    return dispatch(makeRecomms(showInfo, sendTo))
       .then(() => dispatch(reset()))
       .then(() => dispatch(setMessage('SENT!')))
   }

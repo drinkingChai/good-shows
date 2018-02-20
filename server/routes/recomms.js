@@ -16,7 +16,7 @@ router.get('/', verifyMiddleware, (req, res, next) => {
 
 router.post('/', verifyMiddleware, (req, res, next) => {
   const userId = req.user.id
-  let { tmdbId, friendIds } = req.body
+  let { tmdbId, name, friendIds } = req.body
 
   Promise.all(friendIds.map(friendId => ShowItem.findOne({
     where: { userId: friendId },
@@ -53,7 +53,7 @@ router.post('/', verifyMiddleware, (req, res, next) => {
       friendIds = friendIds.filter(friendId => !existing[friendId])
 
       return Promise.all(friendIds.map(friendId => Recomms.create({
-        tmdbId, userId, friendId, status: 'pending'
+        tmdbId, name, userId, friendId, status: 'pending'
       })))
     })
   })

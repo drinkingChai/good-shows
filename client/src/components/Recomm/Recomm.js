@@ -59,11 +59,11 @@ class Recomm extends Component {
     this.setState({ friendIds })
   }
 
-  handleSend = tmdbId => ev => {
+  handleSend = (tmdbId, name) => ev => {
     const { friendIds } = this.state
 
     const sendTo = Object.keys(friendIds).filter(id => friendIds[id] === true)
-    this.props.makeRecomms(tmdbId, sendTo)
+    this.props.makeRecomms({ tmdbId, name }, sendTo)
   }
 
   render = () => {
@@ -78,7 +78,7 @@ class Recomm extends Component {
 
         <div className='inner' ref={ inner => this.inner = inner }>
           <TopBar label='RECOMMEND' />
-          <Button onClick={ this.handleSend(id) }>SEND</Button>
+          <Button onClick={ this.handleSend(id, name) }>SEND</Button>
 
           <div className='content'>
             <ShowPreview { ...showProps }>

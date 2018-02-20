@@ -14,6 +14,7 @@ const recommsSchema = {
   },
   notes: Sequelize.TEXT,
   tmdbId: Sequelize.INTEGER,
+  name: Sequelize.STRING,
   userId: {
     type: Sequelize.INTEGER,
     allowNull: false

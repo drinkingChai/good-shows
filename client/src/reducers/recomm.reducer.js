@@ -21,5 +21,5 @@ export default function(state = initialState, action) {
   }
 }
 
-export const makeRecomms = (tmdbId, friendIds) => dispatch =>
-  axios.post('/api/recomms', { tmdbId, friendIds })
+export const makeRecomms = (showInfo, friendIds) => dispatch =>
+  axios.post('/api/recomms', { ...showInfo, friendIds })

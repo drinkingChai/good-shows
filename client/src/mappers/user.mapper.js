@@ -2,6 +2,7 @@ import { signIn, regAndSignIn, verifyClientToken, signOut, updateUser, changePas
 import { getUserShows } from '../reducers/usershows.reducer'
 import { getUserFriends, getFriendRequests } from '../reducers/friends.reducer'
 import { getUserRecomms } from '../reducers/userrecomms.reducer'
+import { getNotifications } from '../reducers/notifications.reducer'
 import { setMessage } from '../reducers/message.reducer'
 
 // utils
@@ -19,6 +20,7 @@ export const mapDispatch = dispatch => ({
       .then(() => dispatch(getUserFriends()))
       .then(() => dispatch(getFriendRequests()))
       .then(() => dispatch(getUserRecomms()))
+      .then(() => dispatch(getNotifications()))
       .catch(getAxiosError)
   },
   attemptRegister(name, email, password) {
@@ -27,6 +29,7 @@ export const mapDispatch = dispatch => ({
       .then(() => dispatch(getUserFriends()))
       .then(() => dispatch(getFriendRequests()))
       .then(() => dispatch(getUserRecomms()))
+      .then(() => dispatch(getNotifications()))
       .catch(getAxiosError)
   },
   attemptLoadWithToken(token) {
@@ -35,6 +38,7 @@ export const mapDispatch = dispatch => ({
       .then(() => dispatch(getUserFriends()))
       .then(() => dispatch(getFriendRequests()))
       .then(() => dispatch(getUserRecomms()))
+      .then(() => dispatch(getNotifications()))
       .catch(getAxiosError)
   },
   signUserOut() {
